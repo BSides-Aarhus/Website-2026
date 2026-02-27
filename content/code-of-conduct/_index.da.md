@@ -4,33 +4,18 @@ description: "BSides Aarhus Adfærdskodeks — sikring af et trygt og inkluderen
 translationKey: "code-of-conduct"
 ---
 
-BSides Aarhus er dedikeret til at give en chikanefri konferenceoplevelse for alle, uanset køn, kønsidentitet, seksuel orientering, handicap, fysisk udseende, kropsstørrelse, race, etnicitet, alder, religion eller teknologivalg.
+Alle er velkomne til BSides Aarhus. Vi forventer, at alle deltagere er respektfulde og hensynsfulde — chikane, diskrimination eller forstyrrende adfærd tolereres ikke.
 
-## Forventet Adfærd
-
-- Vær respektfuld og hensynsfuld i dine interaktioner
-- Afhold dig fra nedladende, diskriminerende eller chikanerende adfærd og tale
-- Vær opmærksom på dine omgivelser og dine meddeltagere
-- Gør konferencearrangørerne opmærksomme, hvis du bemærker en farlig situation eller en person i nød
-
-## Uacceptabel Adfærd
-
-- Chikane, intimidering eller diskrimination i enhver form
-- Verbale overgreb, herunder stødende kommentarer relateret til personlige egenskaber
-- Upassende fysisk kontakt eller uønsket seksuel opmærksomhed
-- Vedvarende forstyrrelse af foredrag eller arrangementer
-- At opfordre til eller opmuntre til nogen af ovenstående handlinger
+Vi er dedikerede til at sikre en imødekommende og inkluderende atmosfære for alle deltagere uanset køn, alder, seksuel orientering, handicap, fysisk udseende, race eller religion.
 
 ## Rapportering
 
-Hvis du oplever eller er vidne til uacceptabel adfærd, bedes du rapportere det til en konferencearrangør med det samme. Arrangører kan identificeres ved deres personalebadges.
+Hvis du oplever eller er vidne til uacceptabel adfærd, bedes du rapportere det til [info@bsidesaarhus.dk](mailto:info@bsidesaarhus.dk) eller informere en BSides Aarhus-repræsentant ved arrangementet.
 
-Alle rapporter vil blive håndteret med diskretion og fortrolighed.
+## Håndhævelse
 
-## Konsekvenser
-
-Deltagere, der bliver bedt om at stoppe uacceptabel adfærd, forventes at efterkomme dette øjeblikkeligt. Konferencearrangører kan tage enhver handling, de anser for passende, herunder advarsel af den pågældende eller bortvisning fra konferencen uden refusion.
+Vi forbeholder os retten til at nægte adgang til vores arrangementer, meetups eller andre aktiviteter, samt at afvise eller fjerne opslag, kommunikation eller på anden måde blokere personer, der ikke overholder denne adfærdskodeks.
 
 ---
 
-*Denne adfærdskodeks er baseret på [BSides Code of Conduct](http://www.yourfriendlyneighborhoodcodeof.conduct/) og kan ændres.*
+*Den fulde adfærdskodeks vedligeholdes på [github.com/BSides-Aarhus/BSides-Aarhus-Association](https://github.com/BSides-Aarhus/BSides-Aarhus-Association).*

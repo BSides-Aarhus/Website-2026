@@ -4,33 +4,18 @@ description: "BSides Aarhus Code of Conduct — ensuring a safe and inclusive en
 translationKey: "code-of-conduct"
 ---
 
-BSides Aarhus is dedicated to providing a harassment-free conference experience for everyone, regardless of gender, gender identity, sexual orientation, disability, physical appearance, body size, race, ethnicity, age, religion, or technology choices.
+Everyone is welcome at BSides Aarhus. We expect all participants to be respectful and considerate — harassment, discrimination, or disruptive behavior will not be tolerated.
 
-## Expected Behavior
-
-- Be respectful and considerate in your interactions
-- Refrain from demeaning, discriminatory, or harassing behavior and speech
-- Be mindful of your surroundings and fellow participants
-- Alert conference organizers if you notice a dangerous situation or someone in distress
-
-## Unacceptable Behavior
-
-- Harassment, intimidation, or discrimination in any form
-- Verbal abuse, including offensive comments related to personal characteristics
-- Inappropriate physical contact or unwelcome sexual attention
-- Sustained disruption of talks or events
-- Advocating for or encouraging any of the above behaviors
+We are dedicated to ensuring a welcoming, inclusive atmosphere for all attendees regardless of gender, age, sexual orientation, disability, physical appearance, race, or religion.
 
 ## Reporting
 
-If you experience or witness unacceptable behavior, please report it to a conference organizer immediately. Organizers can be identified by their staff badges.
+If you encounter or observe unacceptable conduct, please report it to [info@bsidesaarhus.dk](mailto:info@bsidesaarhus.dk) or inform a BSides Aarhus representative at the event.
 
-All reports will be handled with discretion and confidentiality.
+## Enforcement
 
-## Consequences
-
-Participants asked to stop unacceptable behavior are expected to comply immediately. Conference organizers may take any action they deem appropriate, including warning the offender or expulsion from the conference without refund.
+We reserve the right to deny access to our events, meetups, or other activities, and to reject or remove posts, communications, or otherwise block individuals who do not comply with this Code of Conduct.
 
 ---
 
-*This Code of Conduct is based on the [BSides Code of Conduct](http://www.yourfriendlyneighborhoodcodeof.conduct/) and is subject to change.*
+*The full Code of Conduct is maintained at [github.com/BSides-Aarhus/BSides-Aarhus-Association](https://github.com/BSides-Aarhus/BSides-Aarhus-Association).*
