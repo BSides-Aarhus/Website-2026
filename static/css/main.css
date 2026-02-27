@@ -8,9 +8,9 @@
   --color-bg-card: #1a1a25;
   --color-text: #e8e8ed;
   --color-text-muted: #8888a0;
-  --color-accent: #2d7dd2;
-  --color-accent-light: #4a9ded;
-  --color-accent-glow: rgba(45, 125, 210, 0.15);
+  --color-accent: #4AB8D2;
+  --color-accent-light: #6DD0E7;
+  --color-accent-glow: rgba(74, 184, 210, 0.15);
   --color-border: #2a2a3a;
   --color-success: #22c55e;
   --color-warning: #f59e0b;
@@ -114,8 +114,8 @@ h3 { font-size: 1.25rem; }
   gap: var(--space-lg);
 }
 .nav-logo { display: flex; align-items: center; }
-.logo-text { font-size: 1.25rem; font-weight: 800; color: var(--color-text); letter-spacing: -0.02em; }
-.logo-accent { color: var(--color-accent-light); }
+.nav-logo-img { height: 72px; width: auto; }
+.footer-logo-img { height: 256px; width: auto; }
 .nav-links {
   display: flex;
   align-items: center;

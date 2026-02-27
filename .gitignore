@@ -2,3 +2,5 @@ public/
 resources/
 .hugo_build.lock
 REMAINING-TASKS.md
+.DS_Store
+**/.DS_Store
