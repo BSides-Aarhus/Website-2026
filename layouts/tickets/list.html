@@ -12,28 +12,49 @@
 
       <div class="ticket-types">
         <div class="ticket-card">
-          <h3>{{ i18n "tickets_regular" }}</h3>
+          <h3>{{ i18n "tickets_student" }}</h3>
+          <div class="price">{{ i18n "tickets_free" }}</div>
           <ul>
-            <li>Full day conference access</li>
-            <li>Two parallel tracks of talks</li>
-            <li>Breakfast, lunch & refreshments</li>
-            <li>Networking sessions</li>
-            <li>Afterparty access</li>
+            <li>{{ i18n "tickets_perk_access" }}</li>
+            <li>{{ i18n "tickets_perk_tracks" }}</li>
+            <li>{{ i18n "tickets_perk_food" }}</li>
+            <li>{{ i18n "tickets_perk_networking" }}</li>
+            <li>{{ i18n "tickets_student_note" }}</li>
+          </ul>
+          <a href="{{ site.Params.ticketURL }}" class="btn btn-secondary" target="_blank" rel="noopener">{{ i18n "tickets_apply" }}</a>
+        </div>
+
+        <div class="ticket-card">
+          <h3>{{ i18n "tickets_human" }}</h3>
+          <div class="price">170 DKK</div>
+          <ul>
+            <li>{{ i18n "tickets_perk_access" }}</li>
+            <li>{{ i18n "tickets_perk_tracks" }}</li>
+            <li>{{ i18n "tickets_perk_food" }}</li>
+            <li>{{ i18n "tickets_perk_networking" }}</li>
+            <li>{{ i18n "tickets_perk_afterparty" }}</li>
           </ul>
           <a href="{{ site.Params.ticketURL }}" class="btn btn-primary" target="_blank" rel="noopener">{{ i18n "tickets_buy" }}</a>
         </div>
 
         <div class="ticket-card ticket-card--featured">
-          <h3>{{ i18n "tickets_supporter" }} ⭐</h3>
+          <h3>{{ i18n "tickets_community_friend" }} ⭐</h3>
+          <div class="price">1.500 DKK</div>
           <ul>
-            <li>Everything in the regular ticket</li>
-            <li>Support the BSides Aarhus community</li>
-            <li>Help us grow the event</li>
-            <li>Our eternal gratitude</li>
+            <li>{{ i18n "tickets_perk_access" }}</li>
+            <li>{{ i18n "tickets_perk_tracks" }}</li>
+            <li>{{ i18n "tickets_perk_food" }}</li>
+            <li>{{ i18n "tickets_perk_networking" }}</li>
+            <li>{{ i18n "tickets_perk_afterparty" }}</li>
+            <li>{{ i18n "tickets_perk_support" }}</li>
           </ul>
           <a href="{{ site.Params.ticketURL }}" class="btn btn-primary" target="_blank" rel="noopener">{{ i18n "tickets_buy" }}</a>
         </div>
       </div>
+
+      <p style="text-align: center; color: var(--color-text-muted); margin-top: var(--space-lg); font-size: 0.9rem;">
+        {{ i18n "tickets_vat_note" }}
+      </p>
     </div>
   </div>
 </section>

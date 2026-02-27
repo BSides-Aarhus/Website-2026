@@ -58,7 +58,7 @@ other = "Share your knowledge. Our CFP is open — submit your talk proposal tod
 [home_feature_tickets]
 other = "Tickets Available"
 [home_feature_tickets_desc]
-other = "Secure your spot. Regular and supporter tickets are now available."
+other = "Secure your spot. Human, student, and community friend tickets are now available."
 [home_feature_sponsors]
 other = "Our Sponsors"
 [home_feature_sponsors_desc]
@@ -77,12 +77,34 @@ other = "Time"
 other = "To Be Announced"
 
 # Tickets
-[tickets_regular]
-other = "Regular Ticket"
-[tickets_supporter]
-other = "Supporter Ticket"
+[tickets_human]
+other = "Human Ticket"
+[tickets_community_friend]
+other = "Community Friend Ticket"
+[tickets_student]
+other = "Student Ticket"
+[tickets_free]
+other = "Free"
 [tickets_buy]
 other = "Buy Tickets"
+[tickets_apply]
+other = "Apply for Free Ticket"
+[tickets_perk_access]
+other = "Full day conference access"
+[tickets_perk_tracks]
+other = "Two parallel tracks of talks"
+[tickets_perk_food]
+other = "Breakfast, lunch & refreshments"
+[tickets_perk_networking]
+other = "Networking sessions"
+[tickets_perk_afterparty]
+other = "Afterparty access"
+[tickets_perk_support]
+other = "Support the BSides Aarhus community"
+[tickets_student_note]
+other = "Requires confirmation — apply and await approval"
+[tickets_vat_note]
+other = "All prices are incl. 25% VAT. A small service fee is added at checkout."
 
 # Sponsors
 [sponsors_become_title]
@@ -94,7 +116,7 @@ other = "Contact Us About Sponsorship"
 
 # CFP
 [cfp_open]
-other = "CFP is Open!"
+other = "CFP is Open — Deadline: April 10, 2026"
 [cfp_submit]
 other = "Submit Your Talk"
 

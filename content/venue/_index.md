@@ -9,7 +9,7 @@ BSides Aarhus 2026 takes place at **INCUBA Next** in the Katrinebjerg area of Aa
 ## Address
 
 INCUBA Next
-Åbogade 15
+Åbogade 13
 8200 Aarhus N
 Denmark
 

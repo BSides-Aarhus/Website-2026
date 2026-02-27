@@ -9,7 +9,7 @@ BSides Aarhus 2026 finder sted på **INCUBA Next** i Katrinebjerg-området i Aar
 ## Adresse
 
 INCUBA Next
-Åbogade 15
+Åbogade 13
 8200 Aarhus N
 Danmark
 

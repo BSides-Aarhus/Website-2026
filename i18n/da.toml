@@ -58,7 +58,7 @@ other = "Del din viden. Vores CFP er åben — indsend dit forslag til et foredr
 [home_feature_tickets]
 other = "Billetter Tilgængelige"
 [home_feature_tickets_desc]
-other = "Sikr dig din plads. Almindelige billetter og støttebilletter er nu tilgængelige."
+other = "Sikr dig din plads. Human-, studenter- og community friend-billetter er nu tilgængelige."
 [home_feature_sponsors]
 other = "Vores Sponsorer"
 [home_feature_sponsors_desc]
@@ -77,12 +77,34 @@ other = "Tid"
 other = "Annonceres senere"
 
 # Tickets
-[tickets_regular]
-other = "Almindelig Billet"
-[tickets_supporter]
-other = "Støttebillet"
+[tickets_human]
+other = "Human Billet"
+[tickets_community_friend]
+other = "Community Friend Billet"
+[tickets_student]
+other = "Studerende Billet"
+[tickets_free]
+other = "Gratis"
 [tickets_buy]
 other = "Køb Billetter"
+[tickets_apply]
+other = "Ansøg om Gratis Billet"
+[tickets_perk_access]
+other = "Fuld dags konferenceadgang"
+[tickets_perk_tracks]
+other = "To parallelle spor med foredrag"
+[tickets_perk_food]
+other = "Morgenmad, frokost & forfriskninger"
+[tickets_perk_networking]
+other = "Netværkssessioner"
+[tickets_perk_afterparty]
+other = "Adgang til afterparty"
+[tickets_perk_support]
+other = "Støt BSides Aarhus fællesskabet"
+[tickets_student_note]
+other = "Kræver bekræftelse — ansøg og afvent godkendelse"
+[tickets_vat_note]
+other = "Alle priser er inkl. 25% moms. Et lille servicegebyr tillægges ved checkout."
 
 # Sponsors
 [sponsors_become_title]
@@ -94,7 +116,7 @@ other = "Kontakt os om Sponsorat"
 
 # CFP
 [cfp_open]
-other = "CFP er Åben!"
+other = "CFP er Åben — Frist: 10. april 2026"
 [cfp_submit]
 other = "Indsend dit Foredrag"
 
