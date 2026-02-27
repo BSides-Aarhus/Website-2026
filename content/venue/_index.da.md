@@ -13,6 +13,11 @@ INCUBA Next
 8200 Aarhus N
 Danmark
 
+<div class="venue-map">
+<iframe src="https://www.openstreetmap.org/export/embed.html?bbox=10.1822%2C56.1701%2C10.1922%2C56.1741&layer=mapnik&marker=56.1721%2C10.1872" allowfullscreen></iframe>
+<small><a href="https://www.openstreetmap.org/?mlat=56.1721&mlon=10.1872#map=17/56.1721/10.1872" target="_blank" rel="noopener">Se større kort</a></small>
+</div>
+
 ## Sådan Kommer Du Hertil
 
 **Med offentlig transport:** Tag bus 2A eller 11 til Katrinebjerg. Lokationen er en kort gåtur fra busstoppestedet.
