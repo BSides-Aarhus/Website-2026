@@ -1,0 +1,18 @@
+tiers:
+  - name:
+      en: "Gold Sponsors"
+      da: "Guld Sponsorer"
+    level: "gold"
+    sponsors: []
+
+  - name:
+      en: "Silver Sponsors"
+      da: "Sølv Sponsorer"
+    level: "silver"
+    sponsors: []
+
+  - name:
+      en: "Community Partners"
+      da: "Fællesskabspartnere"
+    level: "community"
+    sponsors: []

@@ -1,0 +1,55 @@
+{{ define "main" }}
+  {{ partial "hero.html" . }}
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>{{ i18n "home_about_title" }}</h2>
+        <p>{{ i18n "home_about_subtitle" }}</p>
+      </div>
+      {{ .Content }}
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-bg-elevated);">
+    <div class="container">
+      <div class="section-header">
+        <h2>{{ i18n "home_highlights_title" }}</h2>
+      </div>
+      <div class="features-grid">
+        <a href="{{ "/agenda/" | relLangURL }}" class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>{{ i18n "home_feature_agenda" }}</h3>
+          <p>{{ i18n "home_feature_agenda_desc" }}</p>
+        </a>
+        <a href="{{ "/cfp/" | relLangURL }}" class="feature-card">
+          <div class="feature-icon">🎤</div>
+          <h3>{{ i18n "home_feature_cfp" }}</h3>
+          <p>{{ i18n "home_feature_cfp_desc" }}</p>
+        </a>
+        <a href="{{ "/tickets/" | relLangURL }}" class="feature-card">
+          <div class="feature-icon">🎟️</div>
+          <h3>{{ i18n "home_feature_tickets" }}</h3>
+          <p>{{ i18n "home_feature_tickets_desc" }}</p>
+        </a>
+        <a href="{{ "/sponsors/" | relLangURL }}" class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>{{ i18n "home_feature_sponsors" }}</h3>
+          <p>{{ i18n "home_feature_sponsors_desc" }}</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {{ if site.Data.sponsors }}
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>{{ i18n "home_sponsors_title" }}</h2>
+        <p>{{ i18n "home_sponsors_subtitle" }}</p>
+      </div>
+      {{ partial "sponsor-grid.html" . }}
+    </div>
+  </section>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,36 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-text">BSides <span class="logo-accent">Aarhus</span></span>
+        <p>{{ i18n "footer_tagline" }}</p>
+      </div>
+      <div class="footer-links">
+        <h4>{{ i18n "footer_conference" }}</h4>
+        <ul>
+          <li><a href="{{ "/agenda/" | relLangURL }}">{{ i18n "nav_agenda" }}</a></li>
+          <li><a href="{{ "/tickets/" | relLangURL }}">{{ i18n "nav_tickets" }}</a></li>
+          <li><a href="{{ "/cfp/" | relLangURL }}">{{ i18n "nav_cfp" }}</a></li>
+          <li><a href="{{ "/sponsors/" | relLangURL }}">{{ i18n "nav_sponsors" }}</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>{{ i18n "footer_info" }}</h4>
+        <ul>
+          <li><a href="{{ "/venue/" | relLangURL }}">{{ i18n "nav_venue" }}</a></li>
+          <li><a href="{{ "/faq/" | relLangURL }}">{{ i18n "nav_faq" }}</a></li>
+          <li><a href="{{ "/code-of-conduct/" | relLangURL }}">{{ i18n "footer_coc" }}</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>{{ i18n "footer_connect" }}</h4>
+        <ul>
+          <li><a href="{{ site.Params.linkedinURL }}" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{ now.Year }} BSides Aarhus. {{ i18n "footer_rights" }}</p>
+    </div>
+  </div>
+</footer>

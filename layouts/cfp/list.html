@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="cfp-page">
+      <div class="deadline">{{ i18n "cfp_open" }}</div>
+      {{ .Content }}
+      <div style="text-align: center; margin-top: var(--space-xl);">
+        <a href="{{ site.Params.cfpURL }}" class="btn btn-primary btn-lg" target="_blank" rel="noopener">{{ i18n "cfp_submit" }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

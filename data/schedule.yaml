@@ -1,0 +1,114 @@
+timeSlots:
+  - time: "08:30"
+    type: "break"
+    title:
+      en: "Registration & Coffee"
+      da: "Registrering & Kaffe"
+
+  - time: "09:00"
+    type: "plenary"
+    title:
+      en: "Welcome & Opening"
+      da: "Velkomst & Åbning"
+    speaker: "BSides Aarhus Team"
+
+  - time: "09:15"
+    type: "parallel"
+    track1:
+      title:
+        en: "To Be Announced"
+        da: "Annonceres senere"
+      speaker: "TBA"
+    track2:
+      title:
+        en: "To Be Announced"
+        da: "Annonceres senere"
+      speaker: "TBA"
+
+  - time: "10:00"
+    type: "break"
+    title:
+      en: "Break"
+      da: "Pause"
+
+  - time: "10:15"
+    type: "parallel"
+    track1:
+      title:
+        en: "To Be Announced"
+        da: "Annonceres senere"
+      speaker: "TBA"
+    track2:
+      title:
+        en: "To Be Announced"
+        da: "Annonceres senere"
+      speaker: "TBA"
+
+  - time: "11:00"
+    type: "break"
+    title:
+      en: "Break"
+      da: "Pause"
+
+  - time: "11:15"
+    type: "parallel"
+    track1:
+      title:
+        en: "To Be Announced"
+        da: "Annonceres senere"
+      speaker: "TBA"
+    track2:
+      title:
+        en: "To Be Announced"
+        da: "Annonceres senere"
+      speaker: "TBA"
+
+  - time: "12:00"
+    type: "break"
+    title:
+      en: "Lunch"
+      da: "Frokost"
+
+  - time: "13:15"
+    type: "parallel"
+    track1:
+      title:
+        en: "To Be Announced"
+        da: "Annonceres senere"
+      speaker: "TBA"
+    track2:
+      title:
+        en: "To Be Announced"
+        da: "Annonceres senere"
+      speaker: "TBA"
+
+  - time: "14:00"
+    type: "break"
+    title:
+      en: "Break"
+      da: "Pause"
+
+  - time: "14:15"
+    type: "parallel"
+    track1:
+      title:
+        en: "To Be Announced"
+        da: "Annonceres senere"
+      speaker: "TBA"
+    track2:
+      title:
+        en: "To Be Announced"
+        da: "Annonceres senere"
+      speaker: "TBA"
+
+  - time: "15:00"
+    type: "plenary"
+    title:
+      en: "Networking Session"
+      da: "Netværkssession"
+
+  - time: "16:30"
+    type: "plenary"
+    title:
+      en: "Afterparty"
+      da: "Afterparty"

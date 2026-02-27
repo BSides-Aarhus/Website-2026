@@ -1,0 +1,56 @@
+items:
+  - question:
+      en: "When is BSides Aarhus 2026?"
+      da: "Hvornår er BSides Aarhus 2026?"
+    answer:
+      en: "BSides Aarhus 2026 takes place on June 20, 2026 at INCUBA Next, Katrinebjerg, Aarhus."
+      da: "BSides Aarhus 2026 finder sted den 20. juni 2026 på INCUBA Next, Katrinebjerg, Aarhus."
+
+  - question:
+      en: "How much do tickets cost?"
+      da: "Hvad koster billetter?"
+    answer:
+      en: "We offer regular tickets and supporter tickets. Visit our tickets page for current pricing and availability."
+      da: "Vi tilbyder almindelige billetter og støttebilletter. Besøg vores billetside for aktuelle priser og tilgængelighed."
+
+  - question:
+      en: "What are supporter tickets?"
+      da: "Hvad er støttebilletter?"
+    answer:
+      en: "Supporter tickets are a way for attendees to provide extra support to BSides Aarhus. You get the same great conference experience while helping us grow the event."
+      da: "Støttebilletter er en måde for deltagere at give ekstra støtte til BSides Aarhus. Du får den samme fantastiske konferenceoplevelse, mens du hjælper os med at udvikle arrangementet."
+
+  - question:
+      en: "Is the conference in English or Danish?"
+      da: "Er konferencen på engelsk eller dansk?"
+    answer:
+      en: "Most talks are presented in English to be accessible to our international attendees. The website is available in both English and Danish."
+      da: "De fleste foredrag præsenteres på engelsk for at være tilgængelige for vores internationale deltagere. Hjemmesiden er tilgængelig på både engelsk og dansk."
+
+  - question:
+      en: "How can I become a speaker?"
+      da: "Hvordan kan jeg blive taler?"
+    answer:
+      en: "Submit your talk proposal through our Call for Papers (CFP) on Sessionize. We welcome speakers of all experience levels."
+      da: "Indsend dit forslag til foredrag via vores Call for Papers (CFP) på Sessionize. Vi byder talere på alle erfaringsniveauer velkommen."
+
+  - question:
+      en: "How can my company sponsor BSides Aarhus?"
+      da: "Hvordan kan min virksomhed sponsorere BSides Aarhus?"
+    answer:
+      en: "We offer several sponsorship tiers. Visit our sponsors page or contact us directly to learn more about partnership opportunities."
+      da: "Vi tilbyder flere sponsorniveauer. Besøg vores sponsorside eller kontakt os direkte for at lære mere om partnerskabsmuligheder."
+
+  - question:
+      en: "Is there parking at the venue?"
+      da: "Er der parkering ved lokationen?"
+    answer:
+      en: "Yes, there is parking available in the area surrounding INCUBA Next. The venue is also well-served by public transport."
+      da: "Ja, der er parkering tilgængelig i området omkring INCUBA Next. Lokationen er også godt betjent af offentlig transport."
+
+  - question:
+      en: "Will there be food and drinks?"
+      da: "Vil der være mad og drikke?"
+    answer:
+      en: "Yes! Coffee and breakfast are provided in the morning, lunch is included, and there will be refreshments during breaks."
+      da: "Ja! Kaffe og morgenmad serveres om morgenen, frokost er inkluderet, og der vil være forfriskninger i pauserne."

@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</div>
+<section class="section">
+  <div class="page-content">
+    {{ .Content }}
+    {{ if eq .Section "faq" }}
+      {{ partial "faq-accordion.html" . }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}

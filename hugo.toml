@@ -1,0 +1,64 @@
+baseURL = "https://bsidesaarhus.dk/"
+title = "BSides Aarhus 2026"
+languageCode = "en"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+
+[params]
+  description = "BSides Aarhus - Security Conference - June 20, 2026"
+  conferenceDate = "2026-06-20T09:00:00+02:00"
+  venue = "INCUBA Next, Katrinebjerg, Aarhus"
+  ticketURL = "https://bsidesaarhus.ticketbutler.io/en/e/bsides-aarhus-2026/"
+  cfpURL = "https://sessionize.com/bsides-aarhus-2026/"
+  linkedinURL = "https://www.linkedin.com/company/bsides-aarhus/"
+  ogImage = "/images/og-image.png"
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+    [languages.en.params]
+      ticketURL = "https://bsidesaarhus.ticketbutler.io/en/e/bsides-aarhus-2026/"
+
+  [languages.da]
+    languageName = "Dansk"
+    weight = 2
+    title = "BSides Aarhus 2026"
+    [languages.da.params]
+      ticketURL = "https://bsidesaarhus.ticketbutler.io/da/e/bsides-aarhus-2026/"
+
+[[menus.main]]
+  name = "Agenda"
+  url = "/agenda/"
+  weight = 10
+
+[[menus.main]]
+  name = "Tickets"
+  url = "/tickets/"
+  weight = 20
+
+[[menus.main]]
+  name = "Sponsors"
+  url = "/sponsors/"
+  weight = 30
+
+[[menus.main]]
+  name = "CFP"
+  url = "/cfp/"
+  weight = 40
+
+[[menus.main]]
+  name = "FAQ"
+  url = "/faq/"
+  weight = 50
+
+[[menus.main]]
+  name = "Venue"
+  url = "/venue/"
+  weight = 60
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

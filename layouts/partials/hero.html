@@ -1,0 +1,12 @@
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-subtitle">{{ i18n "hero_subtitle" }}</p>
+    <h1>BSides <span class="accent">Aarhus</span></h1>
+    <p class="hero-date">{{ i18n "hero_date" }} &mdash; {{ i18n "hero_location" }}</p>
+    <div class="hero-cta">
+      <a href="{{ site.Params.ticketURL }}" class="btn btn-primary btn-lg" target="_blank" rel="noopener">{{ i18n "cta_tickets" }}</a>
+      <a href="{{ site.Params.cfpURL }}" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">{{ i18n "cta_cfp" }}</a>
+    </div>
+  </div>
+  {{ partial "countdown.html" . }}
+</section>

@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    {{ .Content }}
+    {{ partial "sponsor-grid.html" . }}
+
+    <div class="sponsor-cta">
+      <h2>{{ i18n "sponsors_become_title" }}</h2>
+      <p style="color: var(--color-text-muted); max-width: 600px; margin: var(--space-md) auto var(--space-lg);">
+        {{ i18n "sponsors_become_text" }}
+      </p>
+      <a href="mailto:info@bsidesaarhus.dk" class="btn btn-primary btn-lg">{{ i18n "sponsors_contact" }}</a>
+    </div>
+  </div>
+</section>
+{{ end }}

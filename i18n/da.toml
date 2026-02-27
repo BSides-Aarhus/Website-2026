@@ -1,0 +1,117 @@
+# Navigation
+[nav_home]
+other = "Hjem"
+[nav_agenda]
+other = "Program"
+[nav_tickets]
+other = "Billetter"
+[nav_sponsors]
+other = "Sponsorer"
+[nav_cfp]
+other = "Call for Papers"
+[nav_faq]
+other = "FAQ"
+[nav_venue]
+other = "Lokation"
+
+# Hero
+[hero_subtitle]
+other = "Sikkerhedskonference"
+[hero_date]
+other = "20. juni 2026"
+[hero_location]
+other = "INCUBA Next, Katrinebjerg, Aarhus"
+
+# CTAs
+[cta_tickets]
+other = "Køb Billetter"
+[cta_cfp]
+other = "Indsend et Foredrag"
+[cta_sponsors]
+other = "Bliv Sponsor"
+
+# Countdown
+[countdown_days]
+other = "Dage"
+[countdown_hours]
+other = "Timer"
+[countdown_minutes]
+other = "Minutter"
+[countdown_seconds]
+other = "Sekunder"
+
+# Homepage
+[home_about_title]
+other = "Om BSides Aarhus"
+[home_about_subtitle]
+other = "En fællesskabsdrevet sikkerhedskonference i hjertet af Danmark"
+[home_highlights_title]
+other = "Konferencens Højdepunkter"
+[home_feature_agenda]
+other = "To-spors Program"
+[home_feature_agenda_desc]
+other = "En hel dag med foredrag fordelt på to parallelle spor om det nyeste inden for sikkerhed."
+[home_feature_cfp]
+other = "Call for Papers"
+[home_feature_cfp_desc]
+other = "Del din viden. Vores CFP er åben — indsend dit forslag til et foredrag i dag."
+[home_feature_tickets]
+other = "Billetter Tilgængelige"
+[home_feature_tickets_desc]
+other = "Sikr dig din plads. Almindelige billetter og støttebilletter er nu tilgængelige."
+[home_feature_sponsors]
+other = "Vores Sponsorer"
+[home_feature_sponsors_desc]
+other = "BSides Aarhus er muliggjort af vores fantastiske sponsorer og partnere."
+[home_sponsors_title]
+other = "Sponsorer & Partnere"
+[home_sponsors_subtitle]
+other = "Tak til de organisationer der gør BSides Aarhus mulig"
+
+# Agenda
+[agenda_track]
+other = "Spor"
+[agenda_time]
+other = "Tid"
+[agenda_tba]
+other = "Annonceres senere"
+
+# Tickets
+[tickets_regular]
+other = "Almindelig Billet"
+[tickets_supporter]
+other = "Støttebillet"
+[tickets_buy]
+other = "Køb Billetter"
+
+# Sponsors
+[sponsors_become_title]
+other = "Bliv Sponsor"
+[sponsors_become_text]
+other = "Interesseret i at sponsorere BSides Aarhus 2026? Vi tilbyder flere sponsorniveauer. Kontakt os for at høre mere om fordelene."
+[sponsors_contact]
+other = "Kontakt os om Sponsorat"
+
+# CFP
+[cfp_open]
+other = "CFP er Åben!"
+[cfp_submit]
+other = "Indsend dit Foredrag"
+
+# Footer
+[footer_tagline]
+other = "En fællesskabsdrevet sikkerhedskonference i Aarhus, Danmark."
+[footer_conference]
+other = "Konference"
+[footer_info]
+other = "Information"
+[footer_connect]
+other = "Forbind"
+[footer_coc]
+other = "Adfærdskodeks"
+[footer_rights]
+other = "Alle rettigheder forbeholdes."
+
+# Language
+[lang_switch]
+other = "English"

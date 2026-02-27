@@ -1,0 +1,15 @@
+{{ $lang := site.Language.Lang }}
+<div class="faq-list">
+  {{ range site.Data.faq.items }}
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false">
+      {{ index .question $lang }}
+    </button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        {{ index .answer $lang }}
+      </div>
+    </div>
+  </div>
+  {{ end }}
+</div>

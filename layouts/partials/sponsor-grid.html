@@ -1,0 +1,15 @@
+{{ $lang := site.Language.Lang }}
+{{ range site.Data.sponsors.tiers }}
+  {{ if .sponsors }}
+  <div class="sponsor-tier sponsor-tier--{{ .level }}">
+    <h3>{{ index .name $lang }}</h3>
+    <div class="sponsor-logos">
+      {{ range .sponsors }}
+      <a href="{{ .url }}" target="_blank" rel="noopener">
+        <img src="{{ .logo }}" alt="{{ .name }}" loading="lazy">
+      </a>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+{{ end }}

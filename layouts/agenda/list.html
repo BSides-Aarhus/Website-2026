@@ -1,0 +1,55 @@
+{{ define "main" }}
+{{ $lang := site.Language.Lang }}
+<div class="page-header">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    {{ .Content }}
+
+    <div class="schedule">
+      <div class="schedule-header">
+        <div class="schedule-header-cell">{{ i18n "agenda_time" }}</div>
+        <div class="schedule-header-cell">{{ i18n "agenda_track" }} 1</div>
+        <div class="schedule-header-cell">{{ i18n "agenda_track" }} 2</div>
+      </div>
+
+      {{ range site.Data.schedule.timeSlots }}
+        {{ if eq .type "break" }}
+        <div class="schedule-row">
+          <div class="schedule-time">{{ .time }}</div>
+          <div class="schedule-slot schedule-slot--break" style="grid-column: 2 / -1;">
+            {{ index .title $lang }}
+          </div>
+        </div>
+
+        {{ else if eq .type "plenary" }}
+        <div class="schedule-row">
+          <div class="schedule-time">{{ .time }}</div>
+          <div class="schedule-slot schedule-slot--plenary">
+            <h4>{{ index .title $lang }}</h4>
+            {{ with .speaker }}<span class="speaker">{{ . }}</span>{{ end }}
+          </div>
+        </div>
+
+        {{ else if eq .type "parallel" }}
+        <div class="schedule-row">
+          <div class="schedule-time">{{ .time }}</div>
+          <div class="schedule-slot">
+            <h4>{{ index .track1.title $lang }}</h4>
+            {{ with .track1.speaker }}<span class="speaker">{{ . }}</span>{{ end }}
+          </div>
+          <div class="schedule-slot">
+            <h4>{{ index .track2.title $lang }}</h4>
+            {{ with .track2.speaker }}<span class="speaker">{{ . }}</span>{{ end }}
+          </div>
+        </div>
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
