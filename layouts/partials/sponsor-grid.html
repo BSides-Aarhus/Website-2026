@@ -5,7 +5,7 @@
     <h3>{{ index .name $lang }}</h3>
     <div class="sponsor-logos">
       {{ range .sponsors }}
-      <a href="{{ .url }}" target="_blank" rel="noopener">
+      <a href="{{ .url }}" target="_blank" rel="noopener"{{ if .darkBg }} class="sponsor-logo--light-bg"{{ end }}>
         <img src="{{ .logo }}" alt="{{ .name }}" loading="lazy">
       </a>
       {{ end }}

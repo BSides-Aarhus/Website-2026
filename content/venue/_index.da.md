@@ -28,4 +28,7 @@ Danmark
 
 ## Om Lokationen
 
+![INCUBA Next](/images/incuba-next-aart.jpeg)
+*Bygning designet af [AART arkitekter](http://www.aart.dk)*
+
 INCUBA Next er en moderne innovationshub beliggende i hjertet af Katrinebjerg, Aarhus' teknologidistrikt. Bygningen tilbyder fremragende faciliteter til konferencer, herunder flere præsentationsrum, netværksområder og cateringfaciliteter.

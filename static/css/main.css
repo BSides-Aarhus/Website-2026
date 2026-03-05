@@ -336,9 +336,20 @@ h3 { font-size: 1.25rem; }
   border-color: var(--color-accent);
   box-shadow: 0 0 20px var(--color-accent-glow);
 }
-.sponsor-tier--gold .sponsor-logos img { max-height: 80px; }
-.sponsor-tier--silver .sponsor-logos img { max-height: 60px; }
-.sponsor-tier--community .sponsor-logos img { max-height: 50px; }
+.sponsor-tier--community .sponsor-logos img,
+.sponsor-tier--community-partner .sponsor-logos img,
+.sponsor-tier--community-friend .sponsor-logos img,
+.sponsor-tier--community-food-friend .sponsor-logos img,
+.sponsor-tier--community-student-friend .sponsor-logos img { max-height: 100px; }
+.sponsor-logos img {
+  height: 100px;
+  width: auto;
+}
+.sponsor-logos .sponsor-logo--light-bg {
+  background: rgba(255, 255, 255, 0.80);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius);
+}
 .sponsor-cta { text-align: center; margin-top: var(--space-xl); }
 
 /* FAQ Accordion */
@@ -415,6 +426,21 @@ h3 { font-size: 1.25rem; }
 }
 .ticket-card ul { margin-bottom: var(--space-lg); color: var(--color-text-muted); }
 .ticket-card li { padding: var(--space-xs) 0; }
+.ticket-card .perk-highlight {
+  color: var(--color-accent-light);
+  font-weight: 600;
+  text-shadow: 0 0 10px var(--color-accent-glow), 0 0 30px rgba(74, 184, 210, 0.2);
+  padding: var(--space-sm) 0;
+  position: relative;
+}
+.ticket-card .perk-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent-glow);
+  border-radius: var(--radius);
+  z-index: -1;
+}
 
 /* CFP Page */
 .cfp-page { max-width: 800px; margin: 0 auto; }

@@ -15,10 +15,14 @@ tiers:
     sponsors: []
 
   - name:
-      en: "Community Food Friends"
-      da: "Fællesskabs Madvenner"
+      en: "Food for the Village Sponsors"
+      da: "Fodring af Landsbyen-sponsorer"
     level: "community-food-friend"
-    sponsors: []
+    sponsors:
+      - name: "Incuba"
+        url: "https://incuba.dk"
+        logo: "/images/sponsors/incuba-logo.svg"
+        darkBg: true
 
   - name:
       en: "Community Student Friends"
