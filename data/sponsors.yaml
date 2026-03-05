@@ -1,18 +1,27 @@
 tiers:
   - name:
-      en: "Gold Sponsors"
-      da: "Guld Sponsorer"
-    level: "gold"
-    sponsors: []
-
-  - name:
-      en: "Silver Sponsors"
-      da: "Sølv Sponsorer"
-    level: "silver"
-    sponsors: []
-
-  - name:
       en: "Community Partners"
       da: "Fællesskabspartnere"
-    level: "community"
+    level: "community-partner"
     sponsors: []
+
+  - name:
+      en: "Community Friends"
+      da: "Fællesskabsvenner"
+    level: "community-friend"
+    sponsors: []
+
+  - name:
+      en: "Community Food Friends"
+      da: "Fællesskabs Madvenner"
+    level: "community-food-friend"
+    sponsors: []
+
+  - name:
+      en: "Community Student Friends"
+      da: "Fællesskabs Studentervenner"
+    level: "community-student-friend"
+    sponsors:
+      - name: "Danske Bank"
+        url: "https://danskebank.dk"
+        logo: "/images/sponsors/Danske BankLogo White RGB.png"
