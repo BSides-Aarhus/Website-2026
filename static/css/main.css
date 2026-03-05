@@ -476,6 +476,11 @@ h3 { font-size: 1.25rem; }
   padding: var(--space-xl) var(--space-lg);
   text-align: center;
   transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+.ticket-card .btn {
+  margin-top: auto;
 }
 .ticket-card:hover { border-color: var(--color-accent); }
 .ticket-card--featured {
