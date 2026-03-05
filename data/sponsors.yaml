@@ -3,7 +3,10 @@ tiers:
       en: "Community Partners"
       da: "Fællesskabspartnere"
     level: "community-partner"
-    sponsors: []
+    sponsors:
+      - name: "Truesec"
+        url: "https://truesec.com"
+        logo: "/images/sponsors/Truesec-Logo-Large-White.png"
 
   - name:
       en: "Community Friends"
