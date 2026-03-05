@@ -63,6 +63,15 @@ other = "Sikr dig din plads. Human-, studenter- og community friend-billetter er
 other = "Vores Sponsorer"
 [home_feature_sponsors_desc]
 other = "BSides Aarhus er muliggjort af vores fantastiske sponsorer og partnere."
+[home_feature_venue]
+other = "Lokationen"
+[home_feature_venue_desc]
+other = "INCUBA Next i Katrinebjerg — Aarhus' teknologi- og universitetskvarter."
+[home_feature_faq]
+other = "FAQ"
+[home_feature_faq_desc]
+other = "Har du spørgsmål? Find svar om billetter, lokationen og hvad du skal medbringe."
+
 [home_venue_title]
 other = "Lokationen"
 [home_venue_subtitle]

@@ -37,36 +37,17 @@
           <h3>{{ i18n "home_feature_sponsors" }}</h3>
           <p>{{ i18n "home_feature_sponsors_desc" }}</p>
         </a>
+        <a href="{{ "/venue/" | relLangURL }}" class="feature-card">
+          <div class="feature-icon">📍</div>
+          <h3>{{ i18n "home_feature_venue" }}</h3>
+          <p>{{ i18n "home_feature_venue_desc" }}</p>
+        </a>
+        <a href="{{ "/faq/" | relLangURL }}" class="feature-card">
+          <div class="feature-icon">❓</div>
+          <h3>{{ i18n "home_feature_faq" }}</h3>
+          <p>{{ i18n "home_feature_faq_desc" }}</p>
+        </a>
       </div>
     </div>
   </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>{{ i18n "home_venue_title" }}</h2>
-        <p>{{ i18n "home_venue_subtitle" }}</p>
-      </div>
-      <div class="venue-teaser">
-        <img src="/images/incuba-next-aart.jpeg" alt="INCUBA Next" loading="lazy">
-        <div class="venue-teaser-info">
-          <h3>INCUBA Next, Katrinebjerg</h3>
-          <p>{{ i18n "home_venue_desc" }}</p>
-          <a href="{{ "/venue/" | relLangURL }}" class="btn btn-secondary">{{ i18n "home_venue_cta" }}</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {{ if site.Data.sponsors }}
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>{{ i18n "home_sponsors_title" }}</h2>
-        <p>{{ i18n "home_sponsors_subtitle" }}</p>
-      </div>
-      {{ partial "sponsor-grid.html" . }}
-    </div>
-  </section>
-  {{ end }}
 {{ end }}
