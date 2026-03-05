@@ -15,14 +15,10 @@ tiers:
     sponsors: []
 
   - name:
-      en: "Food for the Village Sponsors"
-      da: "Fodring af Landsbyen-sponsorer"
+      en: "Community Food Friends"
+      da: "Fællesskabs Madvenner"
     level: "community-food-friend"
-    sponsors:
-      - name: "Incuba"
-        url: "https://incuba.dk"
-        logo: "/images/sponsors/incuba-logo.svg"
-        darkBg: true
+    sponsors: []
 
   - name:
       en: "Community Student Friends"
@@ -32,3 +28,16 @@ tiers:
       - name: "Danske Bank"
         url: "https://danskebank.dk"
         logo: "/images/sponsors/Danske BankLogo White RGB.png"
+  
+  - name:
+      en: "Venue Sponsors"
+      da: "Lokationssponsorer"
+    level: "venue-sponsor"
+    sponsors: 
+      - name: "Incuba"
+        url: "https://incuba.dk"
+        logo: "/images/sponsors/incuba-logo.svg"
+        darkBg: true
+      - name: "Aarhus Universitet"
+        url: "https://au.dk"
+        logo: "/images/sponsors/aulogo_uk_var2_white.png"

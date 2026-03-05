@@ -63,6 +63,15 @@ other = "Sikr dig din plads. Human-, studenter- og community friend-billetter er
 other = "Vores Sponsorer"
 [home_feature_sponsors_desc]
 other = "BSides Aarhus er muliggjort af vores fantastiske sponsorer og partnere."
+[home_venue_title]
+other = "Lokationen"
+[home_venue_subtitle]
+other = "Beliggende i hjertet af Aarhus' teknologidistrikt"
+[home_venue_desc]
+other = "En moderne innovationshub i Katrinebjerg — Aarhus' teknologi- og universitetskvarter. Gode faciliteter, nem at nå med bus eller cykel, og omgivet af byens IT-miljø."
+[home_venue_cta]
+other = "Lokationsdetaljer"
+
 [home_sponsors_title]
 other = "Sponsorer & Partnere"
 [home_sponsors_subtitle]

@@ -63,6 +63,15 @@ other = "Secure your spot. Human, student, and community friend tickets are now 
 other = "Our Sponsors"
 [home_feature_sponsors_desc]
 other = "BSides Aarhus is made possible by our amazing sponsors and partners."
+[home_venue_title]
+other = "The Venue"
+[home_venue_subtitle]
+other = "Located in the heart of Aarhus's technology district"
+[home_venue_desc]
+other = "A modern innovation hub in Katrinebjerg — Aarhus's tech and university quarter. Great facilities, easy to reach by bus or bike, and surrounded by the city's IT community."
+[home_venue_cta]
+other = "Venue Details"
+
 [home_sponsors_title]
 other = "Sponsors & Partners"
 [home_sponsors_subtitle]
