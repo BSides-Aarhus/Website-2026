@@ -12,7 +12,10 @@ tiers:
       en: "Community Friends"
       da: "Fællesskabsvenner"
     level: "community-friend"
-    sponsors: []
+    sponsors:
+      - name: "Tech Hub Aarhus"
+        url: "https://techhubaarhus.dk"
+        logo: "/images/sponsors/tech-hub-aarhus.png"
 
   - name:
       en: "Community Food Friends"
