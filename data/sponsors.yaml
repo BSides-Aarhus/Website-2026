@@ -4,9 +4,14 @@ tiers:
       da: "Fællesskabspartnere"
     level: "community-partner"
     sponsors:
+      - name: "Aarhus Kommune"
+        url: "https://aarhus.dk"
+        logo: "/images/sponsors/AarhusKommuneErhverv_Logo.png"
+        darkBg: true
       - name: "Truesec"
         url: "https://truesec.com"
         logo: "/images/sponsors/Truesec-Logo-Large-White.png"
+      
 
   - name:
       en: "Community Friends"
