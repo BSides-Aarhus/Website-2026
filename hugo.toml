@@ -58,6 +58,11 @@ enableRobotsTXT = true
   url = "/venue/"
   weight = 60
 
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
