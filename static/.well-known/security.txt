@@ -1,0 +1,7 @@
+# BSides Aarhus Security Policy
+# https://securitytxt.org/ | RFC 9116
+
+Contact: mailto:info@bsidesaarhus.dk
+Expires: 2027-06-20T09:00:00+02:00
+Preferred-Languages: en, da
+Canonical: https://bsidesaarhus.dk/.well-known/security.txt
