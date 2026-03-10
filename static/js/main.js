@@ -168,6 +168,42 @@
   });
 })();
 
+// Ticket Stats Bar Entrance Animation
+(function () {
+  var barFill = document.querySelector('.ticket-stats-bar-fill');
+  if (!barFill) return;
+
+  // Read the target percentage from the inline style (set by Hugo)
+  var inlineWidth = barFill.style.width;
+  var targetPct = parseInt(inlineWidth, 10) || 0;
+
+  // Store as CSS custom property and trigger animation after a short delay
+  barFill.style.setProperty('--target-width', targetPct + '%');
+  requestAnimationFrame(function () {
+    setTimeout(function () {
+      barFill.classList.add('ticket-stats-bar-fill--animated');
+    }, 300);
+  });
+
+  // Also animate the sold counter number from 0
+  var soldEl = document.getElementById('tickets-sold');
+  if (soldEl) {
+    var targetNum = parseInt(soldEl.textContent, 10) || 0;
+    soldEl.textContent = '0';
+    setTimeout(function () {
+      var duration = 1200;
+      var start = performance.now();
+      function step(now) {
+        var progress = Math.min((now - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        soldEl.textContent = Math.round(targetNum * eased);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }, 300);
+  }
+})();
+
 // Live Ticket Updates
 (function () {
   // The Cloudflare Worker URL — update this after deploying the worker
