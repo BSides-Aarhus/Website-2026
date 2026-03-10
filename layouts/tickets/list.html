@@ -10,10 +10,47 @@
     <div class="page-content" style="max-width: none;">
       {{ .Content }}
 
+      {{/* Ticket sold counter — visible when we have API data */}}
+      {{ with site.Data.tickets }}
+        {{ if gt .total_available 0 }}
+          <div class="ticket-stats" id="ticket-stats"
+               data-sold="{{ .total_sold }}"
+               data-total="{{ .total_available }}">
+            <div class="ticket-stats-counter">
+              <span class="ticket-stats-number" id="tickets-sold">{{ .total_sold }}</span>
+              <span class="ticket-stats-separator">/</span>
+              <span class="ticket-stats-total">{{ .total_available }}</span>
+            </div>
+            <div class="ticket-stats-label">{{ i18n "tickets_sold_label" }}</div>
+            <div class="ticket-stats-bar">
+              {{ $pct := div (mul .total_sold 100) .total_available }}
+              <div class="ticket-stats-bar-fill" style="width: {{ $pct }}%" data-pct="{{ $pct }}"></div>
+            </div>
+          </div>
+        {{ end }}
+      {{ end }}
+
       <div class="ticket-types">
-        <div class="ticket-card">
+        {{/* Student Ticket */}}
+        {{ $studentData := false }}
+        {{ range site.Data.tickets.ticket_types }}
+          {{ if or (in (lower .title) "student") (in (lower .title) "studerende") }}
+            {{ $studentData = . }}
+          {{ end }}
+        {{ end }}
+        <div class="ticket-card" {{ with $studentData }}data-ticket-uuid="{{ .uuid }}"{{ end }}>
+          {{ with $studentData }}
+            {{ if .is_sold_out }}<div class="ticket-badge ticket-badge--sold-out">{{ i18n "tickets_sold_out" }}</div>{{ end }}
+          {{ end }}
           <h3>{{ i18n "tickets_student" }}</h3>
           <div class="price">{{ i18n "tickets_free" }}</div>
+          {{ with $studentData }}
+            {{ if and (gt .amount_total 0) (not .is_sold_out) }}
+              <div class="ticket-remaining">
+                <span class="ticket-remaining-count" data-remaining="{{ .amount_remaining }}">{{ .amount_remaining }}</span> {{ i18n "tickets_remaining" }}
+              </div>
+            {{ end }}
+          {{ end }}
           <ul>
             <li>{{ i18n "tickets_perk_access" }}</li>
             <li>{{ i18n "tickets_perk_tracks" }}</li>
@@ -24,9 +61,32 @@
           <a href="{{ site.Params.ticketURL }}" class="btn btn-secondary" target="_blank" rel="noopener">{{ i18n "tickets_apply" }}</a>
         </div>
 
-        <div class="ticket-card">
+        {{/* Human Ticket */}}
+        {{ $humanData := false }}
+        {{ range site.Data.tickets.ticket_types }}
+          {{ if and (not (or (in (lower .title) "student") (in (lower .title) "studerende") (in (lower .title) "community") (in (lower .title) "friend"))) (or (in (lower .title) "human") (eq (len site.Data.tickets.ticket_types) 3)) }}
+            {{ $humanData = . }}
+          {{ end }}
+        {{ end }}
+        <div class="ticket-card" {{ with $humanData }}data-ticket-uuid="{{ .uuid }}"{{ end }}>
+          {{ with $humanData }}
+            {{ if .is_sold_out }}<div class="ticket-badge ticket-badge--sold-out">{{ i18n "tickets_sold_out" }}</div>{{ end }}
+          {{ end }}
           <h3>{{ i18n "tickets_human" }}</h3>
-          <div class="price">170 DKK</div>
+          <div class="price">
+            {{- with $humanData -}}
+              {{ .price }} {{ .currency }}
+            {{- else -}}
+              170 DKK
+            {{- end -}}
+          </div>
+          {{ with $humanData }}
+            {{ if and (gt .amount_total 0) (not .is_sold_out) }}
+              <div class="ticket-remaining">
+                <span class="ticket-remaining-count" data-remaining="{{ .amount_remaining }}">{{ .amount_remaining }}</span> {{ i18n "tickets_remaining" }}
+              </div>
+            {{ end }}
+          {{ end }}
           <ul>
             <li>{{ i18n "tickets_perk_access" }}</li>
             <li>{{ i18n "tickets_perk_tracks" }}</li>
@@ -37,9 +97,32 @@
           <a href="{{ site.Params.ticketURL }}" class="btn btn-primary" target="_blank" rel="noopener">{{ i18n "tickets_buy" }}</a>
         </div>
 
-        <div class="ticket-card ticket-card--featured">
+        {{/* Community Friend Ticket */}}
+        {{ $friendData := false }}
+        {{ range site.Data.tickets.ticket_types }}
+          {{ if or (in (lower .title) "community") (in (lower .title) "friend") }}
+            {{ $friendData = . }}
+          {{ end }}
+        {{ end }}
+        <div class="ticket-card ticket-card--featured" {{ with $friendData }}data-ticket-uuid="{{ .uuid }}"{{ end }}>
+          {{ with $friendData }}
+            {{ if .is_sold_out }}<div class="ticket-badge ticket-badge--sold-out">{{ i18n "tickets_sold_out" }}</div>{{ end }}
+          {{ end }}
           <h3>{{ i18n "tickets_community_friend" }}</h3>
-          <div class="price">1.500 DKK</div>
+          <div class="price">
+            {{- with $friendData -}}
+              {{ .price }} {{ .currency }}
+            {{- else -}}
+              1.500 DKK
+            {{- end -}}
+          </div>
+          {{ with $friendData }}
+            {{ if and (gt .amount_total 0) (not .is_sold_out) }}
+              <div class="ticket-remaining">
+                <span class="ticket-remaining-count" data-remaining="{{ .amount_remaining }}">{{ .amount_remaining }}</span> {{ i18n "tickets_remaining" }}
+              </div>
+            {{ end }}
+          {{ end }}
           <ul>
             <li>{{ i18n "tickets_perk_access" }}</li>
             <li>{{ i18n "tickets_perk_tracks" }}</li>
@@ -58,4 +141,7 @@
     </div>
   </div>
 </section>
+
+{{/* Live ticket update toast */}}
+<div class="ticket-toast" id="ticket-toast" aria-live="polite" aria-atomic="true"></div>
 {{ end }}

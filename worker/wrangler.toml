@@ -1,0 +1,10 @@
+name = "bsides-ticket-proxy"
+main = "ticket-proxy.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://bsidesaarhus.dk"
+
+# Secrets (set via `wrangler secret put`):
+# TICKETBUTLER_API_TOKEN
+# TICKETBUTLER_EVENT_UUID

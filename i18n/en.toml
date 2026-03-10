@@ -152,6 +152,18 @@ other = "Code of Conduct"
 [footer_rights]
 other = "All rights reserved."
 
+# Ticket Availability
+[tickets_sold_label]
+other = "tickets sold"
+[tickets_sold_hero]
+other = "tickets already claimed!"
+[tickets_remaining]
+other = "remaining"
+[tickets_sold_out]
+other = "Sold Out"
+[tickets_just_sold]
+other = "Someone just grabbed a ticket!"
+
 # Language
 [lang_switch]
 other = "Dansk"

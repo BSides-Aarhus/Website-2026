@@ -3,6 +3,9 @@ name: Deploy Hugo site to Pages
 on:
   push:
     branches: ["main"]
+  schedule:
+    # Rebuild every 2 hours to refresh ticket data
+    - cron: "0 */2 * * *"
   workflow_dispatch:
 
 permissions:
@@ -31,6 +34,12 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Fetch ticket data from Ticket Butler
+        env:
+          TICKETBUTLER_API_TOKEN: ${{ secrets.TICKETBUTLER_API_TOKEN }}
+          TICKETBUTLER_EVENT_UUID: ${{ secrets.TICKETBUTLER_EVENT_UUID }}
+        run: ./scripts/fetch-tickets.sh
 
       - name: Setup Pages
         id: pages

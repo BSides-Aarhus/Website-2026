@@ -3,6 +3,17 @@
     <p class="hero-subtitle">{{ i18n "hero_subtitle" }}</p>
     <h1>BSides <span class="accent">Aarhus</span></h1>
     <p class="hero-date">{{ i18n "hero_date" }} &mdash; {{ i18n "hero_location" }}</p>
+
+    {{/* Live ticket counter on homepage */}}
+    {{ with site.Data.tickets }}
+      {{ if gt .total_sold 0 }}
+        <div class="hero-ticket-counter" id="hero-ticket-counter">
+          <span class="hero-ticket-number" id="hero-tickets-sold">{{ .total_sold }}</span>
+          {{ i18n "tickets_sold_hero" }}
+        </div>
+      {{ end }}
+    {{ end }}
+
     <div class="hero-cta">
       <a href="{{ site.Params.ticketURL }}" class="btn btn-primary btn-lg" target="_blank" rel="noopener">{{ i18n "cta_tickets" }}</a>
       <a href="{{ site.Params.cfpURL }}" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">{{ i18n "cta_cfp" }}</a>

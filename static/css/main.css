@@ -512,6 +512,146 @@ h3 { font-size: 1.25rem; }
   z-index: -1;
 }
 
+/* Ticket Stats Counter */
+.ticket-stats {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+.ticket-stats-counter {
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+}
+.ticket-stats-number {
+  color: var(--color-accent-light);
+  transition: transform 0.3s, color 0.3s;
+  display: inline-block;
+}
+.ticket-stats-separator { color: var(--color-text-muted); margin: 0 0.25em; }
+.ticket-stats-total { color: var(--color-text-muted); }
+.ticket-stats-label {
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  margin-top: var(--space-sm);
+}
+.ticket-stats-bar {
+  margin-top: var(--space-md);
+  height: 6px;
+  background: var(--color-bg-elevated);
+  border-radius: 3px;
+  overflow: hidden;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ticket-stats-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* Ticket Remaining */
+.ticket-remaining {
+  font-size: 0.85rem;
+  color: var(--color-warning);
+  margin-bottom: var(--space-md);
+  font-weight: 500;
+}
+.ticket-remaining-count {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/* Sold Out Badge */
+.ticket-badge {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-md);
+}
+.ticket-badge--sold-out {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Hero Ticket Counter */
+.hero-ticket-counter {
+  margin-bottom: var(--space-lg);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+.hero-ticket-number {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-accent-light);
+  transition: transform 0.3s;
+  display: inline-block;
+}
+
+/* Ticket Toast Notification */
+.ticket-toast {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  z-index: 200;
+  pointer-events: none;
+}
+.ticket-toast-msg {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: var(--space-md) var(--space-lg);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  box-shadow: 0 0 30px var(--color-accent-glow);
+  animation: toast-in 0.4s ease, toast-out 0.4s ease 3s forwards;
+  margin-top: var(--space-sm);
+}
+
+/* Ticket card pulse animation on live update */
+.ticket-card--pulse {
+  animation: ticket-pulse 0.6s ease;
+}
+
+@keyframes ticket-pulse {
+  0% { box-shadow: 0 0 0 0 var(--color-accent-glow); }
+  50% { box-shadow: 0 0 30px 10px var(--color-accent-glow); border-color: var(--color-accent); }
+  100% { box-shadow: 0 0 0 0 var(--color-accent-glow); }
+}
+
+/* Counter bump animation */
+.ticket-stats-number--bump {
+  animation: counter-bump 0.4s ease;
+}
+@keyframes counter-bump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); color: #fff; }
+  100% { transform: scale(1); }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes toast-out {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100px); }
+}
+
 /* CFP Page */
 .cfp-page { max-width: 800px; margin: 0 auto; }
 .cfp-page .deadline {

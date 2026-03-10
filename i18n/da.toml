@@ -152,6 +152,18 @@ other = "Adfærdskodeks"
 [footer_rights]
 other = "Alle rettigheder forbeholdes."
 
+# Billetoplysninger
+[tickets_sold_label]
+other = "billetter solgt"
+[tickets_sold_hero]
+other = "billetter allerede sikret!"
+[tickets_remaining]
+other = "tilbage"
+[tickets_sold_out]
+other = "Udsolgt"
+[tickets_just_sold]
+other = "Nogen har lige købt en billet!"
+
 # Language
 [lang_switch]
 other = "English"

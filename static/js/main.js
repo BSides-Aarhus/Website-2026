@@ -168,6 +168,125 @@
   });
 })();
 
+// Live Ticket Updates
+(function () {
+  // The Cloudflare Worker URL — update this after deploying the worker
+  var WORKER_URL = '';
+  var POLL_INTERVAL = 45000; // 45 seconds
+
+  // Read the worker URL from a meta tag if present (set in baseof.html)
+  var metaEl = document.querySelector('meta[name="ticket-proxy-url"]');
+  if (metaEl) {
+    WORKER_URL = metaEl.getAttribute('content');
+  }
+
+  // Don't poll if no worker URL configured
+  if (!WORKER_URL) return;
+
+  // Track current state from server-rendered data
+  var statsEl = document.getElementById('ticket-stats');
+  var heroCounterEl = document.getElementById('hero-tickets-sold');
+  var toastEl = document.getElementById('ticket-toast');
+
+  var currentSold = statsEl ? parseInt(statsEl.dataset.sold, 10) || 0 : 0;
+
+  function fetchTickets() {
+    fetch(WORKER_URL)
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (data) {
+        if (!data) return;
+        var newSold = data.total_sold || 0;
+        var diff = newSold - currentSold;
+
+        if (diff > 0) {
+          // Tickets were sold!
+          currentSold = newSold;
+          updateCounters(data);
+          showToast(diff);
+          pulseCards(data.ticket_types);
+        } else if (newSold !== currentSold) {
+          // Data changed (e.g., refund)
+          currentSold = newSold;
+          updateCounters(data);
+        }
+      })
+      .catch(function () { /* silently fail */ });
+  }
+
+  function updateCounters(data) {
+    // Update tickets page counter
+    var soldEl = document.getElementById('tickets-sold');
+    if (soldEl) {
+      soldEl.textContent = data.total_sold;
+      soldEl.classList.remove('ticket-stats-number--bump');
+      // Force reflow to restart animation
+      void soldEl.offsetWidth;
+      soldEl.classList.add('ticket-stats-number--bump');
+    }
+
+    // Update progress bar
+    if (statsEl && data.total_available > 0) {
+      var pct = Math.round((data.total_sold / data.total_available) * 100);
+      var barFill = statsEl.querySelector('.ticket-stats-bar-fill');
+      if (barFill) {
+        barFill.style.width = pct + '%';
+      }
+    }
+
+    // Update hero counter
+    if (heroCounterEl) {
+      heroCounterEl.textContent = data.total_sold;
+      heroCounterEl.classList.remove('ticket-stats-number--bump');
+      void heroCounterEl.offsetWidth;
+      heroCounterEl.classList.add('ticket-stats-number--bump');
+    }
+
+    // Update remaining counts on individual cards
+    if (data.ticket_types) {
+      data.ticket_types.forEach(function (tt) {
+        var card = document.querySelector('[data-ticket-uuid="' + tt.uuid + '"]');
+        if (!card) return;
+        var remainEl = card.querySelector('.ticket-remaining-count');
+        if (remainEl) {
+          remainEl.textContent = tt.amount_remaining;
+        }
+      });
+    }
+  }
+
+  function showToast(count) {
+    if (!toastEl) return;
+    var msg = document.createElement('div');
+    msg.className = 'ticket-toast-msg';
+    msg.textContent = '🎫 ' + (count === 1
+      ? (document.documentElement.lang === 'da'
+          ? 'Nogen har lige købt en billet!'
+          : 'Someone just grabbed a ticket!')
+      : (document.documentElement.lang === 'da'
+          ? count + ' billetter blev lige solgt!'
+          : count + ' tickets just sold!'));
+    toastEl.appendChild(msg);
+    // Remove after animation
+    setTimeout(function () { msg.remove(); }, 3500);
+  }
+
+  function pulseCards(ticketTypes) {
+    if (!ticketTypes) return;
+    ticketTypes.forEach(function (tt) {
+      var card = document.querySelector('[data-ticket-uuid="' + tt.uuid + '"]');
+      if (!card) return;
+      card.classList.remove('ticket-card--pulse');
+      void card.offsetWidth;
+      card.classList.add('ticket-card--pulse');
+    });
+  }
+
+  // Start polling
+  setInterval(fetchTickets, POLL_INTERVAL);
+  // First fetch after a short delay
+  setTimeout(fetchTickets, 3000);
+})();
+
 // FAQ Accordion
 (function () {
   document.querySelectorAll('.faq-question').forEach(function (btn) {
