@@ -11,7 +11,7 @@
       <li><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a></li>
       {{ end }}
       <li class="nav-cta">
-        <a href="{{ site.Params.ticketURL }}" class="btn btn-primary btn-sm" target="_blank" rel="noopener">{{ i18n "cta_tickets" }}</a>
+        <a href="{{ "/tickets/" | relLangURL }}" class="btn btn-primary btn-sm">{{ i18n "cta_tickets" }}</a>
       </li>
     </ul>
     <div class="lang-switch">
