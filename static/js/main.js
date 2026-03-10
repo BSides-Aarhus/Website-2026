@@ -214,12 +214,12 @@
   }
 
   function updateCounters(data) {
-    // Update tickets page counter
+    // Update tickets page counter with animated count
     var soldEl = document.getElementById('tickets-sold');
     if (soldEl) {
-      soldEl.textContent = data.total_sold;
+      var oldVal = parseInt(soldEl.textContent, 10) || 0;
+      animateCountUp(soldEl, oldVal, data.total_sold);
       soldEl.classList.remove('ticket-stats-number--bump');
-      // Force reflow to restart animation
       void soldEl.offsetWidth;
       soldEl.classList.add('ticket-stats-number--bump');
     }
@@ -233,9 +233,10 @@
       }
     }
 
-    // Update hero counter
+    // Update hero counter with animated count
     if (heroCounterEl) {
-      heroCounterEl.textContent = data.total_sold;
+      var oldHeroVal = parseInt(heroCounterEl.textContent, 10) || 0;
+      animateCountUp(heroCounterEl, oldHeroVal, data.total_sold);
       heroCounterEl.classList.remove('ticket-stats-number--bump');
       void heroCounterEl.offsetWidth;
       heroCounterEl.classList.add('ticket-stats-number--bump');
@@ -248,26 +249,74 @@
         if (!card) return;
         var remainEl = card.querySelector('.ticket-remaining-count');
         if (remainEl) {
-          remainEl.textContent = tt.amount_remaining;
+          var oldRemain = parseInt(remainEl.textContent, 10) || 0;
+          animateCountUp(remainEl, oldRemain, tt.amount_remaining);
         }
       });
     }
+  }
+
+  function animateCountUp(el, from, to) {
+    var duration = 600;
+    var start = performance.now();
+    function step(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      // Ease out cubic
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(from + (to - from) * eased);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   }
 
   function showToast(count) {
     if (!toastEl) return;
     var msg = document.createElement('div');
     msg.className = 'ticket-toast-msg';
-    msg.textContent = '🎫 ' + (count === 1
-      ? (document.documentElement.lang === 'da'
-          ? 'Nogen har lige købt en billet!'
-          : 'Someone just grabbed a ticket!')
-      : (document.documentElement.lang === 'da'
-          ? count + ' billetter blev lige solgt!'
-          : count + ' tickets just sold!'));
+
+    var isDa = document.documentElement.lang === 'da';
+    var text = count === 1
+      ? (isDa ? 'Nogen har lige købt en billet!' : 'Someone just grabbed a ticket!')
+      : (isDa ? count + ' billetter blev lige solgt!' : count + ' tickets just sold!');
+
+    msg.innerHTML = '<span class="ticket-toast-emoji">🎫</span> ' + text;
     toastEl.appendChild(msg);
-    // Remove after animation
-    setTimeout(function () { msg.remove(); }, 3500);
+
+    // Spawn floating emojis
+    for (var i = 0; i < Math.min(count, 5); i++) {
+      (function(delay) {
+        setTimeout(function () { spawnFloatingEmoji(msg); }, delay * 150);
+      })(i);
+    }
+
+    setTimeout(function () { msg.remove(); }, 4000);
+  }
+
+  function spawnFloatingEmoji(container) {
+    var emoji = document.createElement('span');
+    emoji.className = 'ticket-toast-float';
+    emoji.textContent = '🎫';
+    emoji.style.left = (Math.random() * 80 + 10) + '%';
+    container.appendChild(emoji);
+    setTimeout(function () { emoji.remove(); }, 1500);
+  }
+
+  function spawnConfetti(card) {
+    var rect = card.getBoundingClientRect();
+    var colors = ['#4AB8D2', '#6DD0E7', '#fff', '#f59e0b', '#22c55e'];
+    for (var i = 0; i < 20; i++) {
+      var particle = document.createElement('div');
+      particle.className = 'ticket-confetti';
+      particle.style.left = (rect.left + rect.width / 2) + 'px';
+      particle.style.top = (rect.top + rect.height / 3) + 'px';
+      particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+      particle.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
+      particle.style.setProperty('--ty', -(Math.random() * 150 + 50) + 'px');
+      particle.style.setProperty('--r', (Math.random() - 0.5) * 720 + 'deg');
+      particle.style.animationDelay = (Math.random() * 0.2) + 's';
+      document.body.appendChild(particle);
+      (function(p) { setTimeout(function () { p.remove(); }, 1200); })(particle);
+    }
   }
 
   function pulseCards(ticketTypes) {
@@ -278,6 +327,7 @@
       card.classList.remove('ticket-card--pulse');
       void card.offsetWidth;
       card.classList.add('ticket-card--pulse');
+      spawnConfetti(card);
     });
   }
 
