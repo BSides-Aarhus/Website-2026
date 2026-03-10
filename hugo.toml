@@ -11,7 +11,7 @@ enableRobotsTXT = true
   venue = "INCUBA Next, Katrinebjerg, Aarhus"
   ticketURL = "https://bsidesaarhus.ticketbutler.io/en/e/bsides-aarhus-2026/"
   cfpURL = "https://sessionize.com/bsides-aarhus-2026/"
-  ticketProxyURL = ""
+  ticketProxyURL = "https://bsides-ticket-proxy.bsides-aarhus-account.workers.dev"
   linkedinURL = "https://www.linkedin.com/company/bsides-aarhus/"
   ogImage = "/images/og-image.png"
 
