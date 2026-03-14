@@ -164,6 +164,12 @@ other = "Udsolgt"
 [tickets_just_sold]
 other = "Nogen har lige købt en billet!"
 
+# Privatliv
+[footer_privacy]
+other = "Privatlivspolitik"
+[footer_cookie_settings]
+other = "Cookie-indstillinger"
+
 # Language
 [lang_switch]
 other = "English"

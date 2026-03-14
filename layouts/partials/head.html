@@ -1,12 +1,27 @@
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B901TPS7BK"></script>
+<!-- Cookie Consent CSS (load early to prevent FOUC) -->
+<link rel="stylesheet" href="{{ "vendor/cookieconsent/cookieconsent.css" | relURL }}">
+
+<!-- Google Consent Mode v2: Set defaults BEFORE any Google tag loads -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+</script>
 
+<!-- Google tag (gtag.js) — blocked until consent via data-category -->
+<script type="text/plain" data-category="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-B901TPS7BK"></script>
+<script type="text/plain" data-category="analytics">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
   gtag('config', 'G-B901TPS7BK');
 </script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
@@ -38,3 +53,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 {{ with site.Params.ticketProxyURL }}<meta name="ticket-proxy-url" content="{{ . }}">{{ end }}
 <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+
+<!-- Cloudflare Web Analytics — cookieless, no consent needed, works in privacy browsers -->
+{{ with site.Params.cfAnalyticsToken }}<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "{{ . }}"}'></script>{{ end }}

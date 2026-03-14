@@ -164,6 +164,12 @@ other = "Sold Out"
 [tickets_just_sold]
 other = "Someone just grabbed a ticket!"
 
+# Privacy
+[footer_privacy]
+other = "Privacy Policy"
+[footer_cookie_settings]
+other = "Cookie Settings"
+
 # Language
 [lang_switch]
 other = "Dansk"

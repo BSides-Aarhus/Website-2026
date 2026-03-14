@@ -14,6 +14,9 @@ enableRobotsTXT = true
   ticketProxyURL = "https://bsides-ticket-proxy.bsides-aarhus-account.workers.dev"
   linkedinURL = "https://www.linkedin.com/company/bsides-aarhus/"
   ogImage = "/images/og-image.png"
+  # Cloudflare Web Analytics — cookieless baseline analytics (works in Brave/Firefox)
+  # Get your token from: Cloudflare Dashboard > Web Analytics > Add site
+  cfAnalyticsToken = "0eac6392764b4889a99edf2624fbbaad"
 
 [languages]
   [languages.en]
