@@ -22,10 +22,14 @@
           <h3>{{ i18n "home_feature_agenda" }}</h3>
           <p>{{ i18n "home_feature_agenda_desc" }}</p>
         </a>
+        {{ $cfpClose := time "2026-04-11T00:00:00+02:00" }}
+        {{ $scheduleDate := time "2026-05-01T00:00:00+02:00" }}
         <a href="{{ "/cfp/" | relLangURL }}" class="feature-card">
           <div class="feature-icon">🎤</div>
           <h3>{{ i18n "home_feature_cfp" }}</h3>
-          <p>{{ i18n "home_feature_cfp_desc" }}</p>
+          <p data-cfp-state="open"{{ if ge now $cfpClose }} style="display:none"{{ end }}>{{ i18n "home_feature_cfp_desc" }}</p>
+          <p data-cfp-state="closed"{{ if or (lt now $cfpClose) (ge now $scheduleDate) }} style="display:none"{{ end }}>{{ i18n "home_feature_cfp_desc_closed" }}</p>
+          <p data-cfp-state="schedule"{{ if lt now $scheduleDate }} style="display:none"{{ end }}>{{ i18n "home_feature_cfp_desc_schedule" }}</p>
         </a>
         <a href="{{ "/tickets/" | relLangURL }}" class="feature-card">
           <div class="feature-icon">🎟️</div>

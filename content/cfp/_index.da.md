@@ -1,6 +1,6 @@
 ---
 title: "Call for Papers"
-description: "Indsend dit forslag til foredrag til BSides Aarhus 2026. CFP er nu åben."
+description: "BSides Aarhus 2026 Call for Presentations — indsend dit forslag til foredrag."
 translationKey: "cfp"
 ---
 
@@ -8,11 +8,11 @@ Vi leder efter talere! BSides Aarhus 2026 byder foredrag velkommen inden for all
 
 ## Vigtige Datoer
 
-- **CFP Åbner:** 1. januar 2026
-- **CFP Lukker:** 10. april 2026 (23:59 CET)
-- **Besked til talere:** 20. april 2026
-- **Bekræftelsesfrist:** 27. april 2026
-- **Konference:** 20. juni 2026
+- **Call for Presentations Lukker:** Fredag d. 10. april 2026
+- **Besked til Talere:** Mandag d. 20. april 2026
+- **Talerbekræftelse Senest:** Mandag d. 27. april 2026
+- **Program Offentliggøres:** Fredag d. 1. maj 2026
+- **Konference:** Lørdag d. 20. juni 2026
 
 ## Emner Vi Søger
 

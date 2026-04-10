@@ -8,10 +8,29 @@
 <section class="section">
   <div class="container">
     <div class="cfp-page">
-      <div class="deadline">{{ i18n "cfp_open" }}</div>
+      {{/* Build-time: Hugo picks the right state. JS overrides at runtime for real-time accuracy. */}}
+      {{ $now := now }}
+      {{ $cfpClose := time "2026-04-11T00:00:00+02:00" }}
+      {{ $scheduleDate := time "2026-05-01T00:00:00+02:00" }}
+
+      <div class="cfp-status" data-cfp-state="open"{{ if ge $now $cfpClose }} style="display:none"{{ end }}>
+        <div class="deadline">{{ i18n "cfp_open" }}</div>
+      </div>
+      <div class="cfp-status" data-cfp-state="closed"{{ if or (lt $now $cfpClose) (ge $now $scheduleDate) }} style="display:none"{{ end }}>
+        <div class="deadline cfp-closed">{{ i18n "cfp_closed" }}</div>
+        <p class="cfp-review-note">{{ i18n "cfp_review" }}</p>
+      </div>
+      <div class="cfp-status" data-cfp-state="schedule"{{ if lt $now $scheduleDate }} style="display:none"{{ end }}>
+        <div class="deadline cfp-schedule">{{ i18n "cfp_schedule" }}</div>
+      </div>
+
       {{ .Content }}
-      <div style="text-align: center; margin-top: var(--space-xl);">
+
+      <div data-cfp-state="open" style="text-align:center;margin-top:var(--space-xl){{ if ge $now $cfpClose }};display:none{{ end }}">
         <a href="{{ site.Params.cfpURL }}" class="btn btn-primary btn-lg" target="_blank" rel="noopener">{{ i18n "cfp_submit" }}</a>
+      </div>
+      <div data-cfp-state="schedule" style="text-align:center;margin-top:var(--space-xl){{ if lt $now $scheduleDate }};display:none{{ end }}">
+        <a href="{{ "/agenda/" | relLangURL }}" class="btn btn-primary btn-lg">{{ i18n "cfp_view_schedule" }}</a>
       </div>
     </div>
   </div>

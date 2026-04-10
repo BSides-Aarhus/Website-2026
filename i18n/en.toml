@@ -55,6 +55,10 @@ other = "A full day of talks across two parallel tracks covering the latest in s
 other = "Call for Papers"
 [home_feature_cfp_desc]
 other = "Share your knowledge. Our CFP is open — submit your talk proposal today."
+[home_feature_cfp_desc_closed]
+other = "Our CFP has closed. Thank you to everyone who submitted a proposal!"
+[home_feature_cfp_desc_schedule]
+other = "The schedule is live! Check out the talks lined up for BSides Aarhus 2026."
 [home_feature_tickets]
 other = "Tickets Available"
 [home_feature_tickets_desc]
@@ -135,8 +139,16 @@ other = "Contact Us About Sponsorship"
 # CFP
 [cfp_open]
 other = "CFP is Open — Deadline: April 10, 2026"
+[cfp_closed]
+other = "CFP is Closed — Thank You for All Submissions!"
+[cfp_review]
+other = "Proposals are being reviewed. Speakers will be notified by April 20."
+[cfp_schedule]
+other = "The schedule has been published!"
 [cfp_submit]
 other = "Submit Your Talk"
+[cfp_view_schedule]
+other = "View the Schedule"
 
 # Footer
 [footer_tagline]

@@ -373,6 +373,21 @@
   setTimeout(fetchTickets, 3000);
 })();
 
+// CFP Date-Aware State
+(function () {
+  var els = document.querySelectorAll('[data-cfp-state]');
+  if (!els.length) return;
+
+  var now = new Date();
+  var cfpClose = new Date('2026-04-11T00:00:00+02:00');
+  var scheduleDate = new Date('2026-05-01T00:00:00+02:00');
+  var state = now < cfpClose ? 'open' : now < scheduleDate ? 'closed' : 'schedule';
+
+  for (var i = 0; i < els.length; i++) {
+    els[i].style.display = els[i].getAttribute('data-cfp-state') === state ? '' : 'none';
+  }
+})();
+
 // FAQ Accordion
 (function () {
   document.querySelectorAll('.faq-question').forEach(function (btn) {

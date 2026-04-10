@@ -16,7 +16,10 @@
 
     <div class="hero-cta">
       <a href="{{ "/tickets/" | relLangURL }}" class="btn btn-primary btn-lg">{{ i18n "cta_tickets" }}</a>
-      <a href="{{ site.Params.cfpURL }}" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">{{ i18n "cta_cfp" }}</a>
+      {{ $cfpClose := time "2026-04-11T00:00:00+02:00" }}
+      {{ $scheduleDate := time "2026-05-01T00:00:00+02:00" }}
+      <a href="{{ site.Params.cfpURL }}" class="btn btn-secondary btn-lg" data-cfp-state="open" target="_blank" rel="noopener"{{ if ge now $cfpClose }} style="display:none"{{ end }}>{{ i18n "cta_cfp" }}</a>
+      <a href="{{ "/agenda/" | relLangURL }}" class="btn btn-secondary btn-lg" data-cfp-state="schedule"{{ if lt now $scheduleDate }} style="display:none"{{ end }}>{{ i18n "cfp_view_schedule" }}</a>
     </div>
   </div>
   {{ partial "countdown.html" . }}

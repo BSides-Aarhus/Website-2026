@@ -55,6 +55,10 @@ other = "En hel dag med foredrag fordelt på to parallelle spor om det nyeste in
 other = "Call for Papers"
 [home_feature_cfp_desc]
 other = "Del din viden. Vores CFP er åben — indsend dit forslag til et foredrag i dag."
+[home_feature_cfp_desc_closed]
+other = "Vores CFP er lukket. Tak til alle der indsendte et forslag!"
+[home_feature_cfp_desc_schedule]
+other = "Programmet er live! Se de foredrag der venter til BSides Aarhus 2026."
 [home_feature_tickets]
 other = "Billetter Tilgængelige"
 [home_feature_tickets_desc]
@@ -135,8 +139,16 @@ other = "Kontakt os om Sponsorat"
 # CFP
 [cfp_open]
 other = "CFP er Åben — Frist: 10. april 2026"
+[cfp_closed]
+other = "CFP er Lukket — Tak for Alle Indsendelser!"
+[cfp_review]
+other = "Forslagene er under bedømmelse. Talere får besked senest d. 20. april."
+[cfp_schedule]
+other = "Programmet er offentliggjort!"
 [cfp_submit]
 other = "Indsend dit Foredrag"
+[cfp_view_schedule]
+other = "Se Programmet"
 
 # Footer
 [footer_tagline]
