@@ -18,6 +18,9 @@ enableRobotsTXT = true
   # Get your token from: Cloudflare Dashboard > Web Analytics > Add site
   cfAnalyticsToken = "0eac6392764b4889a99edf2624fbbaad"
 
+[taxonomies]
+  # intentionally empty — disables default categories/tags
+
 [languages]
   [languages.en]
     languageName = "English"
