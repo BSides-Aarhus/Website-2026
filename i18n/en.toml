@@ -85,6 +85,13 @@ other = "A modern innovation hub in Katrinebjerg — Aarhus's tech and universit
 [home_venue_cta]
 other = "Venue Details"
 
+[home_recap_title]
+other = "Recap from BSides Aarhus 2025"
+[home_recap_subtitle]
+other = "Missed last year? Catch the highlights from our inaugural conference."
+[home_recap_fallback]
+other = "Your browser does not support the video element."
+
 [home_sponsors_title]
 other = "Sponsors & Partners"
 [home_sponsors_subtitle]

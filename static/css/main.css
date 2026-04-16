@@ -916,6 +916,22 @@ h3 { font-size: 1.25rem; }
   font-size: 0.85rem;
 }
 
+/* Video Recap */
+.video-recap-section { background: var(--color-bg); }
+.video-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--color-border), 0 0 48px rgba(74, 184, 210, 0.1);
+}
+.recap-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #000;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .nav-toggle { display: block; }

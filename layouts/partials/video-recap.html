@@ -1,0 +1,20 @@
+<section class="section video-recap-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ i18n "home_recap_title" }}</h2>
+      <p>{{ i18n "home_recap_subtitle" }}</p>
+    </div>
+    <div class="video-wrapper">
+      <video
+        class="recap-video"
+        controls
+        preload="metadata"
+        playsinline
+        poster="{{ "images/og-image.png" | relURL }}"
+      >
+        <source src="{{ "video/recap-2025.mp4" | relURL }}" type="video/mp4">
+        {{ i18n "home_recap_fallback" }}
+      </video>
+    </div>
+  </div>
+</section>

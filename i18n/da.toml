@@ -85,6 +85,13 @@ other = "En moderne innovationshub i Katrinebjerg — Aarhus' teknologi- og univ
 [home_venue_cta]
 other = "Lokationsdetaljer"
 
+[home_recap_title]
+other = "Tilbageblik på BSides Aarhus 2025"
+[home_recap_subtitle]
+other = "Gik du glip af sidste år? Se højdepunkterne fra vores første konference."
+[home_recap_fallback]
+other = "Din browser understøtter ikke videoafspilning."
+
 [home_sponsors_title]
 other = "Sponsorer & Partnere"
 [home_sponsors_subtitle]
