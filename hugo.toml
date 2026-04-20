@@ -4,6 +4,7 @@ languageCode = "en"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
+enableGitInfo = true
 
 [params]
   description = "BSides Aarhus - Security Conference - June 20, 2026"
