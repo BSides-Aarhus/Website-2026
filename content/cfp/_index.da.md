@@ -6,7 +6,7 @@ translationKey: "cfp"
 
 Vi leder efter talere! BSides Aarhus 2026 byder foredrag velkommen inden for alle aspekter af informationssikkerhed. Uanset om du er en erfaren taler eller præsenterer for første gang, vil vi gerne høre fra dig.
 
-## Vigtige Datoer
+## Vigtige datoer
 
 - **Call for Presentations Lukker:** Fredag d. 10. april 2026
 - **Besked til Talere:** Mandag d. 20. april 2026
@@ -14,7 +14,7 @@ Vi leder efter talere! BSides Aarhus 2026 byder foredrag velkommen inden for all
 - **Program Offentliggøres:** Fredag d. 1. maj 2026
 - **Konference:** Lørdag d. 20. juni 2026
 
-## Emner Vi Søger
+## Emner vi søger
 
 - **Offensiv sikkerhed** — exploitation, red teaming, penetrationstest
 - **Defensiv sikkerhed** — blue team taktikker, threat hunting, forensics, incident response
@@ -32,12 +32,12 @@ Vi leder efter talere! BSides Aarhus 2026 byder foredrag velkommen inden for all
 - **Afvikling:** Kun fysisk fremmøde på INCUBA Next, Aarhus
 - **Sprog:** Engelsk eller dansk (engelske slides anbefales)
 
-## Fordele for Talere
+## Fordele for talere
 
 - Gratis konferenceadgang for dig og én gæst
 - For særlige omstændigheder, kontakt speakers@bsidesaarhus.dk
 
-## Retningslinjer for Indsendelse
+## Retningslinjer for indsendelse
 
 - Ingen salgsindlæg eller leverandørmarkedsføring
 - Arbejdsgiverlogoer begrænset til titelslide og biografislide

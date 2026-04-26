@@ -24,11 +24,11 @@ other = "INCUBA Next, Katrinebjerg, Aarhus"
 
 # CTAs
 [cta_tickets]
-other = "Køb Billetter"
+other = "Køb billetter"
 [cta_cfp]
-other = "Indsend et Foredrag"
+other = "Indsend et foredrag"
 [cta_sponsors]
-other = "Bliv Sponsor"
+other = "Bliv sponsor"
 
 # Countdown
 [countdown_days]
@@ -48,7 +48,7 @@ other = "En fællesskabsdrevet sikkerhedskonference i hjertet af Danmark"
 [home_highlights_title]
 other = "Konferencens højdepunkter"
 [home_feature_agenda]
-other = "To-spors Program"
+other = "To-spors program"
 [home_feature_agenda_desc]
 other = "En hel dag med foredrag fordelt på to parallelle spor om de nyeste emner inden for sikkerhed."
 [home_feature_cfp]
@@ -58,13 +58,13 @@ other = "Del din viden. Vores CFP er åben — indsend dit forslag til et foredr
 [home_feature_cfp_desc_closed]
 other = "Vores CFP er lukket. Tak til alle, der indsendte et forslag!"
 [home_feature_cfp_desc_schedule]
-other = "Programmet er live! Se de foredrag der venter til BSides Aarhus 2026."
+other = "Programmet er live! Se de foredrag, der venter til BSides Aarhus 2026."
 [home_feature_tickets]
-other = "Billetter Tilgængelige"
+other = "Billetter tilgængelige"
 [home_feature_tickets_desc]
 other = "Sikr dig din plads nu! Human-, student- og community friend-billetter er åbne."
 [home_feature_sponsors]
-other = "Vores Sponsorer"
+other = "Vores sponsorer"
 [home_feature_sponsors_desc]
 other = "BSides Aarhus er muliggjort af vores fantastiske sponsorer og partnere."
 [home_feature_venue]
@@ -95,7 +95,7 @@ other = "Din browser understøtter ikke videoafspilning."
 [home_sponsors_title]
 other = "Sponsorer & Partnere"
 [home_sponsors_subtitle]
-other = "Tak til de organisationer der gør BSides Aarhus mulig"
+other = "Tak til de organisationer, der gør BSides Aarhus mulig"
 
 # Agenda
 [agenda_track]
@@ -115,9 +115,9 @@ other = "Studerende Billet"
 [tickets_free]
 other = "Gratis"
 [tickets_buy]
-other = "Køb Billetter"
+other = "Køb billetter"
 [tickets_apply]
-other = "Ansøg om Gratis Billet"
+other = "Ansøg om gratis billet"
 [tickets_perk_access]
 other = "Fuld dags konferenceadgang"
 [tickets_perk_tracks]
@@ -137,25 +137,25 @@ other = "Alle priser er inkl. 25% moms. Et lille servicegebyr tillægges ved che
 
 # Sponsors
 [sponsors_become_title]
-other = "Bliv Sponsor"
+other = "Bliv sponsor"
 [sponsors_become_text]
 other = "Interesseret i at sponsorere BSides Aarhus 2026? Vi tilbyder flere sponsorniveauer. Kontakt os for at høre mere om fordelene."
 [sponsors_contact]
-other = "Kontakt os om Sponsorat"
+other = "Kontakt os om sponsorat"
 
 # CFP
 [cfp_open]
-other = "CFP er Åben — Frist: 10. april 2026"
+other = "CFP er åben — frist: 10. april 2026"
 [cfp_closed]
-other = "CFP er Lukket — Tak for Alle Indsendelser!"
+other = "CFP er lukket — tak for alle indsendelser!"
 [cfp_review]
 other = "Forslagene er under bedømmelse. Talere får besked senest d. 20. april."
 [cfp_schedule]
 other = "Programmet er offentliggjort!"
 [cfp_submit]
-other = "Indsend dit Foredrag"
+other = "Indsend dit foredrag"
 [cfp_view_schedule]
-other = "Se Programmet"
+other = "Se programmet"
 
 # Footer
 [footer_tagline]
