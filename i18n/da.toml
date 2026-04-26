@@ -16,7 +16,7 @@ other = "Lokation"
 
 # Hero
 [hero_subtitle]
-other = "Sikkerhedskonference"
+other = "Sikkerhedskonference 2026"
 [hero_date]
 other = "20. juni 2026"
 [hero_location]
@@ -46,23 +46,23 @@ other = "Om BSides Aarhus"
 [home_about_subtitle]
 other = "En fællesskabsdrevet sikkerhedskonference i hjertet af Danmark"
 [home_highlights_title]
-other = "Konferencens Højdepunkter"
+other = "Konferencens højdepunkter"
 [home_feature_agenda]
 other = "To-spors Program"
 [home_feature_agenda_desc]
-other = "En hel dag med foredrag fordelt på to parallelle spor om det nyeste inden for sikkerhed."
+other = "En hel dag med foredrag fordelt på to parallelle spor om de nyeste emner inden for sikkerhed."
 [home_feature_cfp]
 other = "Call for Papers"
 [home_feature_cfp_desc]
 other = "Del din viden. Vores CFP er åben — indsend dit forslag til et foredrag i dag."
 [home_feature_cfp_desc_closed]
-other = "Vores CFP er lukket. Tak til alle der indsendte et forslag!"
+other = "Vores CFP er lukket. Tak til alle, der indsendte et forslag!"
 [home_feature_cfp_desc_schedule]
 other = "Programmet er live! Se de foredrag der venter til BSides Aarhus 2026."
 [home_feature_tickets]
 other = "Billetter Tilgængelige"
 [home_feature_tickets_desc]
-other = "Sikr dig din plads. Human-, studenter- og community friend-billetter er nu tilgængelige."
+other = "Sikr dig din plads nu! Human-, student- og community friend-billetter er åbne."
 [home_feature_sponsors]
 other = "Vores Sponsorer"
 [home_feature_sponsors_desc]
@@ -70,7 +70,7 @@ other = "BSides Aarhus er muliggjort af vores fantastiske sponsorer og partnere.
 [home_feature_venue]
 other = "Lokationen"
 [home_feature_venue_desc]
-other = "INCUBA Next i Katrinebjerg — Aarhus' teknologi- og universitetskvarter."
+other = "INCUBA Next i Katrinebjerg – Aarhus' tech- og universitetskvarter."
 [home_feature_faq]
 other = "FAQ"
 [home_feature_faq_desc]
@@ -175,7 +175,7 @@ other = "Alle rettigheder forbeholdes."
 [tickets_sold_label]
 other = "billetter solgt"
 [tickets_sold_hero]
-other = "billetter allerede sikret!"
+other = "billetter er allerede sikret!"
 [tickets_remaining]
 other = "tilbage"
 [tickets_sold_out]

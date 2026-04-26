@@ -1,6 +1,6 @@
 ---
-title: "Program"
-description: "BSides Aarhus 2026 konferenceprogram — to parallelle spor med sikkerhedsforedrag."
+title: "BSides Aarhus 2026 Program – Konferenceplan | Sikkerhedsforedrag"
+description: "BSides Aarhus 2026 konferenceprogram — to parallelle spor med sikkerhedsforedrag. 20. juni 2026 i Aarhus, Danmark."
 translationKey: "agenda"
 ---
 

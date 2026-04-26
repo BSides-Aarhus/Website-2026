@@ -48,6 +48,63 @@
 <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
 <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
 
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "BSides Aarhus 2026",
+  "description": "{{ .Description }}",
+  "startDate": "2026-06-20T09:00:00+02:00",
+  "endDate": "2026-06-20T18:00:00+02:00",
+  "location": {
+    "@type": "Place",
+    "name": "INCUBA Next",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Katrinebjergvej 4",
+      "addressLocality": "Aarhus",
+      "postalCode": "8200",
+      "addressCountry": "DK"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "BSides Aarhus",
+    "url": "{{ site.BaseURL }}"
+  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Human Ticket",
+      "price": "23",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": "{{ "/tickets/" | absURL }}"
+    },
+    {
+      "@type": "Offer",
+      "name": "Student Ticket",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": "{{ "/tickets/" | absURL }}"
+    },
+    {
+      "@type": "Offer",
+      "name": "Community Friend Ticket",
+      "price": "200",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": "{{ "/tickets/" | absURL }}"
+    }
+  ],
+  "image": "{{ site.Params.ogImage | absURL }}",
+  "url": "{{ .Permalink }}"
+}
+</script>
+{{ end }}
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">

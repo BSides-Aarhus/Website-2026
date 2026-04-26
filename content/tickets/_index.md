@@ -1,6 +1,6 @@
 ---
-title: "Tickets"
-description: "Get your tickets for BSides Aarhus 2026. Regular, student, and community friend tickets available."
+title: "BSides Aarhus 2026 Tickets – Buy Now | Security Conference Aarhus"
+description: "Secure your tickets for BSides Aarhus 2026. Regular, student, and community friend tickets available. June 20, 2026 in Aarhus, Denmark."
 translationKey: "tickets"
 ---
 
