@@ -1,5 +1,6 @@
 ---
-title: "BSides Aarhus 2026 Venue – INCUBA Next, Katrinebjerg | Conference Location"
+title: "Venue"
+metaTitle: "BSides Aarhus 2026 Venue – INCUBA Next, Katrinebjerg | Conference Location"
 description: "BSides Aarhus 2026 takes place at INCUBA Next, Katrinebjerg, Aarhus. Modern innovation hub in Denmark's tech district."
 translationKey: "venue"
 ---
