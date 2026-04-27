@@ -1,7 +1,10 @@
 <nav class="site-nav">
   <div class="nav-container">
     <a href="{{ "/" | relLangURL }}" class="nav-logo">
-      <img src="{{ "images/logo.png" | relURL }}" alt="BSides Aarhus" class="nav-logo-img">
+      <picture>
+        <source srcset="{{ "images/logo.webp" | relURL }}" type="image/webp">
+        <img src="{{ "images/logo.png" | relURL }}" alt="BSides Aarhus" class="nav-logo-img">
+      </picture>
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span class="hamburger"></span>

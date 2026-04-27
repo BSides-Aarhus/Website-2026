@@ -2,7 +2,10 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="{{ "images/logo.png" | relURL }}" alt="BSides Aarhus" class="footer-logo-img">
+        <picture>
+          <source srcset="{{ "images/logo.webp" | relURL }}" type="image/webp">
+          <img src="{{ "images/logo.png" | relURL }}" alt="BSides Aarhus" class="footer-logo-img">
+        </picture>
         <p>{{ i18n "footer_tagline" }}</p>
       </div>
       <div class="footer-links">
