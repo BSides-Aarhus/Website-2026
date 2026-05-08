@@ -8,10 +8,15 @@
 <section class="section">
   <div class="container">
     <div class="sessions-grid">
-      {{ range (.Pages.ByParam "time") }}
-      <a class="session-link-card" href="{{ .RelPermalink }}">
-        <div class="session-link-time">{{ .Params.time }} · {{ .Params.room }}</div>
-        <div class="session-link-title">{{ .Title }}</div>
+      {{ $items := slice }}
+      {{ range .Pages }}
+        {{ $items = $items | append (dict "page" . "key" (printf "%s|%s" .Params.time .Params.room)) }}
+      {{ end }}
+      {{ range sort $items "key" }}
+      {{ $p := .page }}
+      <a class="session-link-card" href="{{ $p.RelPermalink }}">
+        <div class="session-link-time">{{ $p.Params.time }} · {{ $p.Params.room }}</div>
+        <div class="session-link-title">{{ $p.Title }}</div>
       </a>
       {{ end }}
     </div>
