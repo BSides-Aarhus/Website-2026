@@ -355,6 +355,7 @@ h3 { font-size: 1.25rem; }
   padding: var(--space-md);
   border-left: 1px solid var(--color-border);
 }
+.schedule-slot-track { display: none; }
 .schedule-slot h4 { font-size: 0.95rem; margin-bottom: var(--space-xs); }
 .schedule-slot .speaker { color: var(--color-text-muted); font-size: 0.85rem; }
 .schedule-desc { margin-top: var(--space-sm); font-size: 0.9rem; }
@@ -1027,14 +1028,39 @@ h3 { font-size: 1.25rem; }
   .hero h1 { font-size: 2.5rem; }
   .countdown { gap: var(--space-md); }
 
-  .schedule-header, .schedule-row { grid-template-columns: 80px 1fr; }
-  .schedule-slot--plenary { grid-column: 2 / -1; }
+  /* Mobile: stack agenda. Hide the "Time | Track 1 | Track 2" header.
+     Each row becomes: time as a section heading, then both tracks full-width
+     with an inline "Track N" label on each slot. */
+  .schedule-header { display: none; }
+  .schedule-row { display: block; margin-bottom: var(--space-md); }
+  .schedule-time {
+    background: transparent;
+    color: var(--color-accent-light);
+    padding: 0 0 var(--space-xs);
+    justify-content: flex-start;
+    font-size: 1rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-sm);
+  }
+  .schedule-slot { border-left: none; border-radius: 8px; margin-bottom: var(--space-sm); border: 1px solid var(--color-border); }
+  .schedule-slot-track {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent-light);
+    background: var(--color-bg-elevated);
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-bottom: var(--space-xs);
+  }
+  .schedule-slot--plenary, .schedule-slot--break { border-radius: 8px; }
 
   .footer-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
 }
 
 @media (max-width: 480px) {
   .hero-cta { flex-direction: column; align-items: center; }
-  .schedule-header, .schedule-row { grid-template-columns: 1fr; }
-  .schedule-time { justify-content: flex-start; }
 }

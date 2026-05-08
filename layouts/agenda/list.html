@@ -45,9 +45,10 @@
         {{ else if eq .type "parallel" }}
         <div class="schedule-row">
           <div class="schedule-time">{{ .time }}</div>
-          {{ range slice .track1 .track2 }}
-          {{ $session := site.GetPage (printf "/sessions/%s" .) }}
-          <div class="schedule-slot">
+          {{ range $i, $slug := slice .track1 .track2 }}
+          {{ $session := site.GetPage (printf "/sessions/%s" $slug) }}
+          <div class="schedule-slot" data-track="{{ add $i 1 }}">
+            <span class="schedule-slot-track">{{ i18n "agenda_track" }} {{ add $i 1 }}</span>
             {{ if $session }}
               <h4><a href="{{ $session.RelPermalink }}">{{ $session.Title }}</a></h4>
               {{ $names := slice }}

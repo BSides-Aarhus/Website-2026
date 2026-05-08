@@ -83,7 +83,9 @@ hugo --gc --minify && find public -name "*.html" | wc -l
 ├── content/                   # Page content (Markdown)
 │   ├── _index.md              # Homepage (EN)
 │   ├── _index.da.md           # Homepage (DA)
-│   ├── agenda/                # Conference schedule
+│   ├── agenda/                # Time-grid schedule page
+│   ├── sessions/              # One file per talk (title, time, room, speakers, abstract)
+│   ├── speakers/              # One file per speaker (name, tagline, links, bio)
 │   ├── tickets/               # Ticket info
 │   ├── sponsors/              # Sponsor info
 │   ├── cfp/                   # Call for Papers
@@ -91,7 +93,7 @@ hugo --gc --minify && find public -name "*.html" | wc -l
 │   ├── venue/                 # Venue details
 │   └── code-of-conduct/       # Code of Conduct
 ├── data/                      # Structured data (YAML)
-│   ├── schedule.yaml          # Two-track agenda
+│   ├── schedule.yaml          # Time grid — references sessions by slug
 │   ├── sponsors.yaml          # Sponsor tiers and logos
 │   └── faq.yaml               # FAQ entries
 ├── i18n/                      # Translation strings
@@ -99,36 +101,119 @@ hugo --gc --minify && find public -name "*.html" | wc -l
 │   └── da.toml                # Danish UI text
 ├── layouts/                   # Hugo templates
 │   ├── _default/              # Base + generic templates
-│   ├── partials/              # Reusable components
-│   └── {page}/list.html       # Page-specific templates
+│   ├── 404.html               # 404 page (redirects /en/* → /)
+│   ├── agenda/list.html       # Time-grid agenda
+│   ├── sessions/              # Session detail + index
+│   ├── speakers/              # Speaker detail + index
+│   └── partials/              # Reusable components + JSON-LD schema
 ├── static/                    # Static assets (copied as-is)
 │   ├── css/main.css           # All styles
 │   ├── js/main.js             # Countdown, nav, accordion
-│   └── images/                # Logo, sponsor logos
+│   └── images/
+│       ├── speakers/          # Speaker headshots ({slug}.jpg|png|webp)
+│       └── sponsors/          # Sponsor logos
+├── scripts/
+│   ├── fetch-tickets.sh       # CI step: pulls live ticket data
+│   └── sync-translations.sh   # Mirrors content/sessions+speakers/*.md → *.da.md
+├── worker/                    # Cloudflare Worker — Ticket Butler API proxy
+│   ├── ticket-proxy.js
+│   └── wrangler.toml
 └── .github/workflows/         # CI/CD
     └── hugo.yaml              # GitHub Pages deploy
 ```
 
 ## How to Edit Content
 
-### Update the Agenda
+### Add a Speaker
 
-Edit `data/schedule.yaml`. Each entry has bilingual titles:
+Create `content/speakers/{slug}.md` (slug is lowercase-with-hyphens, e.g. `mario-bodemann`):
+
+```markdown
+---
+title: "Mario Bodemann"
+tagline: "Developer Advocate at Yubico"
+links:
+  linkedin: https://www.linkedin.com/in/mariobodemann/
+  website: https://example.com
+  company: https://example-corp.com
+---
+
+Bio paragraph one (third-person, BSides Aarhus editorial voice).
+
+Bio paragraph two.
+```
+
+Drop a headshot at `static/images/speakers/{slug}.jpg|png|webp`. If no photo
+is provided, an initials avatar is rendered automatically.
+
+### Add a Session
+
+Create `content/sessions/{slug}.md`:
+
+```markdown
+---
+title: "Talk Title"
+time: "10:00"
+room: "Room 1"
+speakers:
+  - mario-bodemann
+  - joost-van-dijk
+---
+
+Abstract paragraph one.
+
+- Bullet items render as lists.
+- Use blank lines around lists.
+
+Abstract paragraph two.
+```
+
+### Wire the Session Into the Schedule
+
+Edit `data/schedule.yaml`. Parallel slots reference sessions by slug:
 
 ```yaml
-- time: "10:15"
-  type: "parallel"
-  track1:
-    title:
-      en: "Your Talk Title"
-      da: "Din Foredragstitel"
-    speaker: "Speaker Name"
-  track2:
-    title:
-      en: "Another Talk"
-      da: "Et Andet Foredrag"
-    speaker: "Another Speaker"
+- time: "10:00"
+  type: parallel
+  track1: webauthn-passwordless
+  track2: kernel-wars-anti-cheat
 ```
+
+Other slot types:
+
+```yaml
+- time: "11:45"
+  type: break
+  title:
+    en: Lunch
+    da: Frokost
+
+- time: "16:30"
+  type: plenary
+  title:
+    en: Continue at Fredagscaféen
+    da: Vi fortsætter på Fredagscaféen
+  description:
+    en: Optional muted subtitle.
+    da: Valgfri underrubrik.
+  url: https://fredagscafeen.dk/  # optional — makes the title a link
+```
+
+### Translations (Sessions and Speakers)
+
+Talks are held in English, so the same content shows on `/sessions/{slug}/`
+and `/da/sessions/{slug}/`. The `*.da.md` mirrors are maintained by a script:
+
+```bash
+./scripts/sync-translations.sh
+```
+
+CI runs this automatically before every Hugo build, so forgetting to run it
+locally is harmless. To provide a real Danish translation for a specific
+session or speaker, edit the `.da.md` file directly — but note that the next
+CI run will overwrite it. Lift it out of the sync set by adding the slug to
+the `case` block in `scripts/sync-translations.sh` if you need divergent
+content.
 
 ### Add a Sponsor
 
