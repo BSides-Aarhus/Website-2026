@@ -1,0 +1,82 @@
+{{- $sessions := where site.RegularPages "Section" "sessions" -}}
+{{- $speakers := where site.RegularPages "Section" "speakers" -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "BSides Aarhus 2026",
+  "description": {{ .Description | jsonify | safeJS }},
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "startDate": "2026-06-20T09:00:00+02:00",
+  "endDate": "2026-06-20T18:00:00+02:00",
+  "location": {
+    "@type": "Place",
+    "name": "INCUBA Next",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Åbogade 13",
+      "addressLocality": "Aarhus N",
+      "postalCode": "8200",
+      "addressCountry": "DK"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "BSides Aarhus",
+    "url": "{{ site.BaseURL }}"
+  },
+  "performer": [
+    {{- range $i, $sp := $speakers -}}
+    {{- if $i }},{{ end }}
+    {
+      "@type": "Person",
+      "name": {{ $sp.Title | jsonify | safeJS }},
+      "url": {{ $sp.Permalink | jsonify | safeJS }}
+    }
+    {{- end }}
+  ],
+  "subEvent": [
+    {{- range $i, $s := $sessions -}}
+    {{- if $i }},{{ end }}
+    {
+      "@type": "Event",
+      "name": {{ $s.Title | jsonify | safeJS }},
+      "url": {{ $s.Permalink | jsonify | safeJS }},
+      "startDate": "2026-06-20T{{ $s.Params.time }}:00+02:00"
+    }
+    {{- end }}
+  ],
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Human Ticket",
+      "price": "170",
+      "priceCurrency": "DKK",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2026-01-01T00:00:00+01:00",
+      "url": "{{ "/tickets/" | absURL }}"
+    },
+    {
+      "@type": "Offer",
+      "name": "Student Ticket",
+      "price": "0",
+      "priceCurrency": "DKK",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2026-01-01T00:00:00+01:00",
+      "url": "{{ "/tickets/" | absURL }}"
+    },
+    {
+      "@type": "Offer",
+      "name": "Community Friend Ticket",
+      "price": "1500",
+      "priceCurrency": "DKK",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2026-01-01T00:00:00+01:00",
+      "url": "{{ "/tickets/" | absURL }}"
+    }
+  ],
+  "image": "{{ site.Params.ogImage | absURL }}",
+  "url": "{{ .Permalink }}"
+}
+</script>

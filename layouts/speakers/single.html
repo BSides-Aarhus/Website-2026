@@ -1,0 +1,46 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <p class="session-meta">
+      <a href="{{ "/speakers/" | relLangURL }}">← {{ i18n "speakers_all" }}</a>
+    </p>
+    <div class="speaker-hero">
+      {{ partial "speaker-avatar.html" (dict "page" . "size" "large") }}
+      <div>
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.tagline }}<p class="speaker-tagline-hero">{{ . }}</p>{{ end }}
+      </div>
+    </div>
+  </div>
+</div>
+<section class="section">
+  <div class="container container--narrow">
+    <article class="speaker-detail">
+      <div class="speaker-bio">{{ .Content }}</div>
+
+      {{ with .Params.links }}
+      <ul class="speaker-links">
+        {{ with .linkedin }}<li><a href="{{ . }}" rel="noopener">LinkedIn</a></li>{{ end }}
+        {{ with .website }}<li><a href="{{ . }}" rel="noopener">{{ i18n "speaker_website" }}</a></li>{{ end }}
+        {{ with .company }}<li><a href="{{ . }}" rel="noopener">{{ i18n "speaker_company" }}</a></li>{{ end }}
+      </ul>
+      {{ end }}
+
+      {{ $slug := path.Base .File.Dir }}
+      {{ $name := .File.TranslationBaseName }}
+      {{ $sessions := where (where site.RegularPages "Section" "sessions") "Params.speakers" "intersect" (slice $name) }}
+      {{ with $sessions }}
+      <div class="speaker-sessions">
+        <h2>{{ i18n "speaker_sessions" }}</h2>
+        {{ range . }}
+        <a class="session-link-card" href="{{ .RelPermalink }}">
+          <div class="session-link-time">{{ .Params.time }} · {{ .Params.room }}</div>
+          <div class="session-link-title">{{ .Title }}</div>
+        </a>
+        {{ end }}
+      </div>
+      {{ end }}
+    </article>
+  </div>
+</section>
+{{ end }}

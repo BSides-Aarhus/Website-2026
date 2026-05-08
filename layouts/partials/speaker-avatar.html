@@ -1,0 +1,24 @@
+{{- $page := .page -}}
+{{- $size := .size | default "small" -}}
+{{- $name := $page.Title -}}
+{{- $slug := $page.File.TranslationBaseName -}}
+{{- $photo := $page.Params.photo -}}
+{{- $src := "" -}}
+{{- if $photo -}}
+  {{- $src = $photo -}}
+{{- else -}}
+  {{- range slice "jpg" "png" "webp" "jpeg" -}}
+    {{- $p := printf "/images/speakers/%s.%s" $slug . -}}
+    {{- if and (not $src) (fileExists (printf "static%s" $p)) -}}
+      {{- $src = $p | relURL -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $src -}}
+<img class="speaker-avatar speaker-avatar--{{ $size }}" src="{{ $src }}" alt="{{ $name }}" loading="lazy" />
+{{- else -}}
+  {{- $parts := split $name " " -}}
+  {{- $initials := "" -}}
+  {{- range first 2 $parts -}}{{- $initials = printf "%s%s" $initials (substr . 0 1) -}}{{- end -}}
+<span class="speaker-avatar speaker-avatar--{{ $size }} speaker-avatar--initials" aria-hidden="true">{{ $initials | upper }}</span>
+{{- end -}}

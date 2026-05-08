@@ -1,114 +1,45 @@
 timeSlots:
-  - time: "08:30"
-    type: "break"
-    title:
-      en: "Registration & Coffee"
-      da: "Registrering & Kaffe"
-
-  - time: "09:00"
-    type: "plenary"
-    title:
-      en: "Welcome & Opening"
-      da: "Velkomst & Åbning"
-    speaker: "BSides Aarhus Team"
-
-  - time: "09:15"
-    type: "parallel"
-    track1:
-      title:
-        en: "To Be Announced"
-        da: "Annonceres senere"
-      speaker: "TBA"
-    track2:
-      title:
-        en: "To Be Announced"
-        da: "Annonceres senere"
-      speaker: "TBA"
-
-  - time: "10:00"
-    type: "break"
-    title:
-      en: "Break"
-      da: "Pause"
-
-  - time: "10:15"
-    type: "parallel"
-    track1:
-      title:
-        en: "To Be Announced"
-        da: "Annonceres senere"
-      speaker: "TBA"
-    track2:
-      title:
-        en: "To Be Announced"
-        da: "Annonceres senere"
-      speaker: "TBA"
-
-  - time: "11:00"
-    type: "break"
-    title:
-      en: "Break"
-      da: "Pause"
-
-  - time: "11:15"
-    type: "parallel"
-    track1:
-      title:
-        en: "To Be Announced"
-        da: "Annonceres senere"
-      speaker: "TBA"
-    track2:
-      title:
-        en: "To Be Announced"
-        da: "Annonceres senere"
-      speaker: "TBA"
-
-  - time: "12:00"
-    type: "break"
-    title:
-      en: "Lunch"
-      da: "Frokost"
-
-  - time: "13:15"
-    type: "parallel"
-    track1:
-      title:
-        en: "To Be Announced"
-        da: "Annonceres senere"
-      speaker: "TBA"
-    track2:
-      title:
-        en: "To Be Announced"
-        da: "Annonceres senere"
-      speaker: "TBA"
-
-  - time: "14:00"
-    type: "break"
-    title:
-      en: "Break"
-      da: "Pause"
-
-  - time: "14:15"
-    type: "parallel"
-    track1:
-      title:
-        en: "To Be Announced"
-        da: "Annonceres senere"
-      speaker: "TBA"
-    track2:
-      title:
-        en: "To Be Announced"
-        da: "Annonceres senere"
-      speaker: "TBA"
-
-  - time: "15:00"
-    type: "plenary"
-    title:
-      en: "Networking Session"
-      da: "Netværkssession"
-
-  - time: "16:30"
-    type: "plenary"
-    title:
-      en: "Afterparty"
-      da: "Afterparty"
+- time: 09:00
+  type: break
+  title:
+    en: Breakfast and network
+    da: Morgenmad og netværk
+- time: '10:00'
+  type: parallel
+  track1: webauthn-passwordless
+  track2: kernel-wars-anti-cheat
+- time: '11:00'
+  type: parallel
+  track1: alert-fatigue-therapy
+  track2: remote-cold-execution
+- time: '11:45'
+  type: break
+  title:
+    en: Lunch
+    da: Frokost
+- time: '12:45'
+  type: parallel
+  track1: passive-scan-danish-orgs
+  track2: trustless-consensus-bribing
+- time: '13:50'
+  type: parallel
+  track1: rtfm-fatal-manual
+  track2: ransomware-ai-systems
+- time: '14:50'
+  type: parallel
+  track1: build-your-own-ids
+  track2: nebula-cloud-pentest
+- time: '15:30'
+  type: plenary
+  title:
+    en: Networking session
+    da: Netværkssession
+- time: '16:30'
+  type: plenary
+  title:
+    en: Continue at Fredagscaféen
+    da: Vi fortsætter på Fredagscaféen
+  description:
+    en: We continue the mingling over a beer at Fredagscaféen.
+    da: Vi fortsætter snakken over en øl på Fredagscaféen.
+  url: https://fredagscafeen.dk/

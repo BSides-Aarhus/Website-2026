@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="sessions-grid">
+      {{ range (.Pages.ByParam "time") }}
+      <a class="session-link-card" href="{{ .RelPermalink }}">
+        <div class="session-link-time">{{ .Params.time }} · {{ .Params.room }}</div>
+        <div class="session-link-title">{{ .Title }}</div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

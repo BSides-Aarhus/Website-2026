@@ -27,6 +27,12 @@ Denmark
 
 **By train:** Aarhus Central Station is approximately 3 km from the venue. Take bus 2A from the station directly to Katrinebjerg.
 
+## After the Conference: Fredagscaféen
+
+After the networking session we continue the mingling over a beer at [Fredagscaféen](https://fredagscafeen.dk/) — the Friday bar run by CS students at Aarhus University, right around the corner from the venue.
+
+**From INCUBA Next:** about a 3-minute walk (220 m). <a href="https://www.google.com/maps/dir/Åbogade+13,+8200+Aarhus+N/Fredagscaféen,+Aarhus" target="_blank" rel="noopener">Open route in Google Maps</a>.
+
 ## About the Venue
 
 ![INCUBA Next](/images/incuba-next-aart.jpeg)

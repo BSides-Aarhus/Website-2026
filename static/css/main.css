@@ -357,11 +357,85 @@ h3 { font-size: 1.25rem; }
 }
 .schedule-slot h4 { font-size: 0.95rem; margin-bottom: var(--space-xs); }
 .schedule-slot .speaker { color: var(--color-text-muted); font-size: 0.85rem; }
+.schedule-desc { margin-top: var(--space-sm); font-size: 0.9rem; }
+.schedule-desc summary { cursor: pointer; color: var(--color-text-muted); font-size: 0.85rem; user-select: none; list-style: none; }
+.schedule-desc summary::-webkit-details-marker { display: none; }
+.schedule-desc summary:hover { color: var(--color-text); }
+.schedule-desc summary .preview { display: inline; }
+.schedule-desc summary .more,
+.schedule-desc summary .less { color: var(--color-accent-light); font-weight: 500; margin-left: 0.25em; white-space: nowrap; }
+.schedule-desc summary:hover .more,
+.schedule-desc summary:hover .less { color: var(--color-accent); }
+.schedule-desc summary .less { display: none; }
+.schedule-desc[open] summary .preview,
+.schedule-desc[open] summary .more { display: none; }
+.schedule-desc[open] summary .less { display: inline; }
+.schedule-desc[open] summary { margin-bottom: var(--space-sm); }
+.schedule-desc-body { color: var(--color-text); }
+.schedule-desc-body .abstract { margin-bottom: var(--space-md); }
+.schedule-desc-body p { margin: 0 0 var(--space-xs); }
+.schedule-desc-body ul { margin: 0 0 var(--space-sm) 1.25em; padding: 0; }
+.schedule-desc-body li { margin-bottom: 0.25em; }
+.schedule-desc-body .speakers { border-top: 1px solid var(--color-border); padding-top: var(--space-sm); display: flex; flex-direction: column; gap: var(--space-sm); }
+.schedule-desc-body .speaker-card { font-size: 0.85rem; }
+.schedule-desc-body .speaker-name { font-weight: 600; }
+.schedule-desc-body .speaker-tagline { color: var(--color-text-muted); font-weight: 400; }
+.schedule-desc-body .speaker-bio { color: var(--color-text-muted); margin-top: 0.25em; }
+.schedule-desc-body .speaker-bio p { margin: 0 0 0.5em; }
+
+/* Session / Speaker pages */
+.container--narrow { max-width: 760px; }
+.session-meta { color: var(--color-text-muted); font-size: 0.95rem; margin: var(--space-xs) 0; }
+.session-meta a { color: var(--color-accent-light); }
+.session-meta a:hover { color: var(--color-accent); }
+.session-detail .session-abstract { font-size: 1.05rem; line-height: 1.7; margin-bottom: var(--space-xl); }
+.session-detail .session-abstract ul { margin: 0 0 var(--space-md) 1.25em; }
+.session-detail h2, .speaker-detail h2 { margin-top: var(--space-lg); margin-bottom: var(--space-md); }
+.speaker-card--full { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-md); margin-bottom: var(--space-md); }
+.speaker-card--full h3 { margin: 0 0 var(--space-xs); }
+.speaker-card--full h3 a { color: var(--color-text); }
+.speaker-card--full h3 a:hover { color: var(--color-accent-light); }
+.speaker-card--full .speaker-tagline { color: var(--color-text-muted); margin: 0 0 var(--space-sm); font-size: 0.95rem; }
+.speaker-tagline-hero { color: var(--color-text-muted); font-size: 1.1rem; margin-top: var(--space-sm); }
+.speaker-detail .speaker-bio { font-size: 1.05rem; line-height: 1.7; margin-bottom: var(--space-lg); }
+.speaker-links { list-style: none; padding: 0; margin: var(--space-md) 0; display: flex; gap: var(--space-md); flex-wrap: wrap; }
+.speaker-links li { margin: 0; }
+.speaker-links a { color: var(--color-accent-light); }
+.speaker-links a:hover { color: var(--color-accent); }
+.speakers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-md); }
+.speaker-tile { display: block; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-md); color: var(--color-text); transition: border-color 0.2s, transform 0.2s; }
+.speaker-tile:hover { border-color: var(--color-accent); transform: translateY(-2px); color: var(--color-text); }
+.speaker-tile-name { font-weight: 600; font-size: 1.05rem; margin-bottom: var(--space-xs); }
+.speaker-tile-tagline { color: var(--color-text-muted); font-size: 0.9rem; }
+.sessions-grid, .speaker-sessions { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md); }
+.session-link-card { display: block; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-md); color: var(--color-text); transition: border-color 0.2s; }
+.session-link-card:hover { border-color: var(--color-accent); color: var(--color-text); }
+.session-link-time { color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: var(--space-xs); }
+.session-link-title { font-weight: 600; }
+.schedule-slot h4 a { color: var(--color-text); }
+.schedule-slot h4 a:hover { color: var(--color-accent-light); }
+.schedule-slot .speaker a { color: var(--color-text-muted); }
+.schedule-slot .speaker a:hover { color: var(--color-accent-light); }
+
+/* Speaker avatars */
+.speaker-avatar { display: inline-block; border-radius: 50%; object-fit: cover; background: var(--color-bg-elevated); border: 1px solid var(--color-border); flex-shrink: 0; }
+.speaker-avatar--small { width: 32px; height: 32px; font-size: 0.75rem; }
+.speaker-avatar--medium { width: 56px; height: 56px; font-size: 1.1rem; }
+.speaker-avatar--large { width: 96px; height: 96px; font-size: 1.8rem; }
+.speaker-avatar--initials { display: inline-flex; align-items: center; justify-content: center; font-weight: 600; color: var(--color-text-muted); letter-spacing: 0.02em; }
+.speaker-hero { display: flex; align-items: center; gap: var(--space-md); }
+.speaker-hero h1 { margin: 0; }
+.speaker-card-head { display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-xs); }
+.speaker-card-head h3 { margin: 0; }
+.speaker-card-head p { margin: 0; }
+.speaker-tile { display: flex; align-items: center; gap: var(--space-md); }
+.speaker-tile-text { min-width: 0; }
 .schedule-slot--plenary {
   grid-column: 2 / -1;
   text-align: center;
   background: var(--color-bg-elevated);
 }
+.schedule-slot--plenary .plenary-desc { color: var(--color-text-muted); font-size: 0.9rem; margin: var(--space-xs) 0 0; }
 .schedule-slot--break {
   grid-column: 1 / -1;
   text-align: center;

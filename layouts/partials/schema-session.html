@@ -1,0 +1,62 @@
+{{- $time := .Params.time -}}
+{{- $duration := .Params.duration | default 45 -}}
+{{- $startTime := $time -}}
+{{- $h := index (split $time ":") 0 | int -}}
+{{- $m := index (split $time ":") 1 | int -}}
+{{- $endM := add $m $duration -}}
+{{- $endH := add $h (div $endM 60) -}}
+{{- $endMM := mod $endM 60 -}}
+{{- $endTime := printf "%02d:%02d" $endH $endMM -}}
+{{- $performers := slice -}}
+{{- range .Params.speakers -}}
+  {{- $sp := site.GetPage (printf "/speakers/%s" .) -}}
+  {{- if $sp -}}{{- $performers = $performers | append $sp -}}{{- end -}}
+{{- end -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": {{ .Title | jsonify | safeJS }},
+  "description": {{ .Plain | plainify | truncate 500 "…" | jsonify | safeJS }},
+  "url": {{ .Permalink | jsonify | safeJS }},
+  "startDate": "2026-06-20T{{ $startTime }}:00+02:00",
+  "endDate": "2026-06-20T{{ $endTime }}:00+02:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": {{ printf "INCUBA Next - %s" (.Params.room | default "") | jsonify | safeJS }},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Åbogade 13",
+      "addressLocality": "Aarhus N",
+      "postalCode": "8200",
+      "addressCountry": "DK"
+    }
+  },
+  "superEvent": {
+    "@type": "Event",
+    "name": "BSides Aarhus 2026",
+    "url": {{ site.BaseURL | jsonify | safeJS }}
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "BSides Aarhus",
+    "url": {{ site.BaseURL | jsonify | safeJS }}
+  },
+  "performer": [
+    {{- range $i, $sp := $performers -}}
+    {{- if $i }},{{ end }}
+    {
+      "@type": "Person",
+      "name": {{ $sp.Title | jsonify | safeJS }},
+      "url": {{ $sp.Permalink | jsonify | safeJS }}
+      {{- with $sp.Params.tagline }},
+      "jobTitle": {{ . | jsonify | safeJS }}
+      {{- end }}
+    }
+    {{- end }}
+  ],
+  "image": "{{ site.Params.ogImage | absURL }}"
+}
+</script>

@@ -25,8 +25,48 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else if .Params.metaTitle }}{{ .Params.metaTitle }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
-<meta name="description" content="{{ .Description | default site.Params.description }}">
+
+{{/* Title resolution */}}
+{{ $title := "" }}
+{{ if .IsHome }}
+  {{ $title = site.Title }}
+{{ else if .Params.metaTitle }}
+  {{ $title = .Params.metaTitle }}
+{{ else if eq .Section "speakers" }}
+  {{ $title = printf "%s%s | %s" .Title (cond (ne (string .Params.tagline) "") (printf " – %s" .Params.tagline) "") site.Title }}
+{{ else if eq .Section "sessions" }}
+  {{ $title = printf "%s | %s" .Title site.Title }}
+{{ else }}
+  {{ $title = printf "%s | %s" .Title site.Title }}
+{{ end }}
+
+{{/* Description resolution: explicit Description → first 160 chars of content → site default */}}
+{{ $desc := .Description }}
+{{ if not $desc }}
+  {{ $plain := .Plain | plainify | replaceRE "\\s+" " " | strings.TrimSpace }}
+  {{ if gt (len $plain) 30 }}{{ $desc = $plain | truncate 160 "…" }}{{ end }}
+{{ end }}
+{{ if not $desc }}{{ $desc = site.Params.description }}{{ end }}
+
+{{/* OG image: speaker pages use their photo when available */}}
+{{ $ogImage := site.Params.ogImage | absURL }}
+{{ if and (eq .Section "speakers") (.File) }}
+  {{ $slug := .File.TranslationBaseName }}
+  {{ range slice "jpg" "png" "webp" "jpeg" }}
+    {{ $p := printf "/images/speakers/%s.%s" $slug . }}
+    {{ if fileExists (printf "static%s" $p) }}
+      {{ $ogImage = $p | absURL }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* OG type per section */}}
+{{ $ogType := "website" }}
+{{ if eq .Section "speakers" }}{{ $ogType = "profile" }}
+{{ else if not .IsHome }}{{ $ogType = "article" }}{{ end }}
+
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
 <link rel="canonical" href="{{ .Permalink }}">
 
 <!-- Hreflang -->
@@ -37,17 +77,17 @@
 
 <!-- Open Graph -->
 <meta property="og:title" content="{{ .Title | default site.Title }}">
-<meta property="og:description" content="{{ .Description | default site.Params.description }}">
-<meta property="og:image" content="{{ site.Params.ogImage | absURL }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:image" content="{{ $ogImage }}">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:type" content="{{ $ogType }}">
 <meta property="og:site_name" content="{{ site.Title }}">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ .Title | default site.Title }}">
-<meta name="twitter:description" content="{{ .Description | default site.Params.description }}">
-<meta name="twitter:image" content="{{ site.Params.ogImage | absURL }}">
+<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:image" content="{{ $ogImage }}">
 
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
@@ -56,71 +96,9 @@
 <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
 <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
 
-{{ if .IsHome }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Event",
-  "name": "BSides Aarhus 2026",
-  "description": {{ .Description | jsonify }},
-  "eventStatus": "https://schema.org/EventScheduled",
-  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "startDate": "2026-06-20T09:00:00+02:00",
-  "endDate": "2026-06-20T18:00:00+02:00",
-  "location": {
-    "@type": "Place",
-    "name": "INCUBA Next",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Åbogade 13",
-      "addressLocality": "Aarhus N",
-      "postalCode": "8200",
-      "addressCountry": "DK"
-    }
-  },
-  "organizer": {
-    "@type": "Organization",
-    "name": "BSides Aarhus",
-    "url": "{{ site.BaseURL }}"
-  },
-  "performer": {
-    "@type": "PerformingGroup",
-    "name": "BSides Aarhus Speakers"
-  },
-  "offers": [
-    {
-      "@type": "Offer",
-      "name": "Human Ticket",
-      "price": "170",
-      "priceCurrency": "DKK",
-      "availability": "https://schema.org/InStock",
-      "validFrom": "2026-01-01T00:00:00+01:00",
-      "url": "{{ "/tickets/" | absURL }}"
-    },
-    {
-      "@type": "Offer",
-      "name": "Student Ticket",
-      "price": "0",
-      "priceCurrency": "DKK",
-      "availability": "https://schema.org/InStock",
-      "validFrom": "2026-01-01T00:00:00+01:00",
-      "url": "{{ "/tickets/" | absURL }}"
-    },
-    {
-      "@type": "Offer",
-      "name": "Community Friend Ticket",
-      "price": "1500",
-      "priceCurrency": "DKK",
-      "availability": "https://schema.org/InStock",
-      "validFrom": "2026-01-01T00:00:00+01:00",
-      "url": "{{ "/tickets/" | absURL }}"
-    }
-  ],
-  "image": "{{ site.Params.ogImage | absURL }}",
-  "url": "{{ .Permalink }}"
-}
-</script>
-{{ end }}
+{{ if .IsHome }}{{ partial "schema-event.html" . }}{{ end }}
+{{ if eq .Section "speakers" }}{{ if .File }}{{ partial "schema-person.html" . }}{{ end }}{{ end }}
+{{ if eq .Section "sessions" }}{{ if .File }}{{ partial "schema-session.html" . }}{{ end }}{{ end }}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

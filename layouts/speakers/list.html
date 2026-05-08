@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="speakers-grid">
+      {{ range (.Pages.ByTitle) }}
+      <a class="speaker-tile" href="{{ .RelPermalink }}">
+        {{ partial "speaker-avatar.html" (dict "page" . "size" "medium") }}
+        <div class="speaker-tile-text">
+          <div class="speaker-tile-name">{{ .Title }}</div>
+          {{ with .Params.tagline }}<div class="speaker-tile-tagline">{{ . }}</div>{{ end }}
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

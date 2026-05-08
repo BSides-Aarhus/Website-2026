@@ -1,0 +1,48 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <p class="session-meta">
+      <a href="{{ "/agenda/" | relLangURL }}">← {{ i18n "nav_agenda" }}</a>
+    </p>
+    <h1>{{ .Title }}</h1>
+    <p class="session-meta">
+      <strong>{{ .Params.time }}</strong> · {{ .Params.room }}
+    </p>
+  </div>
+</div>
+<section class="section">
+  <div class="container container--narrow">
+    <article class="session-detail">
+      <div class="session-abstract">
+        {{ .Content }}
+      </div>
+
+      <div class="session-speakers">
+        <h2>{{ i18n "session_speakers" }}</h2>
+        {{ range .Params.speakers }}
+          {{ $sp := site.GetPage (printf "/speakers/%s" .) }}
+          {{ if $sp }}
+          <div class="speaker-card speaker-card--full">
+            <div class="speaker-card-head">
+              {{ partial "speaker-avatar.html" (dict "page" $sp "size" "medium") }}
+              <div>
+                <h3><a href="{{ $sp.RelPermalink }}">{{ $sp.Title }}</a></h3>
+                {{ with $sp.Params.tagline }}<p class="speaker-tagline">{{ . }}</p>{{ end }}
+              </div>
+            </div>
+            <div class="speaker-bio">{{ $sp.Content }}</div>
+            {{ with $sp.Params.links }}
+            <ul class="speaker-links">
+              {{ with .linkedin }}<li><a href="{{ . }}" rel="noopener">LinkedIn</a></li>{{ end }}
+              {{ with .website }}<li><a href="{{ . }}" rel="noopener">{{ i18n "speaker_website" }}</a></li>{{ end }}
+              {{ with .company }}<li><a href="{{ . }}" rel="noopener">{{ i18n "speaker_company" }}</a></li>{{ end }}
+            </ul>
+            {{ end }}
+          </div>
+          {{ end }}
+        {{ end }}
+      </div>
+    </article>
+  </div>
+</section>
+{{ end }}

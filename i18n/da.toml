@@ -104,6 +104,26 @@ other = "Spor"
 other = "Tid"
 [agenda_tba]
 other = "Annonceres senere"
+[agenda_abstract]
+other = "Abstrakt"
+[agenda_show_more]
+other = "Vis mere"
+[agenda_show_less]
+other = "Vis mindre"
+[session_speakers]
+other = "Talere"
+[speaker_sessions]
+other = "Foredrag"
+[speaker_website]
+other = "Website"
+[speaker_company]
+other = "Virksomhed"
+[speakers_all]
+other = "Alle talere"
+[nav_sessions]
+other = "Foredrag"
+[nav_speakers]
+other = "Talere"
 
 # Tickets
 [tickets_human]

@@ -104,6 +104,26 @@ other = "Track"
 other = "Time"
 [agenda_tba]
 other = "To Be Announced"
+[agenda_abstract]
+other = "Abstract"
+[agenda_show_more]
+other = "Show more"
+[agenda_show_less]
+other = "Show less"
+[session_speakers]
+other = "Speakers"
+[speaker_sessions]
+other = "Sessions"
+[speaker_website]
+other = "Website"
+[speaker_company]
+other = "Company"
+[speakers_all]
+other = "All speakers"
+[nav_sessions]
+other = "Sessions"
+[nav_speakers]
+other = "Speakers"
 
 # Tickets
 [tickets_human]

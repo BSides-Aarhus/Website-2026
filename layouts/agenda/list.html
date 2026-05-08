@@ -29,23 +29,68 @@
         {{ else if eq .type "plenary" }}
         <div class="schedule-row">
           <div class="schedule-time">{{ .time }}</div>
+          {{ $title := index .title $lang }}
+          {{ $url := .url }}
+          {{ $speakerStr := .speaker }}
+          {{ $descMap := .description }}
           <div class="schedule-slot schedule-slot--plenary">
-            <h4>{{ index .title $lang }}</h4>
-            {{ with .speaker }}<span class="speaker">{{ . }}</span>{{ end }}
+            <h4>
+              {{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ $title }}</a>{{ else }}{{ $title }}{{ end }}
+            </h4>
+            {{ with $speakerStr }}<span class="speaker">{{ . }}</span>{{ end }}
+            {{ with $descMap }}<p class="plenary-desc">{{ index . $lang }}</p>{{ end }}
           </div>
         </div>
 
         {{ else if eq .type "parallel" }}
         <div class="schedule-row">
           <div class="schedule-time">{{ .time }}</div>
+          {{ range slice .track1 .track2 }}
+          {{ $session := site.GetPage (printf "/sessions/%s" .) }}
           <div class="schedule-slot">
-            <h4>{{ index .track1.title $lang }}</h4>
-            {{ with .track1.speaker }}<span class="speaker">{{ . }}</span>{{ end }}
+            {{ if $session }}
+              <h4><a href="{{ $session.RelPermalink }}">{{ $session.Title }}</a></h4>
+              {{ $names := slice }}
+              {{ range $session.Params.speakers }}
+                {{ $sp := site.GetPage (printf "/speakers/%s" .) }}
+                {{ if $sp }}{{ $names = $names | append (printf "<a href=\"%s\">%s</a>" $sp.RelPermalink $sp.Title) }}{{ end }}
+              {{ end }}
+              {{ with $names }}<span class="speaker">{{ delimit . ", " | safeHTML }}</span>{{ end }}
+              {{ $desc := $session.RawContent }}
+              {{ if $desc }}
+              <details class="schedule-desc">
+                <summary>
+                  <span class="preview">{{ $desc | plainify | truncate 200 "…" }}</span>
+                  <span class="more">{{ i18n "agenda_show_more" }}</span>
+                  <span class="less">{{ i18n "agenda_show_less" }}</span>
+                </summary>
+                <div class="schedule-desc-body">
+                  <div class="abstract">{{ $session.Content }}</div>
+                  <div class="speakers">
+                    {{ range $session.Params.speakers }}
+                      {{ $sp := site.GetPage (printf "/speakers/%s" .) }}
+                      {{ if $sp }}
+                      <div class="speaker-card">
+                        <div class="speaker-card-head">
+                          {{ partial "speaker-avatar.html" (dict "page" $sp "size" "small") }}
+                          <div>
+                            <div class="speaker-name">
+                              <a href="{{ $sp.RelPermalink }}">{{ $sp.Title }}</a>
+                              {{ with $sp.Params.tagline }}<span class="speaker-tagline">— {{ . }}</span>{{ end }}
+                            </div>
+                          </div>
+                        </div>
+                        {{ with $sp.Content }}<div class="speaker-bio">{{ . }}</div>{{ end }}
+                      </div>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+                </div>
+              </details>
+              {{ end }}
+            {{ end }}
           </div>
-          <div class="schedule-slot">
-            <h4>{{ index .track2.title $lang }}</h4>
-            {{ with .track2.speaker }}<span class="speaker">{{ . }}</span>{{ end }}
-          </div>
+          {{ end }}
         </div>
         {{ end }}
       {{ end }}

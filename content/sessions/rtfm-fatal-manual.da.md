@@ -1,0 +1,1 @@
+rtfm-fatal-manual.md

@@ -1,0 +1,45 @@
+{{- $slug := .File.TranslationBaseName -}}
+{{- $img := "" -}}
+{{- range slice "jpg" "png" "webp" "jpeg" -}}
+  {{- $p := printf "/images/speakers/%s.%s" $slug . -}}
+  {{- if and (not $img) (fileExists (printf "static%s" $p)) -}}{{- $img = $p | absURL -}}{{- end -}}
+{{- end -}}
+{{- $links := .Params.links | default dict -}}
+{{- $sameAs := slice -}}
+{{- with $links.linkedin }}{{ $sameAs = $sameAs | append . }}{{ end -}}
+{{- with $links.website }}{{ $sameAs = $sameAs | append . }}{{ end -}}
+{{- with $links.company }}{{ $sameAs = $sameAs | append . }}{{ end -}}
+{{- $sessions := where (where site.RegularPages "Section" "sessions") "Params.speakers" "intersect" (slice $slug) -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ .Title | jsonify | safeJS }},
+  "url": {{ .Permalink | jsonify | safeJS }}
+  {{- with .Params.tagline }},
+  "jobTitle": {{ . | jsonify | safeJS }}
+  {{- end }}
+  {{- with $img }},
+  "image": {{ . | jsonify | safeJS }}
+  {{- end }}
+  {{- with .Plain | plainify }},
+  "description": {{ . | truncate 300 "…" | jsonify | safeJS }}
+  {{- end }}
+  {{- with $sameAs }},
+  "sameAs": {{ . | jsonify | safeJS }}
+  {{- end }}
+  {{- with $sessions }},
+  "performerIn": [
+    {{- range $i, $s := . -}}
+    {{- if $i }},{{ end }}
+    {
+      "@type": "Event",
+      "name": {{ $s.Title | jsonify | safeJS }},
+      "url": {{ $s.Permalink | jsonify | safeJS }},
+      "startDate": "2026-06-20T{{ $s.Params.time }}:00+02:00"
+    }
+    {{- end }}
+  ]
+  {{- end }}
+}
+</script>

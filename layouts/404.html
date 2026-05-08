@@ -1,0 +1,28 @@
+{{ define "main" }}
+<script>
+(function () {
+  var p = location.pathname;
+  if (p === "/en" || p === "/en/") {
+    location.replace("/" + location.search + location.hash);
+    return;
+  }
+  if (p.indexOf("/en/") === 0) {
+    location.replace(p.substring(3) + location.search + location.hash);
+  }
+})();
+</script>
+<noscript>
+<meta http-equiv="refresh" content="0;url=/">
+</noscript>
+<div class="page-header">
+  <div class="container">
+    <h1>404 – Page not found</h1>
+    <p>The page you're looking for doesn't exist.</p>
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <p><a href="/">← Back to home</a></p>
+  </div>
+</section>
+{{ end }}

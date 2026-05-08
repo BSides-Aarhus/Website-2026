@@ -19,13 +19,19 @@ Danmark
 <small><a href="https://www.openstreetmap.org/?mlat=56.1721&mlon=10.1872#map=17/56.1721/10.1872" target="_blank" rel="noopener">Se større kort</a></small>
 </div>
 
-## Sådan Kommer Du Hertil
+## Sådan finder du vej
 
 **Med offentlig transport:** Tag bus 2A eller 11 til Katrinebjerg. Lokationen er en kort gåtur fra busstoppestedet.
 
 **Med bil:** Der er parkering tilgængelig i det omkringliggende område. Følg skilte til Katrinebjerg / IT-byen.
 
 **Med tog:** Aarhus Hovedbanegård er ca. 3 km fra lokationen. Tag bus 2A fra stationen direkte til Katrinebjerg.
+
+## Efter konferencen: Fredagscaféen
+
+Efter netværkssessionen fortsætter vi snakken over en øl på [Fredagscaféen](https://fredagscafeen.dk/) — fredagsbaren drevet af datalogistuderende på Aarhus Universitet, lige rundt om hjørnet fra lokationen.
+
+**Fra INCUBA Next:** ca. 3 minutters gåtur (220 m). <a href="https://www.google.com/maps/dir/Åbogade+13,+8200+Aarhus+N/Fredagscaféen,+Aarhus" target="_blank" rel="noopener">Åbn ruten i Google Maps</a>.
 
 ## Om Lokationen
 
