@@ -11,7 +11,14 @@ const CACHE_TTL = 30; // seconds — how long to cache responses
 export default {
   async fetch(request, env) {
     const origin = request.headers.get("Origin") || "";
-    const allowedOrigin = env.ALLOWED_ORIGIN || "https://bsidesaarhus.dk";
+    const configuredAllowedOrigin =
+      env.ALLOWED_ORIGIN || "https://bsidesaarhus.dk";
+    let allowedOrigin;
+    try {
+      allowedOrigin = new URL(configuredAllowedOrigin).origin;
+    } catch {
+      return jsonResponse({ error: "Worker not configured" }, 500, "null");
+    }
 
     // CORS preflight
     if (request.method === "OPTIONS") {
@@ -26,8 +33,17 @@ export default {
     }
 
     // Only allow requests from our site
-    if (origin && !origin.startsWith(allowedOrigin)) {
-      return jsonResponse({ error: "Forbidden" }, 403, allowedOrigin);
+    if (origin) {
+      let requestOrigin;
+      try {
+        requestOrigin = new URL(origin).origin;
+      } catch {
+        return jsonResponse({ error: "Forbidden" }, 403, allowedOrigin);
+      }
+
+      if (requestOrigin !== allowedOrigin) {
+        return jsonResponse({ error: "Forbidden" }, 403, allowedOrigin);
+      }
     }
 
     const token = env.TICKETBUTLER_API_TOKEN;
