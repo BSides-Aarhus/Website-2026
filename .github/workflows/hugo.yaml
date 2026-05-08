@@ -41,6 +41,9 @@ jobs:
           TICKETBUTLER_EVENT_UUID: ${{ secrets.TICKETBUTLER_EVENT_UUID }}
         run: ./scripts/fetch-tickets.sh
 
+      - name: Sync session/speaker translations
+        run: ./scripts/sync-translations.sh
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
