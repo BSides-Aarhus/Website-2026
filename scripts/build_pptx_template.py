@@ -167,11 +167,6 @@ def build_cover(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     paint_background(slide, image=BG_IMG)
 
-    # Decorative glow band behind title
-    glow = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
-                                  0, Inches(3.0), SLIDE_W, Inches(1.6))
-    set_solid(glow, BG_ELEV)
-
     add_logo(slide, Inches(0.6), Inches(0.55), height=Inches(0.7))
 
     add_text(slide, Inches(0.6), Inches(2.2), Inches(12), Inches(0.5),
@@ -246,6 +241,27 @@ def build_agenda(prs):
 
     header_top = Inches(2.35)
     header_h = Inches(0.35)
+    top = Inches(2.78)
+    row_h = Inches(0.48)
+
+    # Single ~15% opacity panel behind the entire agenda so dots stay visible.
+    # Added BEFORE the headers/rows so it sits underneath them in z-order.
+    panel_top = Inches(2.30)
+    panel_h = Inches(0.50) + row_h * len(rows)
+    panel = slide.shapes.add_shape(
+        MSO_SHAPE.ROUNDED_RECTANGLE, left_margin, panel_top,
+        Inches(13.333) - left_margin * 2, panel_h)
+    panel.adjustments[0] = 0.02
+    panel.fill.solid()
+    panel.fill.fore_color.rgb = BG_CARD
+    panel.line.fill.background()
+    from pptx.oxml.ns import qn
+    sppr = panel.fill._xPr
+    solidFill = sppr.find(qn('a:solidFill'))
+    srgb = solidFill.find(qn('a:srgbClr'))
+    alpha = srgb.makeelement(qn('a:alpha'), {'val': '15000'})
+    srgb.append(alpha)
+
     add_text(slide, t1_left, header_top, track_w, header_h,
              "TRACK 1  ·  ROOM 1", size=11, bold=True, color=ACCENT,
              font=FONT_MONO, anchor=MSO_ANCHOR.MIDDLE, align=PP_ALIGN.CENTER)
@@ -253,26 +269,8 @@ def build_agenda(prs):
              "TRACK 2  ·  ROOM 2", size=11, bold=True, color=ACCENT,
              font=FONT_MONO, anchor=MSO_ANCHOR.MIDDLE, align=PP_ALIGN.CENTER)
 
-    top = Inches(2.78)
-    row_h = Inches(0.48)
     for i, (t, kind, t1, s1, t2, s2) in enumerate(rows):
         y = top + row_h * i
-
-        # Zebra striping for readability over the dotted background.
-        if i % 2 == 0:
-            strip = slide.shapes.add_shape(
-                MSO_SHAPE.RECTANGLE, left_margin, y,
-                Inches(13.333) - left_margin * 2, row_h)
-            strip.fill.solid()
-            strip.fill.fore_color.rgb = BG_CARD
-            strip.line.fill.background()
-            # Make stripe semi-transparent so dots remain visible.
-            from pptx.oxml.ns import qn
-            sppr = strip.fill._xPr
-            solidFill = sppr.find(qn('a:solidFill'))
-            srgb = solidFill.find(qn('a:srgbClr'))
-            alpha = srgb.makeelement(qn('a:alpha'), {'val': '60000'})
-            srgb.append(alpha)
 
         # Time column
         add_text(slide, left_margin, y, time_w, row_h,
