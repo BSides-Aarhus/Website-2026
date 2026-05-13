@@ -638,6 +638,20 @@ h3 { font-size: 1.25rem; }
   width: var(--target-width) !important;
   transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+.ticket-stats-basket {
+  margin-top: var(--space-sm);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+.ticket-stats-basket-count {
+  color: var(--color-accent-light);
+  font-weight: 600;
+  margin-right: 0.25em;
+}
+.ticket-stats-basket--empty {
+  display: none;
+}
 
 /* Ticket Remaining */
 .ticket-remaining {

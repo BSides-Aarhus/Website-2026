@@ -198,6 +198,8 @@ other = "billetter solgt"
 other = "billetter er allerede sikret!"
 [tickets_remaining]
 other = "tilbage"
+[tickets_in_basket_label]
+other = "i indkøbskurv lige nu"
 [tickets_sold_out]
 other = "Udsolgt"
 [tickets_just_sold]

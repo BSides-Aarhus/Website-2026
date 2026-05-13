@@ -15,7 +15,8 @@
         {{ if gt .total_available 0 }}
           <div class="ticket-stats" id="ticket-stats"
                data-sold="{{ .total_sold }}"
-               data-total="{{ .total_available }}">
+               data-total="{{ .total_available }}"
+               data-in-basket="{{ .total_in_basket | default 0 }}">
             <div class="ticket-stats-counter">
               <span class="ticket-stats-number" id="tickets-sold">{{ .total_sold }}</span>
               <span class="ticket-stats-separator">/</span>
@@ -25,6 +26,11 @@
             <div class="ticket-stats-bar">
               {{ $pct := div (mul .total_sold 100) .total_available }}
               <div class="ticket-stats-bar-fill" style="width: {{ $pct }}%" data-pct="{{ $pct }}"></div>
+            </div>
+            {{ $inBasket := .total_in_basket | default 0 }}
+            <div class="ticket-stats-basket{{ if le $inBasket 0 }} ticket-stats-basket--empty{{ end }}" id="ticket-stats-basket">
+              <span class="ticket-stats-basket-count" id="tickets-in-basket">{{ $inBasket }}</span>
+              {{ i18n "tickets_in_basket_label" }}
             </div>
           </div>
         {{ end }}

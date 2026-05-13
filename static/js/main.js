@@ -269,6 +269,18 @@
       }
     }
 
+    // Update in-basket count
+    var basketEl = document.getElementById('tickets-in-basket');
+    if (basketEl) {
+      var newBasket = data.total_in_basket || 0;
+      var oldBasket = parseInt(basketEl.textContent, 10) || 0;
+      animateCountUp(basketEl, oldBasket, newBasket);
+      var basketWrap = document.getElementById('ticket-stats-basket');
+      if (basketWrap) {
+        basketWrap.classList.toggle('ticket-stats-basket--empty', newBasket <= 0);
+      }
+    }
+
     // Update hero counter with animated count
     if (heroCounterEl) {
       var oldHeroVal = parseInt(heroCounterEl.textContent, 10) || 0;

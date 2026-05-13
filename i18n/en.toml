@@ -198,6 +198,8 @@ other = "tickets sold"
 other = "tickets already claimed!"
 [tickets_remaining]
 other = "remaining"
+[tickets_in_basket_label]
+other = "currently in baskets"
 [tickets_sold_out]
 other = "Sold Out"
 [tickets_just_sold]

@@ -1,7 +1,45 @@
 {
-  "event_uuid": "",
-  "total_sold": 0,
-  "total_available": 0,
-  "fetched_at": "",
-  "ticket_types": []
+  "event_uuid": "4bed23ed8b7844ab855124dc30c66090",
+  "total_sold": 169,
+  "total_available": 240,
+  "total_in_basket": 1,
+  "fetched_at": "2026-05-13T09:48:43Z",
+  "ticket_types": [
+    {
+      "uuid": "ad0158e893ec46a58b6d1266f71aed64",
+      "title": "Human",
+      "price": 170.0,
+      "currency": "DKK",
+      "amount_total": 160,
+      "amount_sold": 132,
+      "amount_remaining": 27,
+      "amount_in_basket": 1,
+      "is_sold_out": false,
+      "active": true
+    },
+    {
+      "uuid": "fe348f8948554497ad44637bb37103ee",
+      "title": "Community Friend Ticket",
+      "price": 1500.0,
+      "currency": "DKK",
+      "amount_total": 50,
+      "amount_sold": 7,
+      "amount_remaining": 43,
+      "amount_in_basket": 0,
+      "is_sold_out": false,
+      "active": true
+    },
+    {
+      "uuid": "c100b3a716b54a9ab329f76cc123853b",
+      "title": "Student - apply for free ticket",
+      "price": 0.0,
+      "currency": "DKK",
+      "amount_total": 30,
+      "amount_sold": 30,
+      "amount_remaining": 0,
+      "amount_in_basket": 0,
+      "is_sold_out": true,
+      "active": true
+    }
+  ]
 }

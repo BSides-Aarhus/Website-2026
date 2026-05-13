@@ -5,8 +5,16 @@
 //   TICKETBUTLER_API_TOKEN — Your API token
 //   TICKETBUTLER_EVENT_UUID — The event UUID to fetch
 //   ALLOWED_ORIGIN — Your site origin (e.g., https://bsidesaarhus.dk)
+//   PUBLIC_TICKET_TYPE_UUIDS — Comma-separated UUIDs of public ticket types
+//     (excludes internal types like Speaker/Crew/Goon from the counter)
 
 const CACHE_TTL = 30; // seconds — how long to cache responses
+
+const DEFAULT_PUBLIC_UUIDS = [
+  "ad0158e893ec46a58b6d1266f71aed64", // Human
+  "fe348f8948554497ad44637bb37103ee", // Community Friend
+  "c100b3a716b54a9ab329f76cc123853b", // Student
+];
 
 export default {
   async fetch(request, env) {
@@ -88,8 +96,14 @@ export default {
       }
 
       const allTicketTypes = await apiResponse.json();
+
+      const allowlist = (env.PUBLIC_TICKET_TYPE_UUIDS || "")
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+      const publicUUIDs = allowlist.length ? allowlist : DEFAULT_PUBLIC_UUIDS;
       const ticketTypes = allTicketTypes.filter(
-        (t) => t.active !== false
+        (t) => t.active !== false && publicUUIDs.includes(t.uuid)
       );
 
       const totalSold = ticketTypes.reduce(
@@ -100,21 +114,35 @@ export default {
         (sum, t) => sum + (t.amount_total || 0),
         0
       );
+      const totalInBasket = ticketTypes.reduce((sum, t) => {
+        const total = t.amount_total || 0;
+        const sold = t.amount_sold || 0;
+        const left = t.amount_left == null ? total - sold : t.amount_left;
+        return sum + Math.max(0, total - sold - left);
+      }, 0);
 
       const data = {
         total_sold: totalSold,
         total_available: totalAvailable,
+        total_in_basket: totalInBasket,
         fetched_at: new Date().toISOString(),
-        ticket_types: ticketTypes.map((t) => ({
-          uuid: t.uuid,
-          title: t.title,
-          price: t.price,
-          currency: t.currency || "DKK",
-          amount_total: t.amount_total || 0,
-          amount_sold: t.amount_sold || 0,
-          amount_remaining: (t.amount_total || 0) - (t.amount_sold || 0),
-          is_sold_out: (t.amount_sold || 0) >= (t.amount_total || 0),
-        })),
+        ticket_types: ticketTypes.map((t) => {
+          const total = t.amount_total || 0;
+          const sold = t.amount_sold || 0;
+          const left = t.amount_left == null ? total - sold : t.amount_left;
+          const inBasket = Math.max(0, total - sold - left);
+          return {
+            uuid: t.uuid,
+            title: t.title,
+            price: t.price,
+            currency: t.currency || "DKK",
+            amount_total: total,
+            amount_sold: sold,
+            amount_remaining: left,
+            amount_in_basket: inBasket,
+            is_sold_out: sold >= total,
+          };
+        }),
       };
 
       // Cache the response
