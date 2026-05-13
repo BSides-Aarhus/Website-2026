@@ -3,7 +3,6 @@ title: 'WebAuthn: How to get rid of passwords.'
 time: "10:00"
 room: "Room 1"
 speakers:
-  - mario-bodemann
   - joost-van-dijk
 ---
 

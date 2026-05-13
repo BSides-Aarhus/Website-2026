@@ -40,7 +40,10 @@ fi
 
 # Step 2: Fetch ticket types
 echo "🎫 Fetching ticket types..."
-TICKET_TYPES=$(curl -sf -H "$AUTH_HEADER" "$API_BASE/events/$EVENT_UUID/ticket-types/" 2>/dev/null || echo "[]")
+RAW_TICKET_TYPES=$(curl -sf -H "$AUTH_HEADER" "$API_BASE/events/$EVENT_UUID/ticket-types/" 2>/dev/null || echo "[]")
+
+# Filter out inactive ticket types (sponsor/staff/hidden comps)
+TICKET_TYPES=$(echo "$RAW_TICKET_TYPES" | jq '[.[] | select(.active != false)]')
 
 # Step 3: Build the data file
 TOTAL_SOLD=$(echo "$TICKET_TYPES" | jq '[.[].amount_sold // 0] | add // 0')

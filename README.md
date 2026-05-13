@@ -126,14 +126,14 @@ hugo --gc --minify && find public -name "*.html" | wc -l
 
 ### Add a Speaker
 
-Create `content/speakers/{slug}.md` (slug is lowercase-with-hyphens, e.g. `mario-bodemann`):
+Create `content/speakers/{slug}.md` (slug is lowercase-with-hyphens, e.g. `jane-doe`):
 
 ```markdown
 ---
-title: "Mario Bodemann"
-tagline: "Developer Advocate at Yubico"
+title: "Jane Doe"
+tagline: "Security Engineer at Example Corp"
 links:
-  linkedin: https://www.linkedin.com/in/mariobodemann/
+  linkedin: https://www.linkedin.com/in/janedoe/
   website: https://example.com
   company: https://example-corp.com
 ---
@@ -156,7 +156,7 @@ title: "Talk Title"
 time: "10:00"
 room: "Room 1"
 speakers:
-  - mario-bodemann
+  - jane-doe
   - joost-van-dijk
 ---
 

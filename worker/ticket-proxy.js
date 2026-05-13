@@ -87,7 +87,10 @@ export default {
         );
       }
 
-      const ticketTypes = await apiResponse.json();
+      const allTicketTypes = await apiResponse.json();
+      const ticketTypes = allTicketTypes.filter(
+        (t) => t.active !== false
+      );
 
       const totalSold = ticketTypes.reduce(
         (sum, t) => sum + (t.amount_sold || 0),
