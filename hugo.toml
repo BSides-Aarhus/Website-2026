@@ -14,7 +14,7 @@ enableGitInfo = true
   cfpURL = "https://sessionize.com/bsides-aarhus-2026/"
   ticketProxyURL = "https://bsides-ticket-proxy.bsides-aarhus-account.workers.dev"
   linkedinURL = "https://www.linkedin.com/company/bsides-aarhus/"
-  discordURL = "https://discord.gg/vgHXJ4c6n"
+  discordURL = "https://discord.com/invite/XCUja4Q"
   ogImage = "/images/og-image.png"
   # Cloudflare Web Analytics — cookieless baseline analytics (works in Brave/Firefox)
   # Get your token from: Cloudflare Dashboard > Web Analytics > Add site
