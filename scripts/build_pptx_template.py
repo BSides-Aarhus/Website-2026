@@ -9,8 +9,11 @@ Generates a 16:9 .pptx with:
 
 Design tokens come from static/css/main.css.
 """
+import math
+import random
 from pathlib import Path
 
+from PIL import Image, ImageDraw, ImageFilter
 from pptx import Presentation
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
@@ -19,7 +22,10 @@ from pptx.util import Inches, Pt, Emu
 
 ROOT = Path(__file__).resolve().parent.parent
 LOGO = ROOT / "static" / "images" / "logo.png"
-OUT = ROOT / "Plans" / "template-output" / "bsides-aarhus-2026-template.pptx"
+OUT_DIR = ROOT / "Plans" / "template-output"
+OUT = OUT_DIR / "bsides-aarhus-2026-template.pptx"
+BG_IMG = OUT_DIR / "_bg.png"
+BG_IMG_ELEV = OUT_DIR / "_bg_elev.png"
 
 # --- Design tokens (from main.css) -------------------------------------------------
 BG          = RGBColor(0x0A, 0x0A, 0x0F)
@@ -41,16 +47,78 @@ SLIDE_W = Inches(13.333)
 SLIDE_H = Inches(7.5)
 
 
+# --- Background image (white dots + top-center cyan glow) --------------------------
+def build_background(path: Path, *, base=(0x0A, 0x0A, 0x0F), width=2560, height=1440,
+                     dot_count=70, glow_strength=0.22):
+    """Render a static version of the website's particle + radial-gradient background.
+
+    Mirrors static/js/main.js (particles, connecting lines) and main.css
+    (radial-gradient ellipse at 50% 0%). Dots and lines are rendered white per
+    request; the top-center glow uses the cyan accent.
+    """
+    rng = random.Random(20260620)
+    img = Image.new("RGB", (width, height), base)
+
+    # Top-center cyan radial glow — drawn as a soft blurred ellipse.
+    glow = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    gx, gy = width // 2, 0
+    rx, ry = int(width * 0.6), int(height * 0.7)
+    gd.ellipse((gx - rx, gy - ry, gx + rx, gy + ry),
+               fill=(0x4A, 0xB8, 0xD2, int(255 * glow_strength)))
+    glow = glow.filter(ImageFilter.GaussianBlur(radius=180))
+    img = Image.alpha_composite(img.convert("RGBA"), glow).convert("RGB")
+
+    # Particles
+    pts = []
+    for _ in range(dot_count):
+        pts.append((
+            rng.uniform(0, width),
+            rng.uniform(0, height),
+            rng.uniform(2, 5),                 # radius in px
+            rng.uniform(0.35, 0.85),           # alpha
+        ))
+
+    # Connecting lines (faint, white) — matches main.js connectDist behavior.
+    connect = (width / 1920) * 150
+    lines = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    ld = ImageDraw.Draw(lines)
+    for i, (x1, y1, _, _) in enumerate(pts):
+        for x2, y2, _, _ in pts[i + 1:]:
+            d = math.hypot(x1 - x2, y1 - y2)
+            if d < connect:
+                a = int(255 * (1 - d / connect) * 0.12)
+                ld.line((x1, y1, x2, y2), fill=(255, 255, 255, a), width=1)
+    img = Image.alpha_composite(img.convert("RGBA"), lines).convert("RGB")
+
+    # Dots (white, with a soft halo via blur+composite).
+    dots = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    dd = ImageDraw.Draw(dots)
+    for x, y, r, a in pts:
+        dd.ellipse((x - r, y - r, x + r, y + r),
+                   fill=(255, 255, 255, int(255 * a)))
+    halo = dots.filter(ImageFilter.GaussianBlur(radius=6))
+    img = Image.alpha_composite(img.convert("RGBA"), halo)
+    img = Image.alpha_composite(img, dots).convert("RGB")
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(path, "PNG", optimize=True)
+    return path
+
+
 def set_solid(shape, rgb):
     shape.fill.solid()
     shape.fill.fore_color.rgb = rgb
     shape.line.fill.background()
 
 
-def paint_background(slide, rgb=BG):
-    bg = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, SLIDE_W, SLIDE_H)
-    set_solid(bg, rgb)
-    bg.shadow.inherit = False
+def paint_background(slide, rgb=BG, image: Path | None = None):
+    if image is not None and image.exists():
+        slide.shapes.add_picture(str(image), 0, 0, width=SLIDE_W, height=SLIDE_H)
+    else:
+        bg = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, SLIDE_W, SLIDE_H)
+        set_solid(bg, rgb)
+        bg.shadow.inherit = False
 
 
 def accent_bar(slide, top=Inches(0.55), left=Inches(0.6), width=Inches(0.9), height=Emu(38100)):
@@ -97,7 +165,7 @@ def add_logo(slide, left, top, height=Inches(0.6)):
 # --- Slide builders ----------------------------------------------------------------
 def build_cover(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
-    paint_background(slide)
+    paint_background(slide, image=BG_IMG)
 
     # Decorative glow band behind title
     glow = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
@@ -133,49 +201,130 @@ def build_cover(prs):
 
 def build_agenda(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
-    paint_background(slide)
-    add_logo(slide, Inches(0.6), Inches(0.5), height=Inches(0.55))
-    accent_bar(slide, top=Inches(1.35), left=Inches(0.6), width=Inches(0.9))
+    paint_background(slide, image=BG_IMG)
+    add_logo(slide, Inches(0.6), Inches(0.35), height=Inches(0.5))
+    accent_bar(slide, top=Inches(1.1), left=Inches(0.6), width=Inches(0.7))
 
-    add_text(slide, Inches(0.6), Inches(1.5), Inches(12), Inches(0.8),
-             "Agenda", size=44, bold=True, color=TEXT, font=FONT_HEAD)
+    add_text(slide, Inches(0.6), Inches(1.22), Inches(12), Inches(0.7),
+             "Agenda", size=34, bold=True, color=TEXT, font=FONT_HEAD)
+    add_text(slide, Inches(0.6), Inches(1.9), Inches(12), Inches(0.35),
+             "JUNE 20, 2026  ·  INCUBA NEXT, KATRINEBJERG",
+             size=11, color=TEXT_MUTED, font=FONT_MONO)
 
+    # Two-track schedule from data/schedule.yaml + content/sessions/*.md
+    # (time, kind, track1_title, track1_speaker, track2_title, track2_speaker)
+    # kind: "talk" | "shared" — shared rows span both columns (breaks/plenary).
     rows = [
-        ("09:00", "Breakfast & networking", ""),
-        ("10:00", "Track 1 / Track 2", "Parallel talks"),
-        ("11:00", "Track 1 / Track 2", "Parallel talks"),
-        ("11:45", "Lunch", ""),
-        ("12:45", "Track 1 / Track 2", "Parallel talks"),
-        ("13:50", "Track 1 / Track 2", "Parallel talks"),
-        ("14:50", "Track 1 / Track 2", "Parallel talks"),
-        ("15:30", "Networking session", ""),
-        ("16:30", "Continue at Fredagscaféen", ""),
+        ("09:00", "shared", "Breakfast & networking", "", "", ""),
+        ("10:00", "talk",
+            "WebAuthn: How to get rid of passwords.", "Joost van Dijk",
+            "Kernel Wars: Anti-Cheat Reversing, BYOVD & Mitigations", "Ravshan Rikhsiev"),
+        ("11:00", "talk",
+            "Alert Fatigue Therapy: Fixing Broken Detection Rules", "Marvin Ngoma",
+            "Remote Cold Execution", "Tom Kern"),
+        ("11:45", "shared", "Lunch", "", "", ""),
+        ("12:45", "talk",
+            "We Scanned 10,000 Danish Orgs Without Sending a Single Packet", "Morten von Seelen",
+            "Trustless Consensus Manipulation Through Bribing Contracts", "Bence Sooki-Toth"),
+        ("13:50", "talk",
+            "RTFM — When Documentation Creates Critical Misconfiguration", "Martin Sohn Christensen",
+            "Emerging Frontiers: Ransomware Attacks in AI Systems", "Behnaz Karimi & Yuvaraj Govindarajulu"),
+        ("14:50", "talk",
+            "Build your own IDS", "Eleni Ioakeim",
+            "Nebula — 5 years, still kicking *aaS", "Bleon Proko"),
+        ("15:30", "shared", "Networking session", "", "", ""),
+        ("16:30", "shared", "Continue at Fredagscaféen", "", "", ""),
     ]
 
-    top = Inches(2.55)
-    row_h = Inches(0.45)
-    for i, (t, title, sub) in enumerate(rows):
+    # Layout: time column | Track 1 | Track 2
+    left_margin = Inches(0.6)
+    time_w = Inches(1.05)
+    gap = Inches(0.15)
+    track_w = Inches((13.333 - 0.6 - 0.6 - 1.05 - 0.15 - 0.15) / 2)  # ~5.4"
+    t1_left = left_margin + time_w + gap
+    t2_left = t1_left + track_w + gap
+
+    header_top = Inches(2.35)
+    header_h = Inches(0.35)
+    add_text(slide, t1_left, header_top, track_w, header_h,
+             "TRACK 1  ·  ROOM 1", size=11, bold=True, color=ACCENT,
+             font=FONT_MONO, anchor=MSO_ANCHOR.MIDDLE, align=PP_ALIGN.CENTER)
+    add_text(slide, t2_left, header_top, track_w, header_h,
+             "TRACK 2  ·  ROOM 2", size=11, bold=True, color=ACCENT,
+             font=FONT_MONO, anchor=MSO_ANCHOR.MIDDLE, align=PP_ALIGN.CENTER)
+
+    top = Inches(2.78)
+    row_h = Inches(0.48)
+    for i, (t, kind, t1, s1, t2, s2) in enumerate(rows):
         y = top + row_h * i
+
+        # Zebra striping for readability over the dotted background.
         if i % 2 == 0:
-            bg = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
-                                        Inches(0.6), y, Inches(12.1), row_h)
-            set_solid(bg, BG_CARD)
-        add_text(slide, Inches(0.85), y + Emu(50000), Inches(1.4), row_h,
+            strip = slide.shapes.add_shape(
+                MSO_SHAPE.RECTANGLE, left_margin, y,
+                Inches(13.333) - left_margin * 2, row_h)
+            strip.fill.solid()
+            strip.fill.fore_color.rgb = BG_CARD
+            strip.line.fill.background()
+            # Make stripe semi-transparent so dots remain visible.
+            from pptx.oxml.ns import qn
+            sppr = strip.fill._xPr
+            solidFill = sppr.find(qn('a:solidFill'))
+            srgb = solidFill.find(qn('a:srgbClr'))
+            alpha = srgb.makeelement(qn('a:alpha'), {'val': '60000'})
+            srgb.append(alpha)
+
+        # Time column
+        add_text(slide, left_margin, y, time_w, row_h,
                  t, size=14, color=ACCENT, font=FONT_MONO, bold=True,
-                 anchor=MSO_ANCHOR.MIDDLE)
-        add_text(slide, Inches(2.3), y + Emu(50000), Inches(7.5), row_h,
-                 title, size=15, color=TEXT, font=FONT_BODY, bold=True,
-                 anchor=MSO_ANCHOR.MIDDLE)
-        add_text(slide, Inches(9.8), y + Emu(50000), Inches(2.8), row_h,
-                 sub, size=12, color=TEXT_MUTED, font=FONT_BODY,
-                 anchor=MSO_ANCHOR.MIDDLE, align=PP_ALIGN.RIGHT)
+                 anchor=MSO_ANCHOR.MIDDLE, align=PP_ALIGN.CENTER)
+
+        if kind == "shared":
+            add_text(slide, t1_left, y,
+                     Inches(13.333) - t1_left - left_margin, row_h,
+                     t1, size=14, color=TEXT_MUTED, font=FONT_BODY, bold=False,
+                     anchor=MSO_ANCHOR.MIDDLE, align=PP_ALIGN.CENTER)
+            continue
+
+        # Track 1
+        _talk_cell(slide, t1_left, y, track_w, row_h, t1, s1)
+        # Track 2
+        _talk_cell(slide, t2_left, y, track_w, row_h, t2, s2)
 
     footer(slide, "Agenda")
 
 
+def _talk_cell(slide, left, top, width, height, title, speaker):
+    """Render a two-line talk cell: title (top) + speaker (bottom, muted)."""
+    box = slide.shapes.add_textbox(left + Inches(0.15), top, width - Inches(0.3), height)
+    tf = box.text_frame
+    tf.word_wrap = True
+    tf.margin_left = tf.margin_right = 0
+    tf.margin_top = Pt(2)
+    tf.margin_bottom = Pt(2)
+    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+
+    p1 = tf.paragraphs[0]
+    p1.alignment = PP_ALIGN.LEFT
+    r1 = p1.add_run()
+    r1.text = title
+    r1.font.name = FONT_BODY
+    r1.font.size = Pt(11)
+    r1.font.bold = True
+    r1.font.color.rgb = TEXT
+
+    p2 = tf.add_paragraph()
+    p2.alignment = PP_ALIGN.LEFT
+    r2 = p2.add_run()
+    r2.text = speaker
+    r2.font.name = FONT_MONO
+    r2.font.size = Pt(9)
+    r2.font.color.rgb = TEXT_MUTED
+
+
 def build_section_divider(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
-    paint_background(slide, BG_ELEV)
+    paint_background(slide, BG_ELEV, image=BG_IMG_ELEV)
 
     # Large vertical accent
     bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE,
@@ -196,7 +345,7 @@ def build_section_divider(prs):
 
 def build_content(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
-    paint_background(slide)
+    paint_background(slide, image=BG_IMG)
     add_logo(slide, Inches(0.6), Inches(0.5), height=Inches(0.5))
     accent_bar(slide, top=Inches(1.3), left=Inches(0.6), width=Inches(0.7))
 
@@ -233,7 +382,7 @@ def build_content(prs):
 
 def build_speaker_bio(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
-    paint_background(slide)
+    paint_background(slide, image=BG_IMG)
     add_logo(slide, Inches(0.6), Inches(0.5), height=Inches(0.5))
 
     # Photo placeholder card
@@ -265,6 +414,10 @@ def build_speaker_bio(prs):
 
 
 def main():
+    # Pre-render the dotted backgrounds (base + elevated tone for dividers).
+    build_background(BG_IMG, base=(0x0A, 0x0A, 0x0F))
+    build_background(BG_IMG_ELEV, base=(0x12, 0x12, 0x1A), glow_strength=0.18)
+
     prs = Presentation()
     prs.slide_width = SLIDE_W
     prs.slide_height = SLIDE_H
