@@ -4,6 +4,13 @@ time: "10:00"
 room: "Room 2"
 speakers:
   - ravshan-rikhsiev
+topics:
+  - windows-internals
+  - kernel
+  - reverse-engineering
+  - byovd
+  - exploitation
+  - anti-cheat
 ---
 
 Anti-cheats live in the kernel. So do we.

@@ -4,6 +4,13 @@ time: "10:00"
 room: "Room 1"
 speakers:
   - joost-van-dijk
+topics:
+  - webauthn
+  - passwordless
+  - passkeys
+  - fido2
+  - authentication
+  - identity
 ---
 
 Get rid of passwords, I'll show you and your application how.

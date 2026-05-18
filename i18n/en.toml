@@ -112,6 +112,16 @@ other = "Show more"
 other = "Show less"
 [session_speakers]
 other = "Speakers"
+[session_topics]
+other = "Topics"
+[topics_title]
+other = "Topics"
+[topics_intro]
+other = "Browse sessions by topic — security disciplines, technologies, and frameworks covered at BSides Aarhus 2026."
+[topic_intro]
+other = "Sessions at BSides Aarhus 2026 covering this topic."
+[nav_topics]
+other = "Topics"
 [speaker_sessions]
 other = "Sessions"
 [speaker_website]

@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>{{ i18n "topics_title" }}</h1>
+    <p>{{ i18n "topics_intro" }}</p>
+  </div>
+</div>
+<section class="section">
+  <div class="container container--narrow">
+    <ul class="topic-chips topic-chips--large">
+      {{ range $name, $taxonomy := .Data.Terms.Alphabetical }}
+      {{ $term := $taxonomy.Page }}
+      <li><a href="{{ $term.RelPermalink }}">{{ partial "topic-label.html" ($term.Title | urlize) }} <span class="topic-count">{{ $taxonomy.Count }}</span></a></li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,4 @@
+{{- /* Returns the pretty label for a topic slug, falling back to humanize. */ -}}
+{{- $slug := . -}}
+{{- $label := index site.Data.topic_labels.labels $slug -}}
+{{- if $label }}{{ $label }}{{ else }}{{ $slug | humanize }}{{ end -}}

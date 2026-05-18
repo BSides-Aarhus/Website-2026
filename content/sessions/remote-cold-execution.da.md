@@ -4,6 +4,11 @@ time: "11:00"
 room: "Room 2"
 speakers:
   - tom-kern
+topics:
+  - iot-security
+  - hardware-hacking
+  - reverse-engineering
+  - vulnerability-research
 ---
 
 Imagine a cozy winter evening, it is snowing outside and you chill on the couch with a cup of tea in your hand.

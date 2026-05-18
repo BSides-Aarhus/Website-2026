@@ -17,6 +17,18 @@
         {{ .Content }}
       </div>
 
+      {{ with .Params.topics }}
+      <div class="session-topics">
+        <h2>{{ i18n "session_topics" }}</h2>
+        <ul class="topic-chips">
+          {{ range . }}
+          {{ $term := site.GetPage (printf "/topics/%s" .) }}
+          <li><a href="{{ if $term }}{{ $term.RelPermalink }}{{ else }}{{ printf "/topics/%s/" . | relLangURL }}{{ end }}">{{ partial "topic-label.html" . }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+
       <div class="session-speakers">
         <h2>{{ i18n "session_speakers" }}</h2>
         {{ range .Params.speakers }}

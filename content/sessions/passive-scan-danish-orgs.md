@@ -4,6 +4,12 @@ time: "12:45"
 room: "Room 1"
 speakers:
   - morten-von-seelen
+topics:
+  - osint
+  - reconnaissance
+  - passive-recon
+  - supply-chain
+  - threat-intelligence
 ---
 
 We built a passive exposure profiling engine, originally for insurance underwriters who were tired of self-reported security questionnaires.

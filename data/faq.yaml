@@ -7,11 +7,53 @@ items:
       da: "BSides Aarhus 2026 finder sted den 20. juni 2026 på INCUBA Next, Katrinebjerg, Aarhus."
 
   - question:
+      en: "What security topics are covered at BSides Aarhus 2026?"
+      da: "Hvilke sikkerhedsemner dækkes på BSides Aarhus 2026?"
+    answer:
+      en: "The 2026 program covers <a href=\"/topics/cloud-security/\">cloud penetration testing</a> (AWS, Azure, Entra), <a href=\"/topics/windows-internals/\">Windows kernel internals</a> and <a href=\"/topics/byovd/\">BYOVD</a> exploitation, <a href=\"/topics/active-directory/\">Active Directory</a> and <a href=\"/topics/ad-cs/\">AD CS</a> misconfigurations, <a href=\"/topics/detection-engineering/\">detection engineering</a> and SOC alert fatigue, building your own <a href=\"/topics/ids/\">IDS</a> with Suricata and ELK, <a href=\"/topics/osint/\">OSINT</a> and <a href=\"/topics/passive-recon/\">passive reconnaissance</a>, <a href=\"/topics/webauthn/\">WebAuthn</a> and passwordless authentication with passkeys and FIDO2, ransomware attacks on <a href=\"/topics/ai-security/\">AI/ML systems</a> (OWASP LLM06 and ML06), <a href=\"/topics/iot-security/\">IoT and hardware hacking</a>, and <a href=\"/topics/smart-contracts/\">smart contract</a> bribery attacks on Ethereum. Browse the full <a href=\"/topics/\">topic index</a> or the <a href=\"/sessions/\">session list</a>."
+      da: "Programmet i 2026 dækker <a href=\"/da/topics/cloud-security/\">cloud penetrationstest</a> (AWS, Azure, Entra), <a href=\"/da/topics/windows-internals/\">Windows kernel-internals</a> og <a href=\"/da/topics/byovd/\">BYOVD</a>-exploitation, <a href=\"/da/topics/active-directory/\">Active Directory</a> og <a href=\"/da/topics/ad-cs/\">AD CS</a>-fejlkonfigurationer, <a href=\"/da/topics/detection-engineering/\">detection engineering</a> og SOC alert fatigue, opbygning af eget <a href=\"/da/topics/ids/\">IDS</a> med Suricata og ELK, <a href=\"/da/topics/osint/\">OSINT</a> og <a href=\"/da/topics/passive-recon/\">passiv rekognoscering</a>, <a href=\"/da/topics/webauthn/\">WebAuthn</a> og passwordless-autentificering med passkeys og FIDO2, ransomware-angreb på <a href=\"/da/topics/ai-security/\">AI/ML-systemer</a> (OWASP LLM06 og ML06), <a href=\"/da/topics/iot-security/\">IoT- og hardware-hacking</a> samt <a href=\"/da/topics/smart-contracts/\">smart contract</a>-bribery-angreb på Ethereum. Se hele <a href=\"/da/topics/\">emneoversigten</a> eller <a href=\"/da/sessions/\">foredragslisten</a>."
+
+  - question:
+      en: "Is BSides Aarhus relevant for blue teams and SOC analysts?"
+      da: "Er BSides Aarhus relevant for blue teams og SOC-analytikere?"
+    answer:
+      en: "Yes. Several 2026 talks target defenders directly: <a href=\"/sessions/alert-fatigue-therapy/\">Alert Fatigue Therapy: Fixing Broken Detection Rules</a> is a deep dive into <a href=\"/topics/detection-engineering/\">detection engineering</a> and high-fidelity rule design, <a href=\"/sessions/build-your-own-ids/\">Build your own IDS</a> walks through a Suricata + ELK <a href=\"/topics/siem/\">SIEM</a> setup for custom detection and <a href=\"/topics/threat-hunting/\">threat hunting</a>, and <a href=\"/sessions/passive-scan-danish-orgs/\">We Scanned 10,000 Danish Orgs Without Sending a Single Packet</a> shows what passive recon predicts about real compromise risk. See all <a href=\"/topics/blue-team/\">blue team sessions</a>."
+      da: "Ja. Flere foredrag i 2026 retter sig direkte mod defenders: <a href=\"/da/sessions/alert-fatigue-therapy/\">Alert Fatigue Therapy: Fixing Broken Detection Rules</a> er et dybt dyk i <a href=\"/da/topics/detection-engineering/\">detection engineering</a> og high-fidelity-regeldesign, <a href=\"/da/sessions/build-your-own-ids/\">Build your own IDS</a> gennemgår en Suricata + ELK <a href=\"/da/topics/siem/\">SIEM</a>-opsætning til skræddersyet detektion og <a href=\"/da/topics/threat-hunting/\">threat hunting</a>, og <a href=\"/da/sessions/passive-scan-danish-orgs/\">We Scanned 10,000 Danish Orgs Without Sending a Single Packet</a> viser, hvad passiv rekognoscering kan forudsige om reel kompromitteringsrisiko. Se alle <a href=\"/da/topics/blue-team/\">blue team-foredrag</a>."
+
+  - question:
+      en: "Does BSides Aarhus 2026 cover AI security and LLM risks?"
+      da: "Dækker BSides Aarhus 2026 AI-sikkerhed og LLM-risici?"
+    answer:
+      en: "Yes. <a href=\"/sessions/ransomware-ai-systems/\">Emerging Frontiers: Ransomware Attacks in AI Systems</a> by <a href=\"/speakers/behnaz-karimi/\">Behnaz Karimi</a> (OWASP AI Exchange) and <a href=\"/speakers/yuvaraj-govindarajulu/\">Yuvaraj Govindarajulu</a> covers ransomware exploitation of AI/ML supply chains and pipelines, referencing OWASP ML06: 2023 ML Supply Chain Attacks and OWASP LLM06: Excessive Agency. The session includes practical strategies to detect and mitigate ransomware threats against modern AI infrastructures. See <a href=\"/topics/ai-security/\">AI security</a> and <a href=\"/topics/llm-security/\">LLM security</a> topics."
+      da: "Ja. <a href=\"/da/sessions/ransomware-ai-systems/\">Emerging Frontiers: Ransomware Attacks in AI Systems</a> af <a href=\"/da/speakers/behnaz-karimi/\">Behnaz Karimi</a> (OWASP AI Exchange) og <a href=\"/da/speakers/yuvaraj-govindarajulu/\">Yuvaraj Govindarajulu</a> dækker ransomware-exploitation af AI/ML-forsyningskæder og -pipelines med reference til OWASP ML06: 2023 ML Supply Chain Attacks og OWASP LLM06: Excessive Agency. Sessionen indeholder praktiske strategier til at detektere og afbøde ransomware-trusler mod moderne AI-infrastrukturer. Se emnerne <a href=\"/da/topics/ai-security/\">AI-sikkerhed</a> og <a href=\"/da/topics/llm-security/\">LLM-sikkerhed</a>."
+
+  - question:
+      en: "Does the conference cover cloud security and pentesting?"
+      da: "Dækker konferencen cloud-sikkerhed og pentesting?"
+    answer:
+      en: "Yes. <a href=\"/sessions/nebula-cloud-pentest/\">Nebula - 5 years, still kicking *aaS</a> by <a href=\"/speakers/bleon-proko/\">Bleon Proko</a> presents the Nebula cloud penetration testing framework covering <a href=\"/topics/aws/\">AWS</a>, <a href=\"/topics/azure/\">Azure</a> (Graph and Management API, <a href=\"/topics/entra/\">Entra</a>, Azure Subscription resources, Office365), and DigitalOcean — with modules for reconnaissance, phishing, brute-force and password spray, enumeration after initial access, lateral movement, privilege escalation, and persistence. See all <a href=\"/topics/cloud-security/\">cloud security</a> and <a href=\"/topics/pentesting/\">pentesting</a> sessions."
+      da: "Ja. <a href=\"/da/sessions/nebula-cloud-pentest/\">Nebula - 5 years, still kicking *aaS</a> af <a href=\"/da/speakers/bleon-proko/\">Bleon Proko</a> præsenterer Nebula cloud penetration testing-frameworket, der dækker <a href=\"/da/topics/aws/\">AWS</a>, <a href=\"/da/topics/azure/\">Azure</a> (Graph og Management API, <a href=\"/da/topics/entra/\">Entra</a>, Azure Subscription-ressourcer, Office365) og DigitalOcean — med moduler til rekognoscering, phishing, brute-force og password spray, enumeration efter initial adgang, lateral movement, privilege escalation og persistens. Se alle <a href=\"/da/topics/cloud-security/\">cloud-sikkerhed</a>- og <a href=\"/da/topics/pentesting/\">pentesting</a>-foredrag."
+
+  - question:
+      en: "Are talks at BSides Aarhus 2026 technical or beginner-friendly?"
+      da: "Er foredragene på BSides Aarhus 2026 tekniske eller for begyndere?"
+    answer:
+      en: "BSides Aarhus 2026 is a technical conference. Most talks assume working knowledge of security concepts and dive into specific techniques — <a href=\"/topics/windows-internals/\">Windows kernel internals</a> and <a href=\"/topics/byovd/\">BYOVD</a>, <a href=\"/topics/ad-cs/\">AD CS</a> misconfigurations, smart contract logic on <a href=\"/topics/ethereum/\">Ethereum</a>, <a href=\"/topics/reverse-engineering/\">reverse engineering</a> IoT firmware, and detection engineering tradeoffs. Talks are accessible to mid-level practitioners and above; students and newcomers are welcome and will find both deep dives and broader context. Browse the full <a href=\"/sessions/\">session list</a>."
+      da: "BSides Aarhus 2026 er en teknisk konference. De fleste foredrag forudsætter arbejdskendskab til sikkerhedsbegreber og går i dybden med specifikke teknikker — <a href=\"/da/topics/windows-internals/\">Windows kernel-internals</a> og <a href=\"/da/topics/byovd/\">BYOVD</a>, <a href=\"/da/topics/ad-cs/\">AD CS</a>-fejlkonfigurationer, smart contract-logik på <a href=\"/da/topics/ethereum/\">Ethereum</a>, <a href=\"/da/topics/reverse-engineering/\">reverse engineering</a> af IoT-firmware og afvejninger i detection engineering. Foredragene er tilgængelige for mid-level praktikere og opefter; studerende og nybegyndere er velkomne og vil finde både dybe dyk og bredere kontekst. Se hele <a href=\"/da/sessions/\">foredragslisten</a>."
+
+  - question:
+      en: "Where can I learn about reverse engineering or hardware hacking in Denmark?"
+      da: "Hvor kan jeg lære om reverse engineering eller hardware-hacking i Danmark?"
+    answer:
+      en: "BSides Aarhus 2026 features two <a href=\"/topics/reverse-engineering/\">reverse engineering</a> sessions: <a href=\"/sessions/kernel-wars-anti-cheat/\">Kernel Wars: Anti-Cheat Reversing, BYOVD Exploitation and Mitigations</a> by <a href=\"/speakers/ravshan-rikhsiev/\">Ravshan Rikhsiev</a> covers Windows kernel internals, SSDT hooks, kernel callbacks, HVCI, WDAC, and the Microsoft vulnerable driver blocklist. <a href=\"/sessions/remote-cold-execution/\">Remote Cold Execution</a> by <a href=\"/speakers/tom-kern/\">Tom Kern</a> walks through reverse engineering of an Orca heat pump's controller protocol and a remote takeover vulnerability. See also <a href=\"/topics/hardware-hacking/\">hardware hacking</a> and <a href=\"/topics/iot-security/\">IoT security</a>."
+      da: "BSides Aarhus 2026 byder på to <a href=\"/da/topics/reverse-engineering/\">reverse engineering</a>-sessioner: <a href=\"/da/sessions/kernel-wars-anti-cheat/\">Kernel Wars: Anti-Cheat Reversing, BYOVD Exploitation and Mitigations</a> af <a href=\"/da/speakers/ravshan-rikhsiev/\">Ravshan Rikhsiev</a> dækker Windows kernel-internals, SSDT-hooks, kernel callbacks, HVCI, WDAC og Microsofts vulnerable driver blocklist. <a href=\"/da/sessions/remote-cold-execution/\">Remote Cold Execution</a> af <a href=\"/da/sessions/tom-kern/\">Tom Kern</a> gennemgår reverse engineering af en Orca-varmepumpes controller-protokol og en remote takeover-sårbarhed. Se også <a href=\"/da/topics/hardware-hacking/\">hardware-hacking</a> og <a href=\"/da/topics/iot-security/\">IoT-sikkerhed</a>."
+
+  - question:
       en: "How much do tickets cost?"
       da: "Hvad koster billetter?"
     answer:
-      en: "We offer regular tickets and supporter tickets. Visit our tickets page for current pricing and availability."
-      da: "Vi tilbyder almindelige billetter og støttebilletter. Besøg vores billetside for aktuelle priser og tilgængelighed."
+      en: "We offer regular tickets and supporter tickets. Visit our <a href=\"/tickets/\">tickets page</a> for current pricing and availability."
+      da: "Vi tilbyder almindelige billetter og støttebilletter. Besøg vores <a href=\"/da/tickets/\">billetside</a> for aktuelle priser og tilgængelighed."
 
   - question:
       en: "What are supporter tickets?"
@@ -31,15 +73,15 @@ items:
       en: "How can I become a speaker?"
       da: "Hvordan kan jeg blive taler?"
     answer:
-      en: "Submit your talk proposal through our Call for Papers (CFP) on Sessionize. We welcome speakers of all experience levels."
-      da: "Indsend dit forslag til foredrag via vores Call for Papers (CFP) på Sessionize. Vi byder talere på alle erfaringsniveauer velkommen."
+      en: "Submit your talk proposal through our <a href=\"/cfp/\">Call for Papers (CFP)</a> on Sessionize. We welcome speakers of all experience levels."
+      da: "Indsend dit forslag til foredrag via vores <a href=\"/da/cfp/\">Call for Papers (CFP)</a> på Sessionize. Vi byder talere på alle erfaringsniveauer velkommen."
 
   - question:
       en: "How can my company sponsor BSides Aarhus?"
       da: "Hvordan kan min virksomhed sponsorere BSides Aarhus?"
     answer:
-      en: "We offer several sponsorship tiers. Visit our sponsors page or contact us directly to learn more about partnership opportunities."
-      da: "Vi tilbyder flere sponsorniveauer. Besøg vores sponsorside eller kontakt os direkte for at lære mere om partnerskabsmuligheder."
+      en: "We offer several sponsorship tiers. Visit our <a href=\"/sponsors/\">sponsors page</a> or <a href=\"mailto:info@bsidesaarhus.dk\">contact us</a> directly to learn more about partnership opportunities."
+      da: "Vi tilbyder flere sponsorniveauer. Besøg vores <a href=\"/da/sponsors/\">sponsorside</a> eller <a href=\"mailto:info@bsidesaarhus.dk\">kontakt os</a> direkte for at lære mere om partnerskabsmuligheder."
 
   - question:
       en: "Is there parking at the venue?"

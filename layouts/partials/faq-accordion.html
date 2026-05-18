@@ -7,7 +7,7 @@
     </button>
     <div class="faq-answer">
       <div class="faq-answer-inner">
-        {{ index .answer $lang }}
+        {{ index .answer $lang | safeHTML }}
       </div>
     </div>
   </div>

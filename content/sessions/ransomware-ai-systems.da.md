@@ -5,6 +5,13 @@ room: "Room 2"
 speakers:
   - behnaz-karimi
   - yuvaraj-govindarajulu
+topics:
+  - ai-security
+  - ml-security
+  - ransomware
+  - owasp-llm
+  - owasp-ml
+  - llm-security
 ---
 
 This session will delve into the convergence of ransomware and Artificial Intelligence/Machine Learning (AI/ML) systems, providing attendees with a comprehensive understanding of the evolving ransomware landscape in AI environments. The presentation will cover:

@@ -4,6 +4,11 @@ time: "11:00"
 room: "Room 1"
 speakers:
   - marvin-ngoma
+topics:
+  - detection-engineering
+  - soc
+  - blue-team
+  - threat-hunting
 ---
 
 "False positives burn out analysts. False negatives burn down businesses."

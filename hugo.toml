@@ -34,7 +34,7 @@ enableGitInfo = true
     addressCountry = "DK"
 
 [taxonomies]
-  # intentionally empty — disables default categories/tags
+  topic = "topics"
 
 [languages]
   [languages.en]

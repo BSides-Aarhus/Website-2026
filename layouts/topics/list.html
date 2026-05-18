@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>{{ partial "topic-label.html" (.Title | urlize) }}</h1>
+    <p>{{ i18n "topic_intro" }}</p>
+  </div>
+</div>
+<section class="section">
+  <div class="container container--narrow">
+    <ul class="topic-session-list">
+      {{ range .Pages }}
+      <li>
+        <a href="{{ .RelPermalink }}">
+          <h3>{{ .Title }}</h3>
+          <p class="topic-session-meta">{{ .Params.time }} · {{ .Params.room }}</p>
+          {{ with .Plain }}<p class="topic-session-excerpt">{{ . | plainify | truncate 200 "…" }}</p>{{ end }}
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+{{ end }}

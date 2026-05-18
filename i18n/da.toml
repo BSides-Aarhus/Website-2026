@@ -112,6 +112,16 @@ other = "Vis mere"
 other = "Vis mindre"
 [session_speakers]
 other = "Talere"
+[session_topics]
+other = "Emner"
+[topics_title]
+other = "Emner"
+[topics_intro]
+other = "Find foredrag efter emne — sikkerhedsdiscipliner, teknologier og frameworks der dækkes på BSides Aarhus 2026."
+[topic_intro]
+other = "Foredrag på BSides Aarhus 2026, der dækker dette emne."
+[nav_topics]
+other = "Emner"
 [speaker_sessions]
 other = "Foredrag"
 [speaker_website]
