@@ -17,7 +17,6 @@
 {{- range site.Data.tickets.ticket_types -}}
   {{- if and .active (not .is_sold_out) -}}{{- $offers = $offers | append . -}}{{- end -}}
 {{- end -}}
-{{- $allSpeakers := where site.RegularPages "Section" "speakers" -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,46 +32,15 @@
   "superEvent": {
     "@type": "Event",
     "name": {{ site.Params.conferenceName | jsonify | safeJS }},
-    "description": {{ site.Params.description | jsonify | safeJS }},
     "url": {{ site.BaseURL | jsonify | safeJS }},
     "startDate": {{ site.Params.conferenceDate | jsonify | safeJS }},
     "endDate": {{ site.Params.conferenceEndDate | jsonify | safeJS }},
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "location": {{ partial "schema-place.html" "" | safeJS }},
     "organizer": {
       "@type": "Organization",
       "name": {{ site.Params.organizerName | jsonify | safeJS }},
       "url": {{ site.BaseURL | jsonify | safeJS }}
-    },
-    "image": "{{ site.Params.ogImage | absURL }}",
-    "performer": [
-      {{- range $i, $sp := $allSpeakers -}}
-      {{- if $i }},{{ end }}
-      {
-        "@type": "Person",
-        "name": {{ $sp.Title | jsonify | safeJS }},
-        "url": {{ $sp.Permalink | jsonify | safeJS }}
-        {{- with $sp.Params.tagline }},
-        "jobTitle": {{ . | jsonify | safeJS }}
-        {{- end }}
-      }
-      {{- end }}
-    ],
-    "offers": [
-      {{- range $i, $t := $offers -}}
-      {{- if $i }},{{ end }}
-      {
-        "@type": "Offer",
-        "name": {{ $t.title | jsonify | safeJS }},
-        "price": "{{ $t.price }}",
-        "priceCurrency": {{ $t.currency | jsonify | safeJS }},
-        "url": {{ site.Params.ticketURL | jsonify | safeJS }},
-        "availability": "https://schema.org/InStock",
-        "validFrom": {{ site.Params.conferenceDate | jsonify | safeJS }}
-      }
-      {{- end }}
-    ]
+    }
   },
   "offers": [
     {{- range $i, $t := $offers -}}
