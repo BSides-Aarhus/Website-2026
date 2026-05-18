@@ -1,0 +1,33 @@
+{{- $lang := site.Language.Lang -}}
+{{- $items := slice -}}
+{{- range site.Data.sponsors.tiers -}}
+  {{- range .sponsors -}}{{- $items = $items | append . -}}{{- end -}}
+{{- end -}}
+{{- if $items -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {{- range $i, $s := $items -}}
+    {{- $desc := "" -}}
+    {{- with $s.description }}{{ $desc = index . $lang }}{{ end -}}
+    {{- if $i }},{{ end }}
+    {
+      "@type": "ListItem",
+      "position": {{ add $i 1 }},
+      "item": {
+        "@type": "Organization",
+        "name": {{ $s.name | jsonify | safeJS }},
+        "url": {{ $s.url | jsonify | safeJS }},
+        "logo": "{{ $s.logo | absURL }}"
+        {{- with $desc }},
+        "description": {{ . | jsonify | safeJS }}
+        {{- end }}
+      }
+    }
+    {{- end }}
+  ]
+}
+</script>
+{{- end -}}

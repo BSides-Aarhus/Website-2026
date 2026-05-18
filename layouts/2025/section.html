@@ -1,0 +1,70 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</div>
+
+<section class="section">
+  <div class="container container--narrow">
+    {{ .Content }}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{ if eq site.Language.Lang "da" }}Talere{{ else }}Speakers{{ end }}</h2>
+    </div>
+    <div class="archive-speakers">
+      {{ range site.Data.archive2025.speakers }}
+      <article id="{{ .name }}" class="archive-speaker">
+        <div class="archive-speaker-head">
+          <img class="archive-speaker-avatar" src="/images/2025/speakers/{{ .thumbnail }}" alt="{{ .alt | default .title }}" loading="lazy">
+          <div>
+            <h3>{{ .title }}</h3>
+            <p class="speaker-tagline">{{ .subtitle }}</p>
+          </div>
+        </div>
+        <div class="archive-speaker-talk">
+          <h4>{{ if eq site.Language.Lang "da" }}Foredrag{{ else }}Talk{{ end }}</h4>
+          <p>{{ .topic | safeHTML }}</p>
+        </div>
+        <div class="archive-speaker-bio">
+          <h4>{{ if eq site.Language.Lang "da" }}Bio{{ else }}Bio{{ end }}</h4>
+          <p>{{ .description | safeHTML }}</p>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container--narrow">
+    <div class="section-header">
+      <h2>{{ if eq site.Language.Lang "da" }}Program{{ else }}Agenda{{ end }}</h2>
+      <p>EAAA Aarhus · 14 June 2025</p>
+    </div>
+    <div class="archive-agenda-grid">
+      <div>
+        <h3>Track 1</h3>
+        <ul class="archive-agenda">
+          {{ range site.Data.archive2025.agenda_track1 }}
+          <li><span class="archive-agenda-time">{{ .time }}</span><span class="archive-agenda-info">{{ .info | safeHTML }}</span></li>
+          {{ end }}
+        </ul>
+      </div>
+      <div>
+        <h3>Track 2</h3>
+        <ul class="archive-agenda">
+          {{ range site.Data.archive2025.agenda_track2 }}
+          <li><span class="archive-agenda-time">{{ .time }}</span><span class="archive-agenda-info">{{ .info | safeHTML }}</span></li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

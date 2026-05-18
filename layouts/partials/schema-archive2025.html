@@ -1,0 +1,41 @@
+{{- $speakers := site.Data.archive2025.speakers -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "BSides Aarhus 2025 Kickoff",
+  "description": {{ .Description | jsonify | safeJS }},
+  "eventStatus": "https://schema.org/EventCompleted",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "startDate": "2025-06-14T09:00:00+02:00",
+  "endDate": "2025-06-14T17:00:00+02:00",
+  "location": {
+    "@type": "Place",
+    "name": "EAAA Aarhus",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Aarhus",
+      "addressCountry": "DK"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": {{ site.Params.organizerName | jsonify | safeJS }},
+    "url": {{ site.BaseURL | jsonify | safeJS }}
+  },
+  "performer": [
+    {{- range $i, $s := $speakers -}}
+    {{- if $i }},{{ end }}
+    {
+      "@type": "Person",
+      "name": {{ $s.title | jsonify | safeJS }}
+      {{- with $s.subtitle }},
+      "jobTitle": {{ . | jsonify | safeJS }}
+      {{- end }}
+    }
+    {{- end }}
+  ],
+  "url": {{ .Permalink | jsonify | safeJS }},
+  "image": "{{ site.Params.ogImage | absURL }}"
+}
+</script>

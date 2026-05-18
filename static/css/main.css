@@ -492,6 +492,74 @@ h3 { font-size: 1.25rem; }
 }
 .sponsor-cta { text-align: center; margin-top: var(--space-xl); }
 
+/* New card layout (used when sponsors have descriptions) */
+.sponsor-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  align-items: stretch;
+}
+.sponsor-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  transition: all 0.3s;
+}
+.sponsor-card:hover { border-color: var(--color-accent); box-shadow: 0 0 20px var(--color-accent-glow); }
+.sponsor-logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  margin-bottom: var(--space-md);
+}
+.sponsor-logo-link img { max-height: 100px; width: auto; }
+.sponsor-logo-link.sponsor-logo--light-bg {
+  background: rgba(255, 255, 255, 0.80);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius);
+}
+.sponsor-body { text-align: center; }
+.sponsor-name { margin: 0 0 var(--space-sm); font-size: 1.1rem; }
+.sponsor-name a { color: var(--color-text); }
+.sponsor-name a:hover { color: var(--color-accent); }
+.sponsor-description { color: var(--color-text-muted); font-size: 0.95rem; margin: 0; }
+
+/* 2025 Archive */
+.archive-speakers { display: grid; gap: var(--space-lg); }
+.archive-speaker {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  scroll-margin-top: calc(var(--nav-height) + var(--space-md));
+}
+.archive-speaker-head { display: flex; gap: var(--space-md); align-items: center; margin-bottom: var(--space-md); }
+.archive-speaker-avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+.archive-speaker-talk, .archive-speaker-bio { margin-top: var(--space-md); }
+.archive-speaker-talk h4, .archive-speaker-bio h4 {
+  color: var(--color-accent-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  margin-bottom: var(--space-sm);
+}
+.archive-agenda-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-xl); }
+.archive-agenda-grid h3 { color: var(--color-accent-light); margin-bottom: var(--space-md); }
+.archive-agenda { display: flex; flex-direction: column; gap: var(--space-sm); }
+.archive-agenda li {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: var(--space-md);
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+.archive-agenda-time { font-family: var(--font-mono); color: var(--color-text-muted); }
+.archive-agenda-info a { color: var(--color-accent-light); }
+
 /* FAQ Accordion */
 .faq-list { max-width: 800px; margin: 0 auto; }
 .faq-item {

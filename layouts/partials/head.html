@@ -101,6 +101,8 @@
 {{ if and .IsPage (eq .Section "speakers") .File }}{{ partial "schema-person.html" . }}{{ partial "schema-breadcrumb.html" . }}{{ end }}
 {{ if and .IsPage (eq .Section "sessions") .File }}{{ partial "schema-session.html" . }}{{ partial "schema-breadcrumb.html" . }}{{ end }}
 {{ if eq .Section "faq" }}{{ partial "schema-faq.html" . }}{{ end }}
+{{ if eq .Section "sponsors" }}{{ partial "schema-sponsors.html" . }}{{ end }}
+{{ if eq .Section "2025" }}{{ partial "schema-archive2025.html" . }}{{ end }}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

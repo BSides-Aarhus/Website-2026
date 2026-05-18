@@ -8,10 +8,15 @@ tiers:
         url: "https://aarhus.dk"
         logo: "/images/sponsors/AarhusKommuneErhverv_Logo.png"
         darkBg: true
+        description:
+          en: ""
+          da: ""
       - name: "Truesec"
         url: "https://truesec.com"
         logo: "/images/sponsors/Truesec-Logo-Large-White.png"
-      
+        description:
+          en: ""
+          da: ""
 
   - name:
       en: "Community Friends"
@@ -21,6 +26,9 @@ tiers:
       - name: "Tech Hub Aarhus"
         url: "https://techhubaarhus.dk"
         logo: "/images/sponsors/tech-hub-aarhus.png"
+        description:
+          en: ""
+          da: ""
 
   - name:
       en: "Community Food Friends"
@@ -36,16 +44,25 @@ tiers:
       - name: "Danske Bank"
         url: "https://danskebank.dk"
         logo: "/images/sponsors/Danske BankLogo White RGB.png"
-  
+        description:
+          en: ""
+          da: ""
+
   - name:
       en: "Venue Sponsors"
       da: "Lokationssponsorer"
     level: "venue-sponsor"
-    sponsors: 
+    sponsors:
       - name: "Incuba"
         url: "https://incuba.dk"
         logo: "/images/sponsors/incuba-logo.svg"
         darkBg: true
+        description:
+          en: ""
+          da: ""
       - name: "Aarhus Universitet"
         url: "https://au.dk"
         logo: "/images/sponsors/aulogo_uk_var2_white.png"
+        description:
+          en: ""
+          da: ""
