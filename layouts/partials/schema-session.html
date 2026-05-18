@@ -12,6 +12,10 @@
   {{- $sp := site.GetPage (printf "/speakers/%s" .) -}}
   {{- if $sp -}}{{- $performers = $performers | append $sp -}}{{- end -}}
 {{- end -}}
+{{- $offers := slice -}}
+{{- range site.Data.tickets.ticket_types -}}
+  {{- if and .active (not .is_sold_out) -}}{{- $offers = $offers | append . -}}{{- end -}}
+{{- end -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -37,8 +41,57 @@
   "superEvent": {
     "@type": "Event",
     "name": "BSides Aarhus 2026",
-    "url": {{ site.BaseURL | jsonify | safeJS }}
+    "url": {{ site.BaseURL | jsonify | safeJS }},
+    "startDate": {{ site.Params.conferenceDate | jsonify | safeJS }},
+    "endDate": {{ site.Params.conferenceEndDate | jsonify | safeJS }},
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "INCUBA Next",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Åbogade 13",
+        "addressLocality": "Aarhus N",
+        "postalCode": "8200",
+        "addressCountry": "DK"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "BSides Aarhus",
+      "url": {{ site.BaseURL | jsonify | safeJS }}
+    },
+    "image": "{{ site.Params.ogImage | absURL }}",
+    "offers": [
+      {{- range $i, $t := $offers -}}
+      {{- if $i }},{{ end }}
+      {
+        "@type": "Offer",
+        "name": {{ $t.title | jsonify | safeJS }},
+        "price": "{{ $t.price }}",
+        "priceCurrency": {{ $t.currency | jsonify | safeJS }},
+        "url": {{ site.Params.ticketURL | jsonify | safeJS }},
+        "availability": "https://schema.org/InStock",
+        "validFrom": {{ site.Params.conferenceDate | jsonify | safeJS }}
+      }
+      {{- end }}
+    ]
   },
+  "offers": [
+    {{- range $i, $t := $offers -}}
+    {{- if $i }},{{ end }}
+    {
+      "@type": "Offer",
+      "name": {{ $t.title | jsonify | safeJS }},
+      "price": "{{ $t.price }}",
+      "priceCurrency": {{ $t.currency | jsonify | safeJS }},
+      "url": {{ site.Params.ticketURL | jsonify | safeJS }},
+      "availability": "https://schema.org/InStock",
+      "validFrom": {{ site.Params.conferenceDate | jsonify | safeJS }}
+    }
+    {{- end }}
+  ],
   "organizer": {
     "@type": "Organization",
     "name": "BSides Aarhus",
