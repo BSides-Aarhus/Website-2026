@@ -41,6 +41,7 @@
   "superEvent": {
     "@type": "Event",
     "name": "BSides Aarhus 2026",
+    "description": {{ site.Params.description | jsonify | safeJS }},
     "url": {{ site.BaseURL | jsonify | safeJS }},
     "startDate": {{ site.Params.conferenceDate | jsonify | safeJS }},
     "endDate": {{ site.Params.conferenceEndDate | jsonify | safeJS }},
@@ -63,6 +64,11 @@
       "url": {{ site.BaseURL | jsonify | safeJS }}
     },
     "image": "{{ site.Params.ogImage | absURL }}",
+    "performer": {
+      "@type": "Organization",
+      "name": "BSides Aarhus Speakers",
+      "url": "{{ "/speakers/" | absURL }}"
+    },
     "offers": [
       {{- range $i, $t := $offers -}}
       {{- if $i }},{{ end }}
