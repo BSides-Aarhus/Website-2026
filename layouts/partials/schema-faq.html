@@ -1,0 +1,22 @@
+{{- $lang := .Language.Lang -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{- range $i, $item := site.Data.faq.items -}}
+    {{- $q := index $item.question $lang | default (index $item.question "en") -}}
+    {{- $a := index $item.answer $lang | default (index $item.answer "en") -}}
+    {{- if $i }},{{ end }}
+    {
+      "@type": "Question",
+      "name": {{ $q | jsonify | safeJS }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ $a | jsonify | safeJS }}
+      }
+    }
+    {{- end }}
+  ]
+}
+</script>

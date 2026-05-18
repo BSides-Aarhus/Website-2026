@@ -96,9 +96,11 @@
 <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
 <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
 
+{{ partial "schema-organization.html" . }}
 {{ if .IsHome }}{{ partial "schema-event.html" . }}{{ end }}
-{{ if and .IsPage (eq .Section "speakers") .File }}{{ partial "schema-person.html" . }}{{ end }}
-{{ if and .IsPage (eq .Section "sessions") .File }}{{ partial "schema-session.html" . }}{{ end }}
+{{ if and .IsPage (eq .Section "speakers") .File }}{{ partial "schema-person.html" . }}{{ partial "schema-breadcrumb.html" . }}{{ end }}
+{{ if and .IsPage (eq .Section "sessions") .File }}{{ partial "schema-session.html" . }}{{ partial "schema-breadcrumb.html" . }}{{ end }}
+{{ if eq .Section "faq" }}{{ partial "schema-faq.html" . }}{{ end }}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

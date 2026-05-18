@@ -1,0 +1,19 @@
+{{- /*
+  Renders a schema.org Place object using site.Params.venueAddress.
+  Optional context: a string room suffix appended as " - <room>".
+  Call site must apply | safeJS so it inlines as a JSON object, not a JS string.
+*/ -}}
+{{- $v := site.Params.venueAddress -}}
+{{- $name := $v.name -}}
+{{- with . }}{{ $name = printf "%s - %s" $v.name . }}{{ end -}}
+{
+  "@type": "Place",
+  "name": {{ $name | jsonify | safeHTML }},
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ $v.streetAddress | jsonify | safeHTML }},
+    "addressLocality": {{ $v.addressLocality | jsonify | safeHTML }},
+    "postalCode": {{ $v.postalCode | jsonify | safeHTML }},
+    "addressCountry": {{ $v.addressCountry | jsonify | safeHTML }}
+  }
+}

@@ -1,0 +1,24 @@
+{{- $sameAs := slice -}}
+{{- with site.Params.linkedinURL }}{{ $sameAs = $sameAs | append . }}{{ end -}}
+{{- with site.Params.discordURL }}{{ $sameAs = $sameAs | append . }}{{ end -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ site.Params.organizerName | jsonify | safeJS }},
+  "url": "{{ site.BaseURL }}",
+  "logo": "{{ site.Params.logo | absURL }}"
+  {{- with $sameAs }},
+  "sameAs": {{ . | jsonify | safeJS }}
+  {{- end }}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ site.Title | jsonify | safeJS }},
+  "url": "{{ site.BaseURL }}",
+  "inLanguage": {{ .Language.Lang | jsonify | safeJS }}
+}
+</script>

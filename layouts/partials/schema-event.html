@@ -1,29 +1,24 @@
 {{- $sessions := where site.RegularPages "Section" "sessions" -}}
 {{- $speakers := where site.RegularPages "Section" "speakers" -}}
+{{- $offers := slice -}}
+{{- range site.Data.tickets.ticket_types -}}
+  {{- if and .active (not .is_sold_out) -}}{{- $offers = $offers | append . -}}{{- end -}}
+{{- end -}}
+{{- $confDate := substr site.Params.conferenceDate 0 10 -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Event",
-  "name": "BSides Aarhus 2026",
-  "description": {{ .Description | jsonify | safeJS }},
+  "name": {{ site.Params.conferenceName | jsonify | safeJS }},
+  "description": {{ (.Description | default site.Params.description) | jsonify | safeJS }},
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "startDate": "2026-06-20T09:00:00+02:00",
-  "endDate": "2026-06-20T18:00:00+02:00",
-  "location": {
-    "@type": "Place",
-    "name": "INCUBA Next",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Åbogade 13",
-      "addressLocality": "Aarhus N",
-      "postalCode": "8200",
-      "addressCountry": "DK"
-    }
-  },
+  "startDate": {{ site.Params.conferenceDate | jsonify | safeJS }},
+  "endDate": {{ site.Params.conferenceEndDate | jsonify | safeJS }},
+  "location": {{ partial "schema-place.html" "" | safeJS }},
   "organizer": {
     "@type": "Organization",
-    "name": "BSides Aarhus",
+    "name": {{ site.Params.organizerName | jsonify | safeJS }},
     "url": "{{ site.BaseURL }}"
   },
   "performer": [
@@ -33,51 +28,48 @@
       "@type": "Person",
       "name": {{ $sp.Title | jsonify | safeJS }},
       "url": {{ $sp.Permalink | jsonify | safeJS }}
+      {{- with $sp.Params.tagline }},
+      "jobTitle": {{ . | jsonify | safeJS }}
+      {{- end }}
     }
     {{- end }}
   ],
   "subEvent": [
     {{- range $i, $s := $sessions -}}
+    {{- $duration := $s.Params.duration | default 45 -}}
+    {{- $time := $s.Params.time -}}
+    {{- $h := index (split $time ":") 0 | int -}}
+    {{- $m := index (split $time ":") 1 | int -}}
+    {{- $endM := add $m $duration -}}
+    {{- $endH := add $h (div $endM 60) -}}
+    {{- $endMM := mod $endM 60 -}}
+    {{- $endTime := printf "%02d:%02d" $endH $endMM -}}
     {{- if $i }},{{ end }}
     {
       "@type": "Event",
       "name": {{ $s.Title | jsonify | safeJS }},
       "url": {{ $s.Permalink | jsonify | safeJS }},
-      "startDate": "2026-06-20T{{ $s.Params.time }}:00+02:00"
+      "startDate": "{{ $confDate }}T{{ $time }}:00+02:00",
+      "endDate": "{{ $confDate }}T{{ $endTime }}:00+02:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {{ partial "schema-place.html" ($s.Params.room | default "") | safeJS }}
     }
     {{- end }}
   ],
   "offers": [
+    {{- range $i, $t := $offers -}}
+    {{- if $i }},{{ end }}
     {
       "@type": "Offer",
-      "name": "Human Ticket",
-      "price": "170",
-      "priceCurrency": "DKK",
+      "name": {{ $t.title | jsonify | safeJS }},
+      "price": "{{ $t.price }}",
+      "priceCurrency": {{ $t.currency | jsonify | safeJS }},
       "availability": "https://schema.org/InStock",
-      "validFrom": "2026-01-01T00:00:00+01:00",
-      "validThrough": "2026-06-12T23:45:00+02:00",
-      "url": "{{ "/tickets/" | absURL }}"
-    },
-    {
-      "@type": "Offer",
-      "name": "Student Ticket",
-      "price": "0",
-      "priceCurrency": "DKK",
-      "availability": "https://schema.org/InStock",
-      "validFrom": "2026-01-01T00:00:00+01:00",
-      "validThrough": "2026-06-12T23:45:00+02:00",
-      "url": "{{ "/tickets/" | absURL }}"
-    },
-    {
-      "@type": "Offer",
-      "name": "Community Friend Ticket",
-      "price": "1500",
-      "priceCurrency": "DKK",
-      "availability": "https://schema.org/InStock",
-      "validFrom": "2026-01-01T00:00:00+01:00",
-      "validThrough": "2026-06-12T23:45:00+02:00",
-      "url": "{{ "/tickets/" | absURL }}"
+      "validFrom": {{ site.Params.conferenceDate | jsonify | safeJS }},
+      "url": {{ site.Params.ticketURL | jsonify | safeJS }}
     }
+    {{- end }}
   ],
   "image": "{{ site.Params.ogImage | absURL }}",
   "url": "{{ .Permalink }}"

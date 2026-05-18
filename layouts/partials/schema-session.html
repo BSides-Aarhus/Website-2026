@@ -7,6 +7,7 @@
 {{- $endH := add $h (div $endM 60) -}}
 {{- $endMM := mod $endM 60 -}}
 {{- $endTime := printf "%02d:%02d" $endH $endMM -}}
+{{- $confDate := substr site.Params.conferenceDate 0 10 -}}
 {{- $performers := slice -}}
 {{- range .Params.speakers -}}
   {{- $sp := site.GetPage (printf "/speakers/%s" .) -}}
@@ -24,44 +25,24 @@
   "name": {{ .Title | jsonify | safeJS }},
   "description": {{ .Plain | plainify | truncate 500 "…" | jsonify | safeJS }},
   "url": {{ .Permalink | jsonify | safeJS }},
-  "startDate": "2026-06-20T{{ $startTime }}:00+02:00",
-  "endDate": "2026-06-20T{{ $endTime }}:00+02:00",
+  "startDate": "{{ $confDate }}T{{ $startTime }}:00+02:00",
+  "endDate": "{{ $confDate }}T{{ $endTime }}:00+02:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "location": {
-    "@type": "Place",
-    "name": {{ printf "INCUBA Next - %s" (.Params.room | default "") | jsonify | safeJS }},
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Åbogade 13",
-      "addressLocality": "Aarhus N",
-      "postalCode": "8200",
-      "addressCountry": "DK"
-    }
-  },
+  "location": {{ partial "schema-place.html" (.Params.room | default "") | safeJS }},
   "superEvent": {
     "@type": "Event",
-    "name": "BSides Aarhus 2026",
+    "name": {{ site.Params.conferenceName | jsonify | safeJS }},
     "description": {{ site.Params.description | jsonify | safeJS }},
     "url": {{ site.BaseURL | jsonify | safeJS }},
     "startDate": {{ site.Params.conferenceDate | jsonify | safeJS }},
     "endDate": {{ site.Params.conferenceEndDate | jsonify | safeJS }},
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "location": {
-      "@type": "Place",
-      "name": "INCUBA Next",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Åbogade 13",
-        "addressLocality": "Aarhus N",
-        "postalCode": "8200",
-        "addressCountry": "DK"
-      }
-    },
+    "location": {{ partial "schema-place.html" "" | safeJS }},
     "organizer": {
       "@type": "Organization",
-      "name": "BSides Aarhus",
+      "name": {{ site.Params.organizerName | jsonify | safeJS }},
       "url": {{ site.BaseURL | jsonify | safeJS }}
     },
     "image": "{{ site.Params.ogImage | absURL }}",
@@ -109,7 +90,7 @@
   ],
   "organizer": {
     "@type": "Organization",
-    "name": "BSides Aarhus",
+    "name": {{ site.Params.organizerName | jsonify | safeJS }},
     "url": {{ site.BaseURL | jsonify | safeJS }}
   },
   "performer": [

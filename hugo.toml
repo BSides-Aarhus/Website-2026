@@ -10,7 +10,17 @@ enableGitInfo = true
   description = "BSides Aarhus - Security Conference - June 20, 2026"
   conferenceDate = "2026-06-20T09:00:00+02:00"
   conferenceEndDate = "2026-06-20T16:30:00+02:00"
+  conferenceName = "BSides Aarhus 2026"
+  organizerName = "BSides Aarhus"
+  logo = "/images/logo.png"
   venue = "INCUBA Next, Katrinebjerg, Aarhus"
+
+  [params.venueAddress]
+    name = "INCUBA Next"
+    streetAddress = "Åbogade 13"
+    addressLocality = "Aarhus N"
+    postalCode = "8200"
+    addressCountry = "DK"
   ticketURL = "https://bsidesaarhus.ticketbutler.io/en/e/bsides-aarhus-2026/"
   cfpURL = "https://sessionize.com/bsides-aarhus-2026/"
   ticketProxyURL = "https://bsides-ticket-proxy.bsides-aarhus-account.workers.dev"
