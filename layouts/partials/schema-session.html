@@ -32,9 +32,13 @@
   "superEvent": {
     "@type": "Event",
     "name": {{ site.Params.conferenceName | jsonify | safeJS }},
+    "description": {{ site.Params.description | jsonify | safeJS }},
     "url": {{ site.BaseURL | jsonify | safeJS }},
     "startDate": {{ site.Params.conferenceDate | jsonify | safeJS }},
     "endDate": {{ site.Params.conferenceEndDate | jsonify | safeJS }},
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "image": "{{ site.Params.ogImage | absURL }}",
     "location": {{ partial "schema-place.html" "" | safeJS }},
     "organizer": {
       "@type": "Organization",
