@@ -190,6 +190,10 @@ other = "Forbind"
 other = "Adfærdskodeks"
 [footer_rights]
 other = "Alle rettigheder forbeholdes."
+[footer_past_events]
+other = "Tidligere arrangementer"
+[footer_past_2025]
+other = "2025 Kickoff"
 
 # Billetoplysninger
 [tickets_sold_label]

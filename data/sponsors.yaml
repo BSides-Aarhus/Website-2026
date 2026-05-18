@@ -9,14 +9,14 @@ tiers:
         logo: "/images/sponsors/AarhusKommuneErhverv_Logo.png"
         darkBg: true
         description:
-          en: ""
-          da: ""
+          en: "The municipality of Aarhus supports the local tech and security community as part of its efforts to strengthen Aarhus as a hub for digital talent and innovation."
+          da: "Aarhus Kommune støtter det lokale tech- og sikkerhedsfællesskab som en del af indsatsen for at styrke Aarhus som knudepunkt for digitalt talent og innovation."
       - name: "Truesec"
         url: "https://truesec.com"
         logo: "/images/sponsors/Truesec-Logo-Large-White.png"
         description:
-          en: ""
-          da: ""
+          en: "Truesec is a Nordic cybersecurity company specialising in incident response, threat intelligence, and proactive security services for organisations across Europe."
+          da: "Truesec er et nordisk cybersikkerhedsfirma, der specialiserer sig i incident response, trusselsefterretning og proaktive sikkerhedsydelser for organisationer i hele Europa."
 
   - name:
       en: "Community Friends"
@@ -27,8 +27,8 @@ tiers:
         url: "https://techhubaarhus.dk"
         logo: "/images/sponsors/tech-hub-aarhus.png"
         description:
-          en: ""
-          da: ""
+          en: "Tech Hub Aarhus connects the city's tech community through events, meetups, and partnerships that bring together developers, startups, and established companies."
+          da: "Tech Hub Aarhus forbinder byens tech-miljø gennem arrangementer, meetups og partnerskaber, der samler udviklere, startups og etablerede virksomheder."
 
   - name:
       en: "Community Food Friends"
@@ -45,8 +45,8 @@ tiers:
         url: "https://danskebank.dk"
         logo: "/images/sponsors/Danske BankLogo White RGB.png"
         description:
-          en: ""
-          da: ""
+          en: "Danske Bank is one of the largest financial institutions in the Nordics, with a strong focus on cyber security and a long-standing engagement with the security community."
+          da: "Danske Bank er en af de største finansielle koncerner i Norden med et stærkt fokus på cybersikkerhed og et mangeårigt engagement i sikkerhedsfællesskabet."
 
   - name:
       en: "Venue Sponsors"
@@ -58,11 +58,11 @@ tiers:
         logo: "/images/sponsors/incuba-logo.svg"
         darkBg: true
         description:
-          en: ""
-          da: ""
+          en: "INCUBA is a science park at Katrinebjerg in Aarhus and home to growing tech companies. INCUBA Next hosts BSides Aarhus 2026."
+          da: "INCUBA er en forskerpark på Katrinebjerg i Aarhus og hjemsted for voksende tech-virksomheder. INCUBA Next er vært for BSides Aarhus 2026."
       - name: "Aarhus Universitet"
         url: "https://au.dk"
         logo: "/images/sponsors/aulogo_uk_var2_white.png"
         description:
-          en: ""
-          da: ""
+          en: "Aarhus University is one of Denmark's leading research universities, with strong programmes in computer science and information security at the Department of Computer Science on Katrinebjerg."
+          da: "Aarhus Universitet er et af Danmarks førende forskningsuniversiteter med stærke programmer inden for datalogi og informationssikkerhed på Institut for Datalogi på Katrinebjerg."

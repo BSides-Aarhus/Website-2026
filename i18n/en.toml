@@ -190,6 +190,10 @@ other = "Connect"
 other = "Code of Conduct"
 [footer_rights]
 other = "All rights reserved."
+[footer_past_events]
+other = "Past Events"
+[footer_past_2025]
+other = "2025 Kickoff"
 
 # Ticket Availability
 [tickets_sold_label]
