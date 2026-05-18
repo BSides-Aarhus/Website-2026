@@ -51,6 +51,10 @@
             <span class="schedule-slot-track">{{ i18n "agenda_track" }} {{ add $i 1 }}</span>
             {{ if $session }}
               <h4><a href="{{ $session.RelPermalink }}">{{ $session.Title }}</a></h4>
+            {{ else }}
+              <h4>{{ i18n "agenda_tba" }}</h4>
+            {{ end }}
+            {{ if $session }}
               {{ $names := slice }}
               {{ range $session.Params.speakers }}
                 {{ $sp := site.GetPage (printf "/speakers/%s" .) }}
