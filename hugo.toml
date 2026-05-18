@@ -14,6 +14,17 @@ enableGitInfo = true
   organizerName = "BSides Aarhus"
   logo = "/images/logo.png"
   venue = "INCUBA Next, Katrinebjerg, Aarhus"
+  ticketURL = "https://bsidesaarhus.ticketbutler.io/en/e/bsides-aarhus-2026/"
+  cfpURL = "https://sessionize.com/bsides-aarhus-2026/"
+  ticketProxyURL = "https://bsides-ticket-proxy.bsides-aarhus-account.workers.dev"
+  linkedinURL = "https://www.linkedin.com/company/bsides-aarhus/"
+  discordURL = "https://discord.com/invite/XCUja4Q"
+  sessionizeURL = "https://sessionize.com/bsides-aarhus-2026/"
+  githubURL = "https://github.com/BSides-Aarhus"
+  ogImage = "/images/og-image.png"
+  # Cloudflare Web Analytics — cookieless baseline analytics (works in Brave/Firefox)
+  # Get your token from: Cloudflare Dashboard > Web Analytics > Add site
+  cfAnalyticsToken = "0eac6392764b4889a99edf2624fbbaad"
 
   [params.venueAddress]
     name = "INCUBA Next"
@@ -21,15 +32,6 @@ enableGitInfo = true
     addressLocality = "Aarhus N"
     postalCode = "8200"
     addressCountry = "DK"
-  ticketURL = "https://bsidesaarhus.ticketbutler.io/en/e/bsides-aarhus-2026/"
-  cfpURL = "https://sessionize.com/bsides-aarhus-2026/"
-  ticketProxyURL = "https://bsides-ticket-proxy.bsides-aarhus-account.workers.dev"
-  linkedinURL = "https://www.linkedin.com/company/bsides-aarhus/"
-  discordURL = "https://discord.com/invite/XCUja4Q"
-  ogImage = "/images/og-image.png"
-  # Cloudflare Web Analytics — cookieless baseline analytics (works in Brave/Firefox)
-  # Get your token from: Cloudflare Dashboard > Web Analytics > Add site
-  cfAnalyticsToken = "0eac6392764b4889a99edf2624fbbaad"
 
 [taxonomies]
   # intentionally empty — disables default categories/tags
