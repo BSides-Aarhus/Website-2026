@@ -16,6 +16,7 @@
 {{- range site.Data.tickets.ticket_types -}}
   {{- if and .active (not .is_sold_out) -}}{{- $offers = $offers | append . -}}{{- end -}}
 {{- end -}}
+{{- $allSpeakers := where site.RegularPages "Section" "speakers" -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -64,11 +65,19 @@
       "url": {{ site.BaseURL | jsonify | safeJS }}
     },
     "image": "{{ site.Params.ogImage | absURL }}",
-    "performer": {
-      "@type": "Organization",
-      "name": "BSides Aarhus Speakers",
-      "url": "{{ "/speakers/" | absURL }}"
-    },
+    "performer": [
+      {{- range $i, $sp := $allSpeakers -}}
+      {{- if $i }},{{ end }}
+      {
+        "@type": "Person",
+        "name": {{ $sp.Title | jsonify | safeJS }},
+        "url": {{ $sp.Permalink | jsonify | safeJS }}
+        {{- with $sp.Params.tagline }},
+        "jobTitle": {{ . | jsonify | safeJS }}
+        {{- end }}
+      }
+      {{- end }}
+    ],
     "offers": [
       {{- range $i, $t := $offers -}}
       {{- if $i }},{{ end }}
