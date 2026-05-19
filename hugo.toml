@@ -18,6 +18,7 @@ enableGitInfo = true
   cfpURL = "https://sessionize.com/bsides-aarhus-2026/"
   ticketProxyURL = "https://bsides-ticket-proxy.bsides-aarhus-account.workers.dev"
   linkedinURL = "https://www.linkedin.com/company/bsides-aarhus/"
+  twitterURL = "https://x.com/BSidesAarhus"
   discordURL = "https://discord.com/invite/XCUja4Q"
   sessionizeURL = "https://sessionize.com/bsides-aarhus-2026/"
   githubURL = "https://github.com/BSides-Aarhus"

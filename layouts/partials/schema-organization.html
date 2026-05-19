@@ -1,5 +1,6 @@
 {{- $sameAs := slice -}}
 {{- with site.Params.linkedinURL -}}{{- $sameAs = $sameAs | append . -}}{{- end -}}
+{{- with site.Params.twitterURL -}}{{- $sameAs = $sameAs | append . -}}{{- end -}}
 {{- with site.Params.discordURL -}}{{- $sameAs = $sameAs | append . -}}{{- end -}}
 {{- with site.Params.sessionizeURL -}}{{- $sameAs = $sameAs | append . -}}{{- end -}}
 {{- with site.Params.githubURL -}}{{- $sameAs = $sameAs | append . -}}{{- end -}}
