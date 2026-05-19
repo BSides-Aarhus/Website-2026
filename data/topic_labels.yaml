@@ -24,6 +24,7 @@ labels:
   iot-security: "IoT Security"
   kernel: "Kernel"
   llm-security: "LLM Security"
+  mainframe: "Mainframe"
   misconfigurations: "Misconfigurations"
   ml-security: "ML Security"
   osint: "OSINT"
