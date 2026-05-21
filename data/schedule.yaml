@@ -7,7 +7,7 @@ timeSlots:
 - time: '10:00'
   type: parallel
   track1: webauthn-passwordless
-  track2: hacking-big-iron-with-ai
+  track2: tba
 - time: '11:00'
   type: parallel
   track1: alert-fatigue-therapy
