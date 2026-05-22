@@ -7,7 +7,7 @@ timeSlots:
 - time: '10:00'
   type: parallel
   track1: webauthn-passwordless
-  track2: tba
+  track2: post-quantum-cryptography
 - time: '11:00'
   type: parallel
   track1: alert-fatigue-therapy
