@@ -211,8 +211,9 @@ def add_discord_qr(slide, *, left, top, size=Inches(1.2)):
 
     slide.shapes.add_picture(str(qr_png), left, top, width=size, height=size)
 
-    caption_left = left - Inches(1.6)
-    caption_w = Inches(1.6) - Inches(0.1)
+    gap = Inches(0.35)
+    caption_w = Inches(1.8)
+    caption_left = left - caption_w - gap
     add_text(slide, caption_left, top + Inches(0.05), caption_w, Inches(0.3),
              "JOIN THE CONVERSATION", size=9, bold=True, color=ACCENT,
              font=FONT_MONO, align=PP_ALIGN.RIGHT)
@@ -266,7 +267,7 @@ def build_agenda(prs):
              size=11, color=TEXT_MUTED, font=FONT_MONO)
 
     # Discord QR — top-right corner, caption to the left of the QR.
-    add_discord_qr(slide, left=Inches(11.55), top=Inches(0.55), size=Inches(1.2))
+    add_discord_qr(slide, left=Inches(11.03), top=Inches(0.55), size=Inches(1.7))
 
     # Two-track schedule from data/schedule.yaml + content/sessions/*.md
     # (time, kind, track1_title, track1_speaker, track2_title, track2_speaker)
