@@ -27,12 +27,14 @@ from lxml import etree
 
 ROOT = Path(__file__).resolve().parent.parent
 LOGO = ROOT / "static" / "images" / "logo.png"
+DISCORD_QR_SVG = ROOT / "static" / "images" / "discord-qr-code.svg"
 SPEAKERS_DIR = ROOT / "content" / "speakers"
 PHOTOS_DIR = ROOT / "static" / "images" / "speakers"
 OUT_DIR = ROOT / "Plans" / "template-output"
 OUT = OUT_DIR / "bsides-aarhus-2026-template.pptx"
 BG_IMG = OUT_DIR / "_bg.png"
 BG_IMG_ELEV = OUT_DIR / "_bg_elev.png"
+DISCORD_QR_PNG = OUT_DIR / "_discord_qr.png"
 
 # Track assignment (Room 1 -> Track 1, Room 2 -> Track 2), from content/sessions/*.md
 TRACK_1 = {"marvin-ngoma", "eleni-ioakeim", "morten-von-seelen",
@@ -175,6 +177,50 @@ def add_logo(slide, left, top, height=Inches(0.6)):
         slide.shapes.add_picture(str(LOGO), left, top, height=height)
 
 
+def rasterize_discord_qr(width_px: int = 600) -> Path | None:
+    """Render the Discord QR SVG to PNG via rsvg-convert. Cached in OUT_DIR."""
+    if not DISCORD_QR_SVG.exists():
+        return None
+    import subprocess
+    try:
+        subprocess.run(
+            ["rsvg-convert", "-w", str(width_px),
+             str(DISCORD_QR_SVG), "-o", str(DISCORD_QR_PNG)],
+            check=True, capture_output=True,
+        )
+        return DISCORD_QR_PNG
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        print(f"  warn: could not rasterize Discord QR: {e}")
+        return None
+
+
+def add_discord_qr(slide, *, left, top, size=Inches(1.2)):
+    """Place the Discord QR (white tile + caption) at (left, top) on a slide."""
+    qr_png = rasterize_discord_qr()
+    if qr_png is None:
+        return
+
+    # White tile behind the QR so the dark dots scan reliably.
+    pad = Inches(0.08)
+    tile = slide.shapes.add_shape(
+        MSO_SHAPE.ROUNDED_RECTANGLE,
+        left - pad, top - pad, size + pad * 2, size + pad * 2,
+    )
+    tile.adjustments[0] = 0.08
+    set_solid(tile, WHITE)
+
+    slide.shapes.add_picture(str(qr_png), left, top, width=size, height=size)
+
+    caption_left = left - Inches(1.6)
+    caption_w = Inches(1.6) - Inches(0.1)
+    add_text(slide, caption_left, top + Inches(0.05), caption_w, Inches(0.3),
+             "JOIN THE CONVERSATION", size=9, bold=True, color=ACCENT,
+             font=FONT_MONO, align=PP_ALIGN.RIGHT)
+    add_text(slide, caption_left, top + Inches(0.35), caption_w, Inches(0.9),
+             "Scan to open the BSides Aarhus channel — invite link at bsidesaarhus.dk",
+             size=8, color=TEXT_MUTED, font=FONT_BODY, align=PP_ALIGN.RIGHT)
+
+
 # --- Slide builders ----------------------------------------------------------------
 def build_cover(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
@@ -218,6 +264,9 @@ def build_agenda(prs):
     add_text(slide, Inches(0.6), Inches(1.9), Inches(12), Inches(0.35),
              "JUNE 20, 2026  ·  INCUBA NEXT, KATRINEBJERG",
              size=11, color=TEXT_MUTED, font=FONT_MONO)
+
+    # Discord QR — top-right corner, caption to the left of the QR.
+    add_discord_qr(slide, left=Inches(11.55), top=Inches(0.55), size=Inches(1.2))
 
     # Two-track schedule from data/schedule.yaml + content/sessions/*.md
     # (time, kind, track1_title, track1_speaker, track2_title, track2_speaker)
