@@ -11,21 +11,34 @@ Design tokens come from static/css/main.css.
 """
 import math
 import random
+import re
+import uuid
+from io import BytesIO
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw, ImageFilter, ImageOps
 from pptx import Presentation
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
+from pptx.oxml.ns import qn, nsmap
 from pptx.util import Inches, Pt, Emu
+from lxml import etree
 
 ROOT = Path(__file__).resolve().parent.parent
 LOGO = ROOT / "static" / "images" / "logo.png"
+SPEAKERS_DIR = ROOT / "content" / "speakers"
+PHOTOS_DIR = ROOT / "static" / "images" / "speakers"
 OUT_DIR = ROOT / "Plans" / "template-output"
 OUT = OUT_DIR / "bsides-aarhus-2026-template.pptx"
 BG_IMG = OUT_DIR / "_bg.png"
 BG_IMG_ELEV = OUT_DIR / "_bg_elev.png"
+
+# Track assignment (Room 1 -> Track 1, Room 2 -> Track 2), from content/sessions/*.md
+TRACK_1 = {"marvin-ngoma", "eleni-ioakeim", "morten-von-seelen",
+           "martin-sohn-christensen", "joost-van-dijk"}
+TRACK_2 = {"bleon-proko", "kasper-hald", "behnaz-karimi",
+           "yuvaraj-govindarajulu", "tom-kern", "bence-sooki-toth"}
 
 # --- Design tokens (from main.css) -------------------------------------------------
 BG          = RGBColor(0x0A, 0x0A, 0x0F)
@@ -378,37 +391,178 @@ def build_content(prs):
     footer(slide, "Content")
 
 
-def build_speaker_bio(prs):
+def build_speaker_bio(prs, *, name="Speaker Name", role="Role  ·  Company",
+                      bio=("Short bio. Two or three sentences about background, "
+                           "specialization, and what the audience will take away from the "
+                           "talk. Keep it conversational and specific."),
+                      handle="@handle  ·  speaker.example.com",
+                      photo: Path | None = None):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     paint_background(slide, image=BG_IMG)
     add_logo(slide, Inches(0.6), Inches(0.5), height=Inches(0.5))
 
-    # Photo placeholder card
+    # Photo card
     card = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,
                                   Inches(0.6), Inches(1.6), Inches(4.2), Inches(4.8))
     set_solid(card, BG_CARD)
     card.adjustments[0] = 0.04
-    add_text(slide, Inches(0.6), Inches(3.7), Inches(4.2), Inches(0.6),
-             "[ Photo ]", size=16, color=TEXT_MUTED, font=FONT_MONO,
-             align=PP_ALIGN.CENTER)
+
+    if photo and photo.exists():
+        # Center-cropped square photo inside the card (EXIF-normalized).
+        img = Image.open(photo)
+        img = ImageOps.exif_transpose(img)
+        w, h = img.size
+        side = min(w, h)
+        left = (w - side) // 2
+        top = (h - side) // 2
+        img = img.crop((left, top, left + side, top + side))
+        if img.mode != "RGB":
+            img = img.convert("RGB")
+        buf = BytesIO()
+        img.save(buf, "JPEG", quality=88)
+        buf.seek(0)
+        size = Inches(3.4)
+        photo_left = Inches(0.6) + (Inches(4.2) - size) / 2
+        photo_top = Inches(1.6) + (Inches(4.8) - size) / 2
+        slide.shapes.add_picture(buf, photo_left, photo_top, width=size, height=size)
+    else:
+        add_text(slide, Inches(0.6), Inches(3.7), Inches(4.2), Inches(0.6),
+                 "[ Photo ]", size=16, color=TEXT_MUTED, font=FONT_MONO,
+                 align=PP_ALIGN.CENTER)
 
     accent_bar(slide, top=Inches(1.5), left=Inches(5.2), width=Inches(0.7))
     add_text(slide, Inches(5.2), Inches(1.65), Inches(7.5), Inches(0.4),
              "SPEAKER", size=14, color=ACCENT, font=FONT_MONO, bold=True)
     add_text(slide, Inches(5.2), Inches(2.1), Inches(7.5), Inches(0.9),
-             "Speaker Name", size=40, bold=True, color=TEXT, font=FONT_HEAD)
+             name, size=40, bold=True, color=TEXT, font=FONT_HEAD)
     add_text(slide, Inches(5.2), Inches(3.05), Inches(7.5), Inches(0.5),
-             "Role  ·  Company", size=20, color=ACCENT_LT, font=FONT_BODY)
-    add_text(slide, Inches(5.2), Inches(3.8), Inches(7.5), Inches(2.8),
-             "Short bio. Two or three sentences about background, "
-             "specialization, and what the audience will take away from the "
-             "talk. Keep it conversational and specific.",
-             size=18, color=TEXT_MUTED, font=FONT_BODY)
+             role, size=20, color=ACCENT_LT, font=FONT_BODY)
+    add_text(slide, Inches(5.2), Inches(3.8), Inches(7.5), Inches(2.3),
+             bio, size=16, color=TEXT_MUTED, font=FONT_BODY)
     add_text(slide, Inches(5.2), Inches(6.2), Inches(7.5), Inches(0.4),
-             "@handle  ·  speaker.example.com",
-             size=14, color=ACCENT, font=FONT_MONO)
+             handle, size=14, color=ACCENT, font=FONT_MONO)
 
     footer(slide, "Speaker")
+
+
+# --- Speaker data ------------------------------------------------------------------
+_FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n(.*)$", re.DOTALL)
+
+
+def parse_speaker(md_path: Path):
+    text = md_path.read_text(encoding="utf-8")
+    m = _FRONTMATTER_RE.match(text)
+    if not m:
+        return None
+    fm_raw, body = m.group(1), m.group(2).strip()
+    fm, links, in_links = {}, {}, False
+    for line in fm_raw.splitlines():
+        if not line.strip():
+            continue
+        if line.startswith("links:"):
+            in_links = True
+            continue
+        if in_links and line.startswith("  "):
+            k, _, v = line.strip().partition(":")
+            links[k.strip()] = v.strip().strip('"').strip("'")
+            continue
+        in_links = False
+        k, _, v = line.partition(":")
+        fm[k.strip()] = v.strip().strip('"').strip("'")
+    paragraphs = [p.strip() for p in body.split("\n\n") if p.strip()]
+    fm["bio"] = paragraphs[0] if paragraphs else ""
+    fm["links"] = links
+    fm["slug"] = md_path.stem
+    return fm
+
+
+def find_photo(slug: str):
+    for ext in ("jpg", "jpeg", "png"):
+        p = PHOTOS_DIR / f"{slug}.{ext}"
+        if p.exists():
+            return p
+    return None
+
+
+def build_handle_line(links: dict) -> str:
+    parts = []
+    if "linkedin" in links:
+        m = re.search(r"/in/([^/]+)/?", links["linkedin"])
+        parts.append(f"linkedin.com/in/{m.group(1)}" if m else links["linkedin"])
+    if "website" in links:
+        parts.append(re.sub(r"^https?://", "", links["website"]).rstrip("/"))
+    if "twitter" in links:
+        m = re.search(r"twitter\.com/([^/]+)", links["twitter"])
+        parts.append(f"@{m.group(1)}" if m else links["twitter"])
+    if "mastodon" in links:
+        parts.append(links["mastodon"])
+    return "  ·  ".join(parts)
+
+
+def load_speakers():
+    files = sorted(
+        p for p in SPEAKERS_DIR.glob("*.md")
+        if not p.stem.endswith(".da") and not p.stem.startswith("_")
+    )
+    speakers = []
+    for sf in files:
+        s = parse_speaker(sf)
+        if not s:
+            continue
+        s["photo"] = find_photo(s["slug"])
+        if s["slug"] in TRACK_1:
+            s["track"] = 1
+        elif s["slug"] in TRACK_2:
+            s["track"] = 2
+        else:
+            print(f"  warn: {s['slug']} not assigned to a track — placing in Track 1")
+            s["track"] = 1
+        speakers.append(s)
+    # Track 1 alpha, then Track 2 alpha
+    return (sorted([s for s in speakers if s["track"] == 1], key=lambda x: x["title"])
+          + sorted([s for s in speakers if s["track"] == 2], key=lambda x: x["title"]))
+
+
+# --- PowerPoint sections (Template / Track 1 / Track 2) ----------------------------
+P14_NS = "http://schemas.microsoft.com/office/powerpoint/2010/main"
+P_NS = "http://schemas.openxmlformats.org/presentationml/2006/main"
+
+
+def add_sections(prs, template_count: int, speakers: list):
+    """Inject Template / Track 1 / Track 2 sections into the presentation XML."""
+    pres = prs.part._element  # <p:presentation>
+
+    # Collect <p:sldId> ids in document order.
+    sld_ids = [int(e.get("id")) for e in pres.findall(qn("p:sldIdLst") + "/" + qn("p:sldId"))]
+    template_ids = sld_ids[:template_count]
+    speaker_ids = sld_ids[template_count:]
+    track1 = [sid for sid, sp in zip(speaker_ids, speakers) if sp["track"] == 1]
+    track2 = [sid for sid, sp in zip(speaker_ids, speakers) if sp["track"] == 2]
+
+    # Find or create <p:extLst> as the last child of <p:presentation>.
+    ext_lst = pres.find(qn("p:extLst"))
+    if ext_lst is None:
+        ext_lst = etree.SubElement(pres, qn("p:extLst"))
+
+    # Remove any existing section ext to make this idempotent.
+    SECTION_URI = "{521415D9-36F7-43E2-AB2F-B90AF26B5E84}"
+    for ext in ext_lst.findall(qn("p:ext")):
+        if ext.get("uri") == SECTION_URI:
+            ext_lst.remove(ext)
+
+    ext = etree.SubElement(ext_lst, qn("p:ext"), uri=SECTION_URI)
+    section_lst = etree.SubElement(ext, f"{{{P14_NS}}}sectionLst", nsmap={"p14": P14_NS})
+
+    def add_section(name, ids):
+        sec = etree.SubElement(section_lst, f"{{{P14_NS}}}section",
+                               name=name, id="{" + str(uuid.uuid4()).upper() + "}")
+        sld_id_lst = etree.SubElement(sec, f"{{{P14_NS}}}sldIdLst")
+        for i in ids:
+            etree.SubElement(sld_id_lst, f"{{{P14_NS}}}sldId", id=str(i))
+
+    add_section("Template", template_ids)
+    add_section("Track 1", track1)
+    add_section("Track 2", track2)
 
 
 def main():
@@ -420,15 +574,35 @@ def main():
     prs.slide_width = SLIDE_W
     prs.slide_height = SLIDE_H
 
+    # --- Template section (5 slides) ---
     build_cover(prs)
     build_agenda(prs)
     build_section_divider(prs)
     build_content(prs)
-    build_speaker_bio(prs)
+    build_speaker_bio(prs)  # generic placeholder template
+    template_count = len(prs.slides)
+
+    # --- Speaker slides, grouped Track 1 then Track 2 ---
+    speakers = load_speakers()
+    print(f"Adding {len(speakers)} speaker slides "
+          f"(Track 1: {sum(1 for s in speakers if s['track']==1)}, "
+          f"Track 2: {sum(1 for s in speakers if s['track']==2)})")
+    for s in speakers:
+        build_speaker_bio(
+            prs,
+            name=s["title"],
+            role=s.get("tagline", ""),
+            bio=s["bio"],
+            handle=build_handle_line(s["links"]),
+            photo=s["photo"],
+        )
+
+    # --- Sections ---
+    add_sections(prs, template_count, speakers)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     prs.save(OUT)
-    print(f"Wrote {OUT}")
+    print(f"Wrote {OUT} ({len(prs.slides)} slides)")
 
 
 if __name__ == "__main__":
