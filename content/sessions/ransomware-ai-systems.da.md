@@ -4,7 +4,6 @@ time: "13:50"
 room: "Room 2"
 speakers:
   - behnaz-karimi
-  - yuvaraj-govindarajulu
 topics:
   - ai-security
   - ml-security

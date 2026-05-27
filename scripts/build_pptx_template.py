@@ -40,7 +40,7 @@ DISCORD_QR_PNG = OUT_DIR / "_discord_qr.png"
 TRACK_1 = {"marvin-ngoma", "eleni-ioakeim", "morten-von-seelen",
            "martin-sohn-christensen", "joost-van-dijk"}
 TRACK_2 = {"bleon-proko", "kasper-hald", "behnaz-karimi",
-           "yuvaraj-govindarajulu", "tom-kern", "bence-sooki-toth"}
+           "tom-kern", "bence-sooki-toth"}
 
 # --- Design tokens (from main.css) -------------------------------------------------
 BG          = RGBColor(0x0A, 0x0A, 0x0F)
@@ -286,7 +286,7 @@ def build_agenda(prs):
             "Trustless Consensus Manipulation Through Bribing Contracts", "Bence Sooki-Toth"),
         ("13:50", "talk",
             "RTFM — When Documentation Creates Critical Misconfiguration", "Martin Sohn Christensen",
-            "Emerging Frontiers: Ransomware Attacks in AI Systems", "Behnaz Karimi & Yuvaraj Govindarajulu"),
+            "Emerging Frontiers: Ransomware Attacks in AI Systems", "Behnaz Karimi"),
         ("14:50", "talk",
             "Build your own IDS", "Eleni Ioakeim",
             "Nebula — 5 years, still kicking *aaS", "Bleon Proko"),
