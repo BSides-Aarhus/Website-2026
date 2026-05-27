@@ -7,7 +7,7 @@ timeSlots:
 - time: '10:00'
   type: parallel
   track1: webauthn-passwordless
-  track2: post-quantum-cryptography
+  track2: ransomware-ai-systems
 - time: '11:00'
   type: parallel
   track1: alert-fatigue-therapy
@@ -24,7 +24,7 @@ timeSlots:
 - time: '13:50'
   type: parallel
   track1: rtfm-fatal-manual
-  track2: ransomware-ai-systems
+  track2: post-quantum-cryptography
 - time: '14:50'
   type: parallel
   track1: build-your-own-ids

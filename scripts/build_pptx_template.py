@@ -276,7 +276,7 @@ def build_agenda(prs):
         ("09:00", "shared", "Breakfast & networking", "", "", ""),
         ("10:00", "talk",
             "WebAuthn: How to get rid of passwords.", "Joost van Dijk",
-            "Kernel Wars: Anti-Cheat Reversing, BYOVD & Mitigations", "Ravshan Rikhsiev"),
+            "Emerging Frontiers: Ransomware Attacks in AI Systems", "Behnaz Karimi"),
         ("11:00", "talk",
             "Alert Fatigue Therapy: Fixing Broken Detection Rules", "Marvin Ngoma",
             "Remote Cold Execution", "Tom Kern"),
@@ -285,11 +285,11 @@ def build_agenda(prs):
             "We Scanned 10,000 Danish Orgs Without Sending a Single Packet", "Morten von Seelen",
             "Trustless Consensus Manipulation Through Bribing Contracts", "Bence Sooki-Toth"),
         ("13:50", "talk",
-            "RTFM — When Documentation Creates Critical Misconfiguration", "Martin Sohn Christensen",
-            "Emerging Frontiers: Ransomware Attacks in AI Systems", "Behnaz Karimi"),
+            "RTFM - Read The Fatal Manual: When Documentation Creates Critical Misconfiguration", "Martin Sohn Christensen",
+            "An introduction to Post-Quantum Cryptography for the practitioner", "Kasper Hald"),
         ("14:50", "talk",
             "Build your own IDS", "Eleni Ioakeim",
-            "Nebula — 5 years, still kicking *aaS", "Bleon Proko"),
+            "Nebula - 5 years, still kicking *aaS", "Bleon Proko"),
         ("15:30", "shared", "Networking session", "", "", ""),
         ("16:30", "shared", "Continue at Fredagscaféen", "", "", ""),
     ]
@@ -578,6 +578,27 @@ P14_NS = "http://schemas.microsoft.com/office/powerpoint/2010/main"
 P_NS = "http://schemas.openxmlformats.org/presentationml/2006/main"
 
 
+def apply_fade_transition(prs, duration_ms: int = 700):
+    """Add a fade transition to every slide so they don't switch instantly."""
+    MC_NS = "http://schemas.openxmlformats.org/markup-compatibility/2006"
+    for slide in prs.slides:
+        sld = slide._element
+        for existing in sld.findall(qn("p:transition")):
+            sld.remove(existing)
+        for existing in sld.findall(f"{{{MC_NS}}}AlternateContent"):
+            sld.remove(existing)
+        alt = etree.SubElement(sld, f"{{{MC_NS}}}AlternateContent",
+                               nsmap={"mc": MC_NS})
+        choice = etree.SubElement(alt, f"{{{MC_NS}}}Choice",
+                                  nsmap={"p14": P14_NS}, Requires="p14")
+        t1 = etree.SubElement(choice, qn("p:transition"),
+                              attrib={"spd": "med", f"{{{P14_NS}}}dur": str(duration_ms)})
+        etree.SubElement(t1, qn("p:fade"))
+        fb = etree.SubElement(alt, f"{{{MC_NS}}}Fallback")
+        t2 = etree.SubElement(fb, qn("p:transition"), spd="med")
+        etree.SubElement(t2, qn("p:fade"))
+
+
 def add_sections(prs, template_count: int, speakers: list):
     """Inject Template / Track 1 / Track 2 sections into the presentation XML."""
     pres = prs.part._element  # <p:presentation>
@@ -649,6 +670,9 @@ def main():
 
     # --- Sections ---
     add_sections(prs, template_count, speakers)
+
+    # --- Transitions (fade between slides) ---
+    apply_fade_transition(prs)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     prs.save(OUT)

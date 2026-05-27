@@ -1,6 +1,6 @@
 ---
 title: 'Emerging Frontiers: Ransomware Attacks in AI Systems'
-time: "13:50"
+time: "10:00"
 room: "Room 2"
 speakers:
   - behnaz-karimi
