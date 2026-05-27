@@ -1,173 +1,219 @@
+categories:
+  - id: event
+    label:
+      en: "The Event"
+      da: "Arrangementet"
+  - id: program
+    label:
+      en: "Program & Talks"
+      da: "Program & foredrag"
+  - id: tickets
+    label:
+      en: "Tickets"
+      da: "Billetter"
+  - id: attending
+    label:
+      en: "Attending"
+      da: "Deltagelse"
+  - id: involved
+    label:
+      en: "Get Involved"
+      da: "Bliv involveret"
 items:
-  - question:
+  - category: event
+    question:
       en: "When is BSides Aarhus 2026?"
       da: "Hvornår er BSides Aarhus 2026?"
     answer:
       en: "BSides Aarhus 2026 takes place on June 20, 2026 at INCUBA Next, Katrinebjerg, Aarhus."
       da: "BSides Aarhus 2026 finder sted den 20. juni 2026 på INCUBA Next, Katrinebjerg, Aarhus."
 
-  - question:
+  - category: program
+    question:
       en: "What security topics are covered at BSides Aarhus 2026?"
       da: "Hvilke sikkerhedsemner dækkes på BSides Aarhus 2026?"
     answer:
       en: "The 2026 program covers <a href=\"/topics/cloud-security/\">cloud penetration testing</a> (AWS, Azure, Entra), <a href=\"/topics/windows-internals/\">Windows kernel internals</a> and <a href=\"/topics/byovd/\">BYOVD</a> exploitation, <a href=\"/topics/active-directory/\">Active Directory</a> and <a href=\"/topics/ad-cs/\">AD CS</a> misconfigurations, <a href=\"/topics/detection-engineering/\">detection engineering</a> and SOC alert fatigue, building your own <a href=\"/topics/ids/\">IDS</a> with Suricata and ELK, <a href=\"/topics/osint/\">OSINT</a> and <a href=\"/topics/passive-recon/\">passive reconnaissance</a>, <a href=\"/topics/webauthn/\">WebAuthn</a> and passwordless authentication with passkeys and FIDO2, ransomware attacks on <a href=\"/topics/ai-security/\">AI/ML systems</a> (OWASP LLM06 and ML06), <a href=\"/topics/iot-security/\">IoT and hardware hacking</a>, and <a href=\"/topics/smart-contracts/\">smart contract</a> bribery attacks on Ethereum. Browse the full <a href=\"/topics/\">topic index</a> or the <a href=\"/sessions/\">session list</a>."
       da: "Programmet i 2026 dækker <a href=\"/da/topics/cloud-security/\">cloud penetrationstest</a> (AWS, Azure, Entra), <a href=\"/da/topics/windows-internals/\">Windows kernel-internals</a> og <a href=\"/da/topics/byovd/\">BYOVD</a>-exploitation, <a href=\"/da/topics/active-directory/\">Active Directory</a> og <a href=\"/da/topics/ad-cs/\">AD CS</a>-fejlkonfigurationer, <a href=\"/da/topics/detection-engineering/\">detection engineering</a> og SOC alert fatigue, opbygning af eget <a href=\"/da/topics/ids/\">IDS</a> med Suricata og ELK, <a href=\"/da/topics/osint/\">OSINT</a> og <a href=\"/da/topics/passive-recon/\">passiv rekognoscering</a>, <a href=\"/da/topics/webauthn/\">WebAuthn</a> og passwordless-autentificering med passkeys og FIDO2, ransomware-angreb på <a href=\"/da/topics/ai-security/\">AI/ML-systemer</a> (OWASP LLM06 og ML06), <a href=\"/da/topics/iot-security/\">IoT- og hardware-hacking</a> samt <a href=\"/da/topics/smart-contracts/\">smart contract</a>-bribery-angreb på Ethereum. Se hele <a href=\"/da/topics/\">emneoversigten</a> eller <a href=\"/da/sessions/\">foredragslisten</a>."
 
-  - question:
+  - category: program
+    question:
       en: "Is BSides Aarhus relevant for blue teams and SOC analysts?"
       da: "Er BSides Aarhus relevant for blue teams og SOC-analytikere?"
     answer:
       en: "Yes. Several 2026 talks target defenders directly: <a href=\"/sessions/alert-fatigue-therapy/\">Alert Fatigue Therapy: Fixing Broken Detection Rules</a> is a deep dive into <a href=\"/topics/detection-engineering/\">detection engineering</a> and high-fidelity rule design, <a href=\"/sessions/build-your-own-ids/\">Build your own IDS</a> walks through a Suricata + ELK <a href=\"/topics/siem/\">SIEM</a> setup for custom detection and <a href=\"/topics/threat-hunting/\">threat hunting</a>, and <a href=\"/sessions/passive-scan-danish-orgs/\">We Scanned 10,000 Danish Orgs Without Sending a Single Packet</a> shows what passive recon predicts about real compromise risk. See all <a href=\"/topics/blue-team/\">blue team sessions</a>."
       da: "Ja. Flere foredrag i 2026 retter sig direkte mod defenders: <a href=\"/da/sessions/alert-fatigue-therapy/\">Alert Fatigue Therapy: Fixing Broken Detection Rules</a> er et dybt dyk i <a href=\"/da/topics/detection-engineering/\">detection engineering</a> og high-fidelity-regeldesign, <a href=\"/da/sessions/build-your-own-ids/\">Build your own IDS</a> gennemgår en Suricata + ELK <a href=\"/da/topics/siem/\">SIEM</a>-opsætning til skræddersyet detektion og <a href=\"/da/topics/threat-hunting/\">threat hunting</a>, og <a href=\"/da/sessions/passive-scan-danish-orgs/\">We Scanned 10,000 Danish Orgs Without Sending a Single Packet</a> viser, hvad passiv rekognoscering kan forudsige om reel kompromitteringsrisiko. Se alle <a href=\"/da/topics/blue-team/\">blue team-foredrag</a>."
 
-  - question:
+  - category: program
+    question:
       en: "Does BSides Aarhus 2026 cover AI security and LLM risks?"
       da: "Dækker BSides Aarhus 2026 AI-sikkerhed og LLM-risici?"
     answer:
       en: "Yes. <a href=\"/sessions/ransomware-ai-systems/\">Emerging Frontiers: Ransomware Attacks in AI Systems</a> by <a href=\"/speakers/behnaz-karimi/\">Behnaz Karimi</a> (OWASP AI Exchange) covers ransomware exploitation of AI/ML supply chains and pipelines, referencing OWASP ML06: 2023 ML Supply Chain Attacks and OWASP LLM06: Excessive Agency. The session includes practical strategies to detect and mitigate ransomware threats against modern AI infrastructures. See <a href=\"/topics/ai-security/\">AI security</a> and <a href=\"/topics/llm-security/\">LLM security</a> topics."
       da: "Ja. <a href=\"/da/sessions/ransomware-ai-systems/\">Emerging Frontiers: Ransomware Attacks in AI Systems</a> af <a href=\"/da/speakers/behnaz-karimi/\">Behnaz Karimi</a> (OWASP AI Exchange) dækker ransomware-exploitation af AI/ML-forsyningskæder og -pipelines med reference til OWASP ML06: 2023 ML Supply Chain Attacks og OWASP LLM06: Excessive Agency. Sessionen indeholder praktiske strategier til at detektere og afbøde ransomware-trusler mod moderne AI-infrastrukturer. Se emnerne <a href=\"/da/topics/ai-security/\">AI-sikkerhed</a> og <a href=\"/da/topics/llm-security/\">LLM-sikkerhed</a>."
 
-  - question:
+  - category: program
+    question:
       en: "Does the conference cover cloud security and pentesting?"
       da: "Dækker konferencen cloud-sikkerhed og pentesting?"
     answer:
       en: "Yes. <a href=\"/sessions/nebula-cloud-pentest/\">Nebula - 5 years, still kicking *aaS</a> by <a href=\"/speakers/bleon-proko/\">Bleon Proko</a> presents the Nebula cloud penetration testing framework covering <a href=\"/topics/aws/\">AWS</a>, <a href=\"/topics/azure/\">Azure</a> (Graph and Management API, <a href=\"/topics/entra/\">Entra</a>, Azure Subscription resources, Office365), and DigitalOcean — with modules for reconnaissance, phishing, brute-force and password spray, enumeration after initial access, lateral movement, privilege escalation, and persistence. See all <a href=\"/topics/cloud-security/\">cloud security</a> and <a href=\"/topics/pentesting/\">pentesting</a> sessions."
       da: "Ja. <a href=\"/da/sessions/nebula-cloud-pentest/\">Nebula - 5 years, still kicking *aaS</a> af <a href=\"/da/speakers/bleon-proko/\">Bleon Proko</a> præsenterer Nebula cloud penetration testing-frameworket, der dækker <a href=\"/da/topics/aws/\">AWS</a>, <a href=\"/da/topics/azure/\">Azure</a> (Graph og Management API, <a href=\"/da/topics/entra/\">Entra</a>, Azure Subscription-ressourcer, Office365) og DigitalOcean — med moduler til rekognoscering, phishing, brute-force og password spray, enumeration efter initial adgang, lateral movement, privilege escalation og persistens. Se alle <a href=\"/da/topics/cloud-security/\">cloud-sikkerhed</a>- og <a href=\"/da/topics/pentesting/\">pentesting</a>-foredrag."
 
-  - question:
+  - category: program
+    question:
       en: "Are talks at BSides Aarhus 2026 technical or beginner-friendly?"
       da: "Er foredragene på BSides Aarhus 2026 tekniske eller for begyndere?"
     answer:
       en: "BSides Aarhus 2026 is a technical conference. Most talks assume working knowledge of security concepts and dive into specific techniques — <a href=\"/topics/ad-cs/\">AD CS</a> misconfigurations, smart contract logic on <a href=\"/topics/ethereum/\">Ethereum</a>, <a href=\"/topics/reverse-engineering/\">reverse engineering</a> IoT firmware, and detection engineering tradeoffs. Talks are accessible to mid-level practitioners and above; students and newcomers are welcome and will find both deep dives and broader context. Browse the full <a href=\"/sessions/\">session list</a>."
       da: "BSides Aarhus 2026 er en teknisk konference. De fleste foredrag forudsætter arbejdskendskab til sikkerhedsbegreber og går i dybden med specifikke teknikker — <a href=\"/da/topics/ad-cs/\">AD CS</a>-fejlkonfigurationer, smart contract-logik på <a href=\"/da/topics/ethereum/\">Ethereum</a>, <a href=\"/da/topics/reverse-engineering/\">reverse engineering</a> af IoT-firmware og afvejninger i detection engineering. Foredragene er tilgængelige for mid-level praktikere og opefter; studerende og nybegyndere er velkomne og vil finde både dybe dyk og bredere kontekst. Se hele <a href=\"/da/sessions/\">foredragslisten</a>."
 
-  - question:
+  - category: program
+    question:
       en: "Where can I learn about reverse engineering or hardware hacking in Denmark?"
       da: "Hvor kan jeg lære om reverse engineering eller hardware-hacking i Danmark?"
     answer:
       en: "BSides Aarhus 2026 features a <a href=\"/topics/reverse-engineering/\">reverse engineering</a> session: <a href=\"/sessions/remote-cold-execution/\">Remote Cold Execution</a> by <a href=\"/speakers/tom-kern/\">Tom Kern</a> walks through reverse engineering of an Orca heat pump's controller protocol and a remote takeover vulnerability. See also <a href=\"/topics/hardware-hacking/\">hardware hacking</a> and <a href=\"/topics/iot-security/\">IoT security</a>."
       da: "BSides Aarhus 2026 byder på en <a href=\"/da/topics/reverse-engineering/\">reverse engineering</a>-session: <a href=\"/da/sessions/remote-cold-execution/\">Remote Cold Execution</a> af <a href=\"/da/sessions/tom-kern/\">Tom Kern</a> gennemgår reverse engineering af en Orca-varmepumpes controller-protokol og en remote takeover-sårbarhed. Se også <a href=\"/da/topics/hardware-hacking/\">hardware-hacking</a> og <a href=\"/da/topics/iot-security/\">IoT-sikkerhed</a>."
 
-  - question:
+  - category: tickets
+    question:
       en: "How much do tickets cost?"
       da: "Hvad koster billetter?"
     answer:
       en: "We offer regular tickets and supporter tickets. Visit our <a href=\"/tickets/\">tickets page</a> for current pricing and availability."
       da: "Vi tilbyder almindelige billetter og støttebilletter. Besøg vores <a href=\"/da/tickets/\">billetside</a> for aktuelle priser og tilgængelighed."
 
-  - question:
+  - category: tickets
+    question:
       en: "What are supporter tickets?"
       da: "Hvad er støttebilletter?"
     answer:
       en: "Supporter tickets are a way for attendees to provide extra support to BSides Aarhus. You get the same great conference experience while helping us grow the event."
       da: "Støttebilletter er en måde for deltagere at give ekstra støtte til BSides Aarhus. Du får den samme fantastiske konferenceoplevelse, mens du hjælper os med at udvikle arrangementet."
 
-  - question:
+  - category: event
+    question:
       en: "Is the conference in English or Danish?"
       da: "Er konferencen på engelsk eller dansk?"
     answer:
       en: "Most talks are presented in English to be accessible to our international attendees. The website is available in both English and Danish."
       da: "De fleste foredrag præsenteres på engelsk for at være tilgængelige for vores internationale deltagere. Hjemmesiden er tilgængelig på både engelsk og dansk."
 
-  - question:
+  - category: involved
+    question:
       en: "How can I become a speaker?"
       da: "Hvordan kan jeg blive taler?"
     answer:
       en: "Submit your talk proposal through our <a href=\"/cfp/\">Call for Papers (CFP)</a> on Sessionize. We welcome speakers of all experience levels."
       da: "Indsend dit forslag til foredrag via vores <a href=\"/da/cfp/\">Call for Papers (CFP)</a> på Sessionize. Vi byder talere på alle erfaringsniveauer velkommen."
 
-  - question:
+  - category: involved
+    question:
       en: "How can my company sponsor BSides Aarhus?"
       da: "Hvordan kan min virksomhed sponsorere BSides Aarhus?"
     answer:
       en: "We offer several sponsorship tiers. Visit our <a href=\"/sponsors/\">sponsors page</a> or <a href=\"mailto:info@bsidesaarhus.dk\">contact us</a> directly to learn more about partnership opportunities."
       da: "Vi tilbyder flere sponsorniveauer. Besøg vores <a href=\"/da/sponsors/\">sponsorside</a> eller <a href=\"mailto:info@bsidesaarhus.dk\">kontakt os</a> direkte for at lære mere om partnerskabsmuligheder."
 
-  - question:
+  - category: attending
+    question:
       en: "Is there parking at the venue?"
       da: "Er der parkering ved lokationen?"
     answer:
       en: "Yes, there is parking available in the area surrounding INCUBA Next. The venue is also well-served by public transport."
       da: "Ja, der er parkering tilgængelig i området omkring INCUBA Next. Lokationen er også godt betjent af offentlig transport."
 
-  - question:
+  - category: attending
+    question:
       en: "Will there be food and drinks?"
       da: "Vil der være mad og drikke?"
     answer:
       en: "Yes! Coffee and breakfast are provided in the morning, lunch is included, and there will be refreshments during breaks."
       da: "Ja! Kaffe og morgenmad serveres om morgenen, frokost er inkluderet, og der vil være forfriskninger i pauserne."
 
-  - question:
+  - category: attending
+    question:
       en: "Should I bring a laptop?"
       da: "Skal jeg medbringe en bærbar?"
     answer:
       en: "It's not required. BSides Aarhus 2026 is a talk-based conference with no hands-on labs, so you can follow every session without a laptop. You're welcome to bring one if you'd like to take notes or explore tools mentioned during the talks."
       da: "Det er ikke et krav. BSides Aarhus 2026 er en foredragsbaseret konference uden hands-on labs, så du kan følge alle sessioner uden en bærbar. Du er velkommen til at medbringe en, hvis du vil tage noter eller udforske værktøjer, der nævnes under foredragene."
 
-  - question:
+  - category: event
+    question:
       en: "What is BSides Aarhus? I've never been to a BSides before."
       da: "Hvad er BSides Aarhus? Jeg har aldrig været til en BSides før."
     answer:
       en: "BSides Aarhus is a community-driven information security conference, part of the global Security BSides movement. It brings together security professionals, researchers, students, and enthusiasts for a day of technical talks and networking in a friendly, informal setting. First-timers are very welcome — come curious."
       da: "BSides Aarhus er en fællesskabsdrevet informationssikkerhedskonference og en del af den globale Security BSides-bevægelse. Den samler sikkerhedsprofessionelle, forskere, studerende og entusiaster til en dag med tekniske foredrag og networking i en venlig, uformel ramme. Førstegangsdeltagere er meget velkomne — kom nysgerrig."
 
-  - question:
+  - category: event
+    question:
       en: "Are the talks recorded or streamed?"
       da: "Bliver foredragene optaget eller streamet?"
     answer:
       en: "No. Talks at BSides Aarhus 2026 are not recorded or streamed, so join us in person to catch them. Please also respect the speakers and your fellow attendees by not recording sessions yourself."
       da: "Nej. Foredragene på BSides Aarhus 2026 bliver ikke optaget eller streamet, så deltag på stedet for at opleve dem. Vis venligst også respekt for talerne og de øvrige deltagere ved ikke selv at optage sessionerne."
 
-  - question:
+  - category: attending
+    question:
       en: "Is there a Code of Conduct?"
       da: "Er der en adfærdskodeks?"
     answer:
       en: "Yes. BSides Aarhus is dedicated to providing a welcoming, harassment-free experience for everyone. Please read our <a href=\"/code-of-conduct/\">Code of Conduct</a> before attending. If you experience or witness any issue, contact a member of staff or email <a href=\"mailto:info@bsidesaarhus.dk\">info@bsidesaarhus.dk</a>."
       da: "Ja. BSides Aarhus arbejder for at give alle en imødekommende oplevelse fri for chikane. Læs venligst vores <a href=\"/da/code-of-conduct/\">adfærdskodeks</a>, inden du deltager. Hvis du oplever eller er vidne til problemer, så kontakt en frivillig eller skriv til <a href=\"mailto:info@bsidesaarhus.dk\">info@bsidesaarhus.dk</a>."
 
-  - question:
+  - category: event
+    question:
       en: "What time does the conference start and end?"
       da: "Hvornår starter og slutter konferencen?"
     answer:
       en: "Doors open at 09:00 with breakfast and networking, and the first talks begin at 10:00. The program runs through the afternoon and wraps up with a networking session around 15:30. From 16:30 we continue informally over a beer at <a href=\"https://fredagscafeen.dk/\">Fredagscaféen</a>. See the full <a href=\"/agenda/\">agenda</a>."
       da: "Dørene åbner kl. 09:00 med morgenmad og networking, og de første foredrag begynder kl. 10:00. Programmet løber gennem eftermiddagen og afsluttes med en netværkssession omkring kl. 15:30. Fra kl. 16:30 fortsætter vi uformelt over en øl på <a href=\"https://fredagscafeen.dk/\">Fredagscaféen</a>. Se hele <a href=\"/da/agenda/\">agendaen</a>."
 
-  - question:
+  - category: tickets
+    question:
       en: "Can I get a refund or transfer my ticket?"
       da: "Kan jeg få refusion eller overdrage min billet?"
     answer:
       en: "Tickets are sold through TicketButler. If you can no longer attend, get in touch with us at <a href=\"mailto:info@bsidesaarhus.dk\">info@bsidesaarhus.dk</a> and we'll help you transfer your ticket to someone else. For refund requests, please contact us as early as possible."
       da: "Billetter sælges via TicketButler. Hvis du ikke længere kan deltage, så kontakt os på <a href=\"mailto:info@bsidesaarhus.dk\">info@bsidesaarhus.dk</a>, så hjælper vi dig med at overdrage din billet til en anden. Ved ønske om refusion bedes du kontakte os så tidligt som muligt."
 
-  - question:
+  - category: program
+    question:
       en: "Are there workshops, villages, or a CTF?"
       da: "Er der workshops, villages eller en CTF?"
     answer:
       en: "BSides Aarhus 2026 is focused on talks across two parallel tracks, plus networking — there are no separate workshops, villages, or CTF this year. Browse the full <a href=\"/agenda/\">agenda</a> and <a href=\"/sessions/\">session list</a>."
       da: "BSides Aarhus 2026 fokuserer på foredrag i to parallelle spor samt networking — der er ikke separate workshops, villages eller CTF i år. Se hele <a href=\"/da/agenda/\">agendaen</a> og <a href=\"/da/sessions/\">foredragslisten</a>."
 
-  - question:
+  - category: attending
+    question:
       en: "Is the venue accessible?"
       da: "Er lokationen tilgængelig?"
     answer:
       en: "INCUBA Next is a modern venue in the Katrinebjerg district of Aarhus. If you have specific accessibility needs, please <a href=\"mailto:info@bsidesaarhus.dk\">let us know in advance</a> and we'll do our best to accommodate you."
       da: "INCUBA Next er en moderne lokation i Katrinebjerg-kvarteret i Aarhus. Hvis du har særlige behov i forhold til tilgængelighed, så <a href=\"mailto:info@bsidesaarhus.dk\">giv os besked på forhånd</a>, så gør vi vores bedste for at imødekomme dig."
 
-  - question:
+  - category: tickets
+    question:
       en: "Can I get an invoice or receipt for my ticket?"
       da: "Kan jeg få en faktura eller kvittering for min billet?"
     answer:
       en: "Yes. You'll receive a receipt from TicketButler when you purchase your ticket. If you need a company invoice with specific details, <a href=\"mailto:info@bsidesaarhus.dk\">contact us</a>."
       da: "Ja. Du modtager en kvittering fra TicketButler, når du køber din billet. Hvis du har brug for en virksomhedsfaktura med specifikke oplysninger, så <a href=\"mailto:info@bsidesaarhus.dk\">kontakt os</a>."
 
-  - question:
+  - category: involved
+    question:
       en: "Can I volunteer or help out?"
       da: "Kan jeg være frivillig eller hjælpe til?"
     answer:
       en: "We'd love the help! BSides Aarhus is run by volunteers. If you'd like to get involved, <a href=\"mailto:info@bsidesaarhus.dk\">reach out</a> and tell us a bit about yourself."
       da: "Vi vil meget gerne have hjælp! BSides Aarhus drives af frivillige. Hvis du har lyst til at være med, så <a href=\"mailto:info@bsidesaarhus.dk\">kontakt os</a> og fortæl lidt om dig selv."
 
-  - question:
+  - category: attending
+    question:
       en: "Is there an after-party or social event?"
       da: "Er der en afterparty eller et socialt arrangement?"
     answer:

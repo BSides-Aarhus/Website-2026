@@ -430,3 +430,22 @@
     });
   });
 })();
+
+// FAQ Category Filters
+(function () {
+  const filters = document.querySelectorAll('.faq-filter');
+  if (!filters.length) return;
+  const groups = document.querySelectorAll('.faq-group');
+  filters.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const cat = btn.getAttribute('data-cat');
+      filters.forEach(function (f) {
+        f.classList.toggle('active', f === btn);
+      });
+      groups.forEach(function (group) {
+        const show = cat === 'all' || group.getAttribute('data-cat') === cat;
+        group.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();

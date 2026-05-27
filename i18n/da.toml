@@ -76,6 +76,9 @@ other = "FAQ"
 [home_feature_faq_desc]
 other = "Har du spørgsmål? Find svar om billetter, lokationen og hvad du skal medbringe."
 
+[faq_all]
+other = "Alle"
+
 [home_venue_title]
 other = "Lokationen"
 [home_venue_subtitle]

@@ -1,15 +1,30 @@
 {{ $lang := site.Language.Lang }}
+{{ $cats := site.Data.faq.categories }}
+<div class="faq-filters" role="tablist">
+  <button class="faq-filter active" data-cat="all">{{ i18n "faq_all" }}</button>
+  {{ range $cats }}
+  <button class="faq-filter" data-cat="{{ .id }}">{{ index .label $lang }}</button>
+  {{ end }}
+</div>
 <div class="faq-list">
-  {{ range site.Data.faq.items }}
-  <div class="faq-item">
-    <button class="faq-question" aria-expanded="false">
-      {{ index .question $lang }}
-    </button>
-    <div class="faq-answer">
-      <div class="faq-answer-inner">
-        {{ index .answer $lang | safeHTML }}
+  {{ range $cat := $cats }}
+  {{ $items := where site.Data.faq.items "category" $cat.id }}
+  {{ with $items }}
+  <div class="faq-group" data-cat="{{ $cat.id }}">
+    <h2 class="faq-group-title">{{ index $cat.label $lang }}</h2>
+    {{ range . }}
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        {{ index .question $lang }}
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          {{ index .answer $lang | safeHTML }}
+        </div>
       </div>
     </div>
+    {{ end }}
   </div>
+  {{ end }}
   {{ end }}
 </div>

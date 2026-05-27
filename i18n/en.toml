@@ -76,6 +76,9 @@ other = "FAQ"
 [home_feature_faq_desc]
 other = "Got questions? Find answers about tickets, the venue, and what to bring."
 
+[faq_all]
+other = "All"
+
 [home_venue_title]
 other = "The Venue"
 [home_venue_subtitle]

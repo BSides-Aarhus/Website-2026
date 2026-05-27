@@ -607,6 +607,40 @@ h3 { font-size: 1.25rem; }
 .topic-session-excerpt { color: var(--color-text-muted); font-size: 0.95rem; margin: var(--space-sm) 0 0; }
 
 /* FAQ Accordion */
+.faq-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto var(--space-xl);
+}
+.faq-filter {
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-bg-card);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.faq-filter:hover { background: var(--color-bg-elevated); color: var(--color-text); }
+.faq-filter.active {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent-light);
+  color: var(--color-bg);
+}
+.faq-group-title {
+  max-width: 800px;
+  margin: var(--space-xl) auto var(--space-md);
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--color-text);
+}
+.faq-group:first-child .faq-group-title { margin-top: 0; }
 .faq-list { max-width: 800px; margin: 0 auto; }
 .faq-item {
   border: 1px solid var(--color-border);
