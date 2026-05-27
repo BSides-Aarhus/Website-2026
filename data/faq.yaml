@@ -96,3 +96,80 @@ items:
     answer:
       en: "Yes! Coffee and breakfast are provided in the morning, lunch is included, and there will be refreshments during breaks."
       da: "Ja! Kaffe og morgenmad serveres om morgenen, frokost er inkluderet, og der vil være forfriskninger i pauserne."
+
+  - question:
+      en: "Should I bring a laptop?"
+      da: "Skal jeg medbringe en bærbar?"
+    answer:
+      en: "It's not required. BSides Aarhus 2026 is a talk-based conference with no hands-on labs, so you can follow every session without a laptop. You're welcome to bring one if you'd like to take notes or explore tools mentioned during the talks."
+      da: "Det er ikke et krav. BSides Aarhus 2026 er en foredragsbaseret konference uden hands-on labs, så du kan følge alle sessioner uden en bærbar. Du er velkommen til at medbringe en, hvis du vil tage noter eller udforske værktøjer, der nævnes under foredragene."
+
+  - question:
+      en: "What is BSides Aarhus? I've never been to a BSides before."
+      da: "Hvad er BSides Aarhus? Jeg har aldrig været til en BSides før."
+    answer:
+      en: "BSides Aarhus is a community-driven information security conference, part of the global Security BSides movement. It brings together security professionals, researchers, students, and enthusiasts for a day of technical talks and networking in a friendly, informal setting. First-timers are very welcome — come curious."
+      da: "BSides Aarhus er en fællesskabsdrevet informationssikkerhedskonference og en del af den globale Security BSides-bevægelse. Den samler sikkerhedsprofessionelle, forskere, studerende og entusiaster til en dag med tekniske foredrag og networking i en venlig, uformel ramme. Førstegangsdeltagere er meget velkomne — kom nysgerrig."
+
+  - question:
+      en: "Are the talks recorded or streamed?"
+      da: "Bliver foredragene optaget eller streamet?"
+    answer:
+      en: "No. Talks at BSides Aarhus 2026 are not recorded or streamed, so join us in person to catch them. Please also respect the speakers and your fellow attendees by not recording sessions yourself."
+      da: "Nej. Foredragene på BSides Aarhus 2026 bliver ikke optaget eller streamet, så deltag på stedet for at opleve dem. Vis venligst også respekt for talerne og de øvrige deltagere ved ikke selv at optage sessionerne."
+
+  - question:
+      en: "Is there a Code of Conduct?"
+      da: "Er der en adfærdskodeks?"
+    answer:
+      en: "Yes. BSides Aarhus is dedicated to providing a welcoming, harassment-free experience for everyone. Please read our <a href=\"/code-of-conduct/\">Code of Conduct</a> before attending. If you experience or witness any issue, contact a member of staff or email <a href=\"mailto:info@bsidesaarhus.dk\">info@bsidesaarhus.dk</a>."
+      da: "Ja. BSides Aarhus arbejder for at give alle en imødekommende oplevelse fri for chikane. Læs venligst vores <a href=\"/da/code-of-conduct/\">adfærdskodeks</a>, inden du deltager. Hvis du oplever eller er vidne til problemer, så kontakt en frivillig eller skriv til <a href=\"mailto:info@bsidesaarhus.dk\">info@bsidesaarhus.dk</a>."
+
+  - question:
+      en: "What time does the conference start and end?"
+      da: "Hvornår starter og slutter konferencen?"
+    answer:
+      en: "Doors open at 09:00 with breakfast and networking, and the first talks begin at 10:00. The program runs through the afternoon and wraps up with a networking session around 15:30. From 16:30 we continue informally over a beer at <a href=\"https://fredagscafeen.dk/\">Fredagscaféen</a>. See the full <a href=\"/agenda/\">agenda</a>."
+      da: "Dørene åbner kl. 09:00 med morgenmad og networking, og de første foredrag begynder kl. 10:00. Programmet løber gennem eftermiddagen og afsluttes med en netværkssession omkring kl. 15:30. Fra kl. 16:30 fortsætter vi uformelt over en øl på <a href=\"https://fredagscafeen.dk/\">Fredagscaféen</a>. Se hele <a href=\"/da/agenda/\">agendaen</a>."
+
+  - question:
+      en: "Can I get a refund or transfer my ticket?"
+      da: "Kan jeg få refusion eller overdrage min billet?"
+    answer:
+      en: "Tickets are sold through TicketButler. If you can no longer attend, get in touch with us at <a href=\"mailto:info@bsidesaarhus.dk\">info@bsidesaarhus.dk</a> and we'll help you transfer your ticket to someone else. For refund requests, please contact us as early as possible."
+      da: "Billetter sælges via TicketButler. Hvis du ikke længere kan deltage, så kontakt os på <a href=\"mailto:info@bsidesaarhus.dk\">info@bsidesaarhus.dk</a>, så hjælper vi dig med at overdrage din billet til en anden. Ved ønske om refusion bedes du kontakte os så tidligt som muligt."
+
+  - question:
+      en: "Are there workshops, villages, or a CTF?"
+      da: "Er der workshops, villages eller en CTF?"
+    answer:
+      en: "BSides Aarhus 2026 is focused on talks across two parallel tracks, plus networking — there are no separate workshops, villages, or CTF this year. Browse the full <a href=\"/agenda/\">agenda</a> and <a href=\"/sessions/\">session list</a>."
+      da: "BSides Aarhus 2026 fokuserer på foredrag i to parallelle spor samt networking — der er ikke separate workshops, villages eller CTF i år. Se hele <a href=\"/da/agenda/\">agendaen</a> og <a href=\"/da/sessions/\">foredragslisten</a>."
+
+  - question:
+      en: "Is the venue accessible?"
+      da: "Er lokationen tilgængelig?"
+    answer:
+      en: "INCUBA Next is a modern venue in the Katrinebjerg district of Aarhus. If you have specific accessibility needs, please <a href=\"mailto:info@bsidesaarhus.dk\">let us know in advance</a> and we'll do our best to accommodate you."
+      da: "INCUBA Next er en moderne lokation i Katrinebjerg-kvarteret i Aarhus. Hvis du har særlige behov i forhold til tilgængelighed, så <a href=\"mailto:info@bsidesaarhus.dk\">giv os besked på forhånd</a>, så gør vi vores bedste for at imødekomme dig."
+
+  - question:
+      en: "Can I get an invoice or receipt for my ticket?"
+      da: "Kan jeg få en faktura eller kvittering for min billet?"
+    answer:
+      en: "Yes. You'll receive a receipt from TicketButler when you purchase your ticket. If you need a company invoice with specific details, <a href=\"mailto:info@bsidesaarhus.dk\">contact us</a>."
+      da: "Ja. Du modtager en kvittering fra TicketButler, når du køber din billet. Hvis du har brug for en virksomhedsfaktura med specifikke oplysninger, så <a href=\"mailto:info@bsidesaarhus.dk\">kontakt os</a>."
+
+  - question:
+      en: "Can I volunteer or help out?"
+      da: "Kan jeg være frivillig eller hjælpe til?"
+    answer:
+      en: "We'd love the help! BSides Aarhus is run by volunteers. If you'd like to get involved, <a href=\"mailto:info@bsidesaarhus.dk\">reach out</a> and tell us a bit about yourself."
+      da: "Vi vil meget gerne have hjælp! BSides Aarhus drives af frivillige. Hvis du har lyst til at være med, så <a href=\"mailto:info@bsidesaarhus.dk\">kontakt os</a> og fortæl lidt om dig selv."
+
+  - question:
+      en: "Is there an after-party or social event?"
+      da: "Er der en afterparty eller et socialt arrangement?"
+    answer:
+      en: "Yes. The day ends with a networking session, and from 16:30 we continue informally over a beer at <a href=\"https://fredagscafeen.dk/\">Fredagscaféen</a> — a relaxed way to keep the conversations going."
+      da: "Ja. Dagen slutter med en netværkssession, og fra kl. 16:30 fortsætter vi uformelt over en øl på <a href=\"https://fredagscafeen.dk/\">Fredagscaféen</a> — en afslappet måde at holde snakken i gang på."
