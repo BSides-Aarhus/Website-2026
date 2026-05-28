@@ -7,9 +7,11 @@
     {{/* Live ticket counter on homepage */}}
     {{ with site.Data.tickets }}
       {{ if gt .total_sold 0 }}
+        {{ $soldOut := and (gt .total_available 0) (ge .total_sold .total_available) }}
         <div class="hero-ticket-counter" id="hero-ticket-counter">
           <span class="hero-ticket-number" id="hero-tickets-sold">{{ .total_sold }}</span>
           {{ i18n "tickets_sold_hero" }}
+          <span class="ticket-badge ticket-badge--sold-out hero-ticket-badge" id="hero-sold-out-badge"{{ if not $soldOut }} hidden{{ end }}>{{ i18n "tickets_sold_out" }}</span>
         </div>
       {{ end }}
     {{ end }}

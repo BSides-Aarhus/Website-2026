@@ -290,6 +290,12 @@
       heroCounterEl.classList.add('ticket-stats-number--bump');
     }
 
+    // Toggle hero sold-out badge when the whole event is sold out
+    var heroBadge = document.getElementById('hero-sold-out-badge');
+    if (heroBadge && data.total_available > 0) {
+      heroBadge.hidden = data.total_sold < data.total_available;
+    }
+
     // Update remaining counts on individual cards
     if (data.ticket_types) {
       data.ticket_types.forEach(function (tt) {

@@ -836,6 +836,12 @@ h3 { font-size: 1.25rem; }
   font-size: 1rem;
   color: var(--color-text-muted);
 }
+.hero-ticket-badge {
+  margin-bottom: 0;
+  margin-left: var(--space-sm);
+  vertical-align: middle;
+}
+.hero-ticket-badge[hidden] { display: none; }
 .hero-ticket-number {
   font-family: var(--font-mono);
   font-size: 1.25rem;
