@@ -1,7 +1,7 @@
 ---
 title: 'Alert Fatigue Therapy: Fixing Broken Detection Rules'
 time: "11:00"
-room: "Room 1"
+room: "Store aud"
 speakers:
   - marvin-ngoma
 topics:

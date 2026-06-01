@@ -1,7 +1,7 @@
 ---
 title: We Scanned 10,000 Danish Orgs Without Sending a Single Packet
 time: "12:45"
-room: "Room 1"
+room: "Store aud"
 speakers:
   - morten-von-seelen
 topics:

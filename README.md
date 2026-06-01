@@ -154,7 +154,7 @@ Create `content/sessions/{slug}.md`:
 ---
 title: "Talk Title"
 time: "10:00"
-room: "Room 1"
+room: "Store aud"
 speakers:
   - jane-doe
   - joost-van-dijk

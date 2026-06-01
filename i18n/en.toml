@@ -103,6 +103,10 @@ other = "Thank you to the organizations that make BSides Aarhus possible"
 # Agenda
 [agenda_track]
 other = "Track"
+[agenda_track1]
+other = "Store aud"
+[agenda_track2]
+other = "Lille aud"
 [agenda_time]
 other = "Time"
 [agenda_tba]

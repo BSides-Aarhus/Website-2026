@@ -1,7 +1,7 @@
 ---
 title: Trustless Consensus Manipulation Through Bribing Contracts
 time: "12:45"
-room: "Room 2"
+room: "Lille aud"
 speakers:
   - bence-sooki-toth
 topics:

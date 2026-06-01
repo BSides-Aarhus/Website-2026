@@ -1,7 +1,7 @@
 ---
 title: 'WebAuthn: How to get rid of passwords.'
 time: "10:00"
-room: "Room 1"
+room: "Lille aud"
 speakers:
   - joost-van-dijk
 topics:

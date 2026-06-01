@@ -1,7 +1,7 @@
 ---
 title: Build your own IDS
 time: "14:50"
-room: "Room 1"
+room: "Lille aud"
 speakers:
   - eleni-ioakeim
 topics:

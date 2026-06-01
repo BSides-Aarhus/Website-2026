@@ -1,7 +1,7 @@
 ---
 title: Remote Cold Execution
 time: "11:00"
-room: "Room 2"
+room: "Lille aud"
 speakers:
   - tom-kern
 topics:

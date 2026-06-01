@@ -1,7 +1,7 @@
 ---
 title: 'An introduction to Post-Quantum Cryptography for the practitioner'
 time: "13:50"
-room: "Room 2"
+room: "Lille aud"
 speakers:
   - kasper-hald
 topics:

@@ -36,11 +36,11 @@ BG_IMG = OUT_DIR / "_bg.png"
 BG_IMG_ELEV = OUT_DIR / "_bg_elev.png"
 DISCORD_QR_PNG = OUT_DIR / "_discord_qr.png"
 
-# Track assignment (Room 1 -> Track 1, Room 2 -> Track 2), from content/sessions/*.md
-TRACK_1 = {"marvin-ngoma", "eleni-ioakeim", "morten-von-seelen",
-           "martin-sohn-christensen", "joost-van-dijk"}
-TRACK_2 = {"bleon-proko", "kasper-hald", "behnaz-karimi",
-           "tom-kern", "bence-sooki-toth"}
+# Track assignment (Store aud -> Track 1, Lille aud -> Track 2), from content/sessions/*.md
+TRACK_1 = {"behnaz-karimi", "marvin-ngoma", "morten-von-seelen",
+           "martin-sohn-christensen", "bleon-proko"}
+TRACK_2 = {"joost-van-dijk", "tom-kern", "bence-sooki-toth",
+           "kasper-hald", "eleni-ioakeim"}
 
 # --- Design tokens (from main.css) -------------------------------------------------
 BG          = RGBColor(0x0A, 0x0A, 0x0F)
@@ -275,8 +275,8 @@ def build_agenda(prs):
     rows = [
         ("09:00", "shared", "Breakfast & networking", "", "", ""),
         ("10:00", "talk",
-            "WebAuthn: How to get rid of passwords.", "Joost van Dijk",
-            "Emerging Frontiers: Ransomware Attacks in AI Systems", "Behnaz Karimi"),
+            "Emerging Frontiers: Ransomware Attacks in AI Systems", "Behnaz Karimi",
+            "WebAuthn: How to get rid of passwords.", "Joost van Dijk"),
         ("11:00", "talk",
             "Alert Fatigue Therapy: Fixing Broken Detection Rules", "Marvin Ngoma",
             "Remote Cold Execution", "Tom Kern"),
@@ -288,8 +288,8 @@ def build_agenda(prs):
             "RTFM - Read The Fatal Manual: When Documentation Creates Critical Misconfiguration", "Martin Sohn Christensen",
             "An introduction to Post-Quantum Cryptography for the practitioner", "Kasper Hald"),
         ("14:50", "talk",
-            "Build your own IDS", "Eleni Ioakeim",
-            "Nebula - 5 years, still kicking *aaS", "Bleon Proko"),
+            "Nebula - 5 years, still kicking *aaS", "Bleon Proko",
+            "Build your own IDS", "Eleni Ioakeim"),
         ("15:30", "shared", "Networking session", "", "", ""),
         ("16:30", "shared", "Continue at Fredagscaféen", "", "", ""),
     ]
@@ -326,10 +326,10 @@ def build_agenda(prs):
     srgb.append(alpha)
 
     add_text(slide, t1_left, header_top, track_w, header_h,
-             "TRACK 1  ·  ROOM 1", size=11, bold=True, color=ACCENT,
+             "TRACK 1  ·  STORE AUD", size=11, bold=True, color=ACCENT,
              font=FONT_MONO, anchor=MSO_ANCHOR.MIDDLE, align=PP_ALIGN.CENTER)
     add_text(slide, t2_left, header_top, track_w, header_h,
-             "TRACK 2  ·  ROOM 2", size=11, bold=True, color=ACCENT,
+             "TRACK 2  ·  LILLE AUD", size=11, bold=True, color=ACCENT,
              font=FONT_MONO, anchor=MSO_ANCHOR.MIDDLE, align=PP_ALIGN.CENTER)
 
     for i, (t, kind, t1, s1, t2, s2) in enumerate(rows):

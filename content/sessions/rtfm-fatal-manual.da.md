@@ -1,7 +1,7 @@
 ---
 title: 'RTFM - Read The Fatal Manual: When Documentation Creates Critical Misconfiguration'
 time: "13:50"
-room: "Room 1"
+room: "Store aud"
 speakers:
   - martin-sohn-christensen
 topics:

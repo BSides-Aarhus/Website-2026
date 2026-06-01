@@ -13,8 +13,8 @@
     <div class="schedule">
       <div class="schedule-header">
         <div class="schedule-header-cell">{{ i18n "agenda_time" }}</div>
-        <div class="schedule-header-cell">{{ i18n "agenda_track" }} 1</div>
-        <div class="schedule-header-cell">{{ i18n "agenda_track" }} 2</div>
+        <div class="schedule-header-cell">{{ i18n "agenda_track1" }}</div>
+        <div class="schedule-header-cell">{{ i18n "agenda_track2" }}</div>
       </div>
 
       {{ range site.Data.schedule.timeSlots }}
@@ -48,7 +48,7 @@
           {{ range $i, $slug := slice .track1 .track2 }}
           {{ $session := site.GetPage (printf "/sessions/%s" $slug) }}
           <div class="schedule-slot" data-track="{{ add $i 1 }}">
-            <span class="schedule-slot-track">{{ i18n "agenda_track" }} {{ add $i 1 }}</span>
+            <span class="schedule-slot-track">{{ if eq $i 0 }}{{ i18n "agenda_track1" }}{{ else }}{{ i18n "agenda_track2" }}{{ end }}</span>
             {{ if $session }}
               <h4><a href="{{ $session.RelPermalink }}">{{ $session.Title }}</a></h4>
             {{ else }}
