@@ -54,14 +54,6 @@ items:
 
   - category: program
     question:
-      en: "Does the conference cover cloud security and pentesting?"
-      da: "Dækker konferencen cloud-sikkerhed og pentesting?"
-    answer:
-      en: "Yes. <a href=\"/sessions/nebula-cloud-pentest/\">Nebula - 5 years, still kicking *aaS</a> by <a href=\"/speakers/bleon-proko/\">Bleon Proko</a> presents the Nebula cloud penetration testing framework covering <a href=\"/topics/aws/\">AWS</a>, <a href=\"/topics/azure/\">Azure</a> (Graph and Management API, <a href=\"/topics/entra/\">Entra</a>, Azure Subscription resources, Office365), and DigitalOcean — with modules for reconnaissance, phishing, brute-force and password spray, enumeration after initial access, lateral movement, privilege escalation, and persistence. See all <a href=\"/topics/cloud-security/\">cloud security</a> and <a href=\"/topics/pentesting/\">pentesting</a> sessions."
-      da: "Ja. <a href=\"/da/sessions/nebula-cloud-pentest/\">Nebula - 5 years, still kicking *aaS</a> af <a href=\"/da/speakers/bleon-proko/\">Bleon Proko</a> præsenterer Nebula cloud penetration testing-frameworket, der dækker <a href=\"/da/topics/aws/\">AWS</a>, <a href=\"/da/topics/azure/\">Azure</a> (Graph og Management API, <a href=\"/da/topics/entra/\">Entra</a>, Azure Subscription-ressourcer, Office365) og DigitalOcean — med moduler til rekognoscering, phishing, brute-force og password spray, enumeration efter initial adgang, lateral movement, privilege escalation og persistens. Se alle <a href=\"/da/topics/cloud-security/\">cloud-sikkerhed</a>- og <a href=\"/da/topics/pentesting/\">pentesting</a>-foredrag."
-
-  - category: program
-    question:
       en: "Are talks at BSides Aarhus 2026 technical or beginner-friendly?"
       da: "Er foredragene på BSides Aarhus 2026 tekniske eller for begyndere?"
     answer:

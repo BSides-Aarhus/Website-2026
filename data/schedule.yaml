@@ -27,7 +27,7 @@ timeSlots:
   track2: post-quantum-cryptography
 - time: '14:50'
   type: parallel
-  track1: nebula-cloud-pentest
+  track1: tba
   track2: build-your-own-ids
 - time: '15:30'
   type: plenary
