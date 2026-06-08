@@ -12,9 +12,12 @@ Design tokens come from static/css/main.css.
 import math
 import random
 import re
+import subprocess
 import uuid
 from io import BytesIO
 from pathlib import Path
+
+import yaml
 
 from PIL import Image, ImageDraw, ImageFilter, ImageOps
 from pptx import Presentation
@@ -29,18 +32,16 @@ ROOT = Path(__file__).resolve().parent.parent
 LOGO = ROOT / "static" / "images" / "logo.png"
 DISCORD_QR_SVG = ROOT / "static" / "images" / "discord-qr-code.svg"
 SPEAKERS_DIR = ROOT / "content" / "speakers"
+SESSIONS_DIR = ROOT / "content" / "sessions"
 PHOTOS_DIR = ROOT / "static" / "images" / "speakers"
+SCHEDULE_YAML = ROOT / "data" / "schedule.yaml"
+SPONSORS_YAML = ROOT / "data" / "sponsors.yaml"
+SPONSORS_DIR = ROOT / "static" / "images" / "sponsors"
 OUT_DIR = ROOT / "Plans" / "template-output"
 OUT = OUT_DIR / "bsides-aarhus-2026-template.pptx"
 BG_IMG = OUT_DIR / "_bg.png"
 BG_IMG_ELEV = OUT_DIR / "_bg_elev.png"
 DISCORD_QR_PNG = OUT_DIR / "_discord_qr.png"
-
-# Track assignment (Store aud -> Track 1, Lille aud -> Track 2), from content/sessions/*.md
-TRACK_1 = {"behnaz-karimi", "marvin-ngoma", "morten-von-seelen",
-           "martin-sohn-christensen", "bleon-proko"}
-TRACK_2 = {"joost-van-dijk", "tom-kern", "bence-sooki-toth",
-           "kasper-hald", "eleni-ioakeim"}
 
 # --- Design tokens (from main.css) -------------------------------------------------
 BG          = RGBColor(0x0A, 0x0A, 0x0F)
@@ -254,6 +255,97 @@ def build_cover(prs):
              size=11, color=TEXT_MUTED, font=FONT_MONO)
 
 
+# --- Schedule / session data (drives the agenda) -----------------------------------
+ROOM_TO_TRACK = {"Store aud": 1, "Lille aud": 2}
+
+
+def _read_frontmatter(md_path: Path) -> dict:
+    """Return the YAML frontmatter of a markdown file as a dict (or {})."""
+    text = md_path.read_text(encoding="utf-8")
+    m = _FRONTMATTER_RE.match(text)
+    if not m:
+        return {}
+    return yaml.safe_load(m.group(1)) or {}
+
+
+def load_sessions() -> dict:
+    """Map session slug -> {title, time, room, speakers} from content/sessions/*.md."""
+    sessions = {}
+    for p in SESSIONS_DIR.glob("*.md"):
+        if p.stem.endswith(".da") or p.stem.startswith("_"):
+            continue
+        fm = _read_frontmatter(p)
+        if not fm:
+            continue
+        sessions[p.stem] = {
+            "title": str(fm.get("title", "")).strip(),
+            "room": str(fm.get("room", "")).strip(),
+            "speakers": fm.get("speakers", []) or [],
+        }
+    return sessions
+
+
+def speaker_name_map() -> dict:
+    """Map speaker slug -> display name (title) from content/speakers/*.md."""
+    names = {}
+    for p in SPEAKERS_DIR.glob("*.md"):
+        if p.stem.endswith(".da") or p.stem.startswith("_"):
+            continue
+        fm = _read_frontmatter(p)
+        if fm.get("title"):
+            names[p.stem] = str(fm["title"]).strip()
+    return names
+
+
+def session_track_map(sessions: dict) -> dict:
+    """Map speaker slug -> track number, derived from each session's room."""
+    slug_track = {}
+    for sess in sessions.values():
+        track = ROOM_TO_TRACK.get(sess["room"])
+        if not track:
+            continue
+        for sp in sess["speakers"]:
+            slug_track[sp] = track
+    return slug_track
+
+
+def _fmt_time(value) -> str:
+    """Normalize a schedule time to HH:MM (PyYAML may read 09:00 as sexagesimal int)."""
+    if isinstance(value, int):  # YAML 1.1 base-60: 09:00 -> 540
+        return f"{value // 60:02d}:{value % 60:02d}"
+    return str(value).strip()
+
+
+def load_agenda_rows() -> list:
+    """Build agenda rows from data/schedule.yaml + content/sessions/*.md.
+
+    Returns tuples (time, kind, t1_title, t1_speaker, t2_title, t2_speaker) where
+    kind is "talk" (two-track) or "shared" (full-width break/plenary).
+    """
+    data = yaml.safe_load(SCHEDULE_YAML.read_text(encoding="utf-8")) or {}
+    sessions = load_sessions()
+    names = speaker_name_map()
+    rows = []
+
+    def resolve(slug):
+        sess = sessions.get(slug, {})
+        title = sess.get("title", slug or "")
+        speakers = sess.get("speakers", [])
+        speaker = "  ·  ".join(names.get(s, s) for s in speakers)
+        return title, speaker
+
+    for slot in data.get("timeSlots", []):
+        t = _fmt_time(slot.get("time", ""))
+        if slot.get("type") == "parallel":
+            t1, s1 = resolve(slot.get("track1"))
+            t2, s2 = resolve(slot.get("track2"))
+            rows.append((t, "talk", t1, s1, t2, s2))
+        else:  # break / plenary -> shared full-width row
+            title = (slot.get("title") or {}).get("en", "")
+            rows.append((t, "shared", title, "", "", ""))
+    return rows
+
+
 def build_agenda(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     paint_background(slide, image=BG_IMG)
@@ -269,30 +361,10 @@ def build_agenda(prs):
     # Discord QR — top-right corner, caption to the left of the QR.
     add_discord_qr(slide, left=Inches(11.03), top=Inches(0.55), size=Inches(1.7))
 
-    # Two-track schedule from data/schedule.yaml + content/sessions/*.md
+    # Two-track schedule, loaded live from data/schedule.yaml + content/sessions/*.md.
     # (time, kind, track1_title, track1_speaker, track2_title, track2_speaker)
     # kind: "talk" | "shared" — shared rows span both columns (breaks/plenary).
-    rows = [
-        ("09:00", "shared", "Breakfast & networking", "", "", ""),
-        ("10:00", "talk",
-            "Emerging Frontiers: Ransomware Attacks in AI Systems", "Behnaz Karimi",
-            "WebAuthn: How to get rid of passwords.", "Joost van Dijk"),
-        ("11:00", "talk",
-            "Alert Fatigue Therapy: Fixing Broken Detection Rules", "Marvin Ngoma",
-            "Remote Cold Execution", "Tom Kern"),
-        ("11:45", "shared", "Lunch", "", "", ""),
-        ("12:45", "talk",
-            "We Scanned 10,000 Danish Orgs Without Sending a Single Packet", "Morten von Seelen",
-            "Trustless Consensus Manipulation Through Bribing Contracts", "Bence Sooki-Toth"),
-        ("13:50", "talk",
-            "RTFM - Read The Fatal Manual: When Documentation Creates Critical Misconfiguration", "Martin Sohn Christensen",
-            "An introduction to Post-Quantum Cryptography for the practitioner", "Kasper Hald"),
-        ("14:50", "talk",
-            "Nebula - 5 years, still kicking *aaS", "Bleon Proko",
-            "Build your own IDS", "Eleni Ioakeim"),
-        ("15:30", "shared", "Networking session", "", "", ""),
-        ("16:30", "shared", "Continue at Fredagscaféen", "", "", ""),
-    ]
+    rows = load_agenda_rows()
 
     # Layout: time column | Track 1 | Track 2
     left_margin = Inches(0.6)
@@ -554,18 +626,18 @@ def load_speakers():
         p for p in SPEAKERS_DIR.glob("*.md")
         if not p.stem.endswith(".da") and not p.stem.startswith("_")
     )
+    # Primary source of truth: each session's room ("Store aud"=1, "Lille aud"=2).
+    slug_track = session_track_map(load_sessions())
     speakers = []
     for sf in files:
         s = parse_speaker(sf)
         if not s:
             continue
         s["photo"] = find_photo(s["slug"])
-        if s["slug"] in TRACK_1:
-            s["track"] = 1
-        elif s["slug"] in TRACK_2:
-            s["track"] = 2
+        if s["slug"] in slug_track:
+            s["track"] = slug_track[s["slug"]]
         else:
-            print(f"  warn: {s['slug']} not assigned to a track — placing in Track 1")
+            print(f"  warn: {s['slug']} has no session room — placing in Track 1")
             s["track"] = 1
         speakers.append(s)
     # Track 1 alpha, then Track 2 alpha
@@ -636,6 +708,115 @@ def add_sections(prs, template_count: int, speakers: list):
     add_section("Track 2", track2)
 
 
+# --- Sponsors ----------------------------------------------------------------------
+def load_sponsor_tiers() -> list:
+    """Return [{label, sponsors:[{name,url,logo,darkBg}]}] for non-empty tiers."""
+    data = yaml.safe_load(SPONSORS_YAML.read_text(encoding="utf-8")) or {}
+    tiers = []
+    for tier in data.get("tiers", []):
+        sponsors = tier.get("sponsors") or []
+        if not sponsors:
+            continue  # skip empty tiers (e.g. Community Food Friends)
+        tiers.append({
+            "label": (tier.get("name") or {}).get("en", ""),
+            "sponsors": [{
+                "name": sp.get("name", ""),
+                "logo": sp.get("logo", ""),
+                "darkBg": bool(sp.get("darkBg", False)),
+            } for sp in sponsors],
+        })
+    return tiers
+
+
+def resolve_logo(logo_rel: str) -> Path | None:
+    """Resolve a sponsors.yaml logo path to a raster file (rasterizing SVG via rsvg)."""
+    if not logo_rel:
+        return None
+    src = SPONSORS_DIR / Path(logo_rel).name
+    if not src.exists():
+        print(f"  warn: sponsor logo not found: {src.name}")
+        return None
+    if src.suffix.lower() != ".svg":
+        return src
+    out = OUT_DIR / f"_sponsor_{src.stem}.png"
+    try:
+        subprocess.run(["rsvg-convert", "-h", "600", str(src), "-o", str(out)],
+                       check=True, capture_output=True)
+        return out
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        print(f"  warn: could not rasterize {src.name}: {e}")
+        return None
+
+
+def build_sponsors(prs):
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    paint_background(slide, image=BG_IMG)
+    add_logo(slide, Inches(0.6), Inches(0.35), height=Inches(0.5))
+    accent_bar(slide, top=Inches(1.1), left=Inches(0.6), width=Inches(0.7))
+
+    add_text(slide, Inches(0.6), Inches(1.22), Inches(12), Inches(0.7),
+             "Thank You to Our Sponsors", size=34, bold=True, color=TEXT, font=FONT_HEAD)
+    add_text(slide, Inches(0.6), Inches(1.9), Inches(12), Inches(0.35),
+             "BSides Aarhus 2026 is made possible by", size=11,
+             color=TEXT_MUTED, font=FONT_MONO)
+
+    tiers = load_sponsor_tiers()
+    if not tiers:
+        footer(slide, "Sponsors")
+        return
+
+    left_margin = 0.6
+    content_w = 13.333 - left_margin * 2
+    region_top, region_bottom = 2.55, 6.75
+    tier_h = (region_bottom - region_top) / len(tiers)
+    logo_h = min(0.8, tier_h - 0.55)  # leave room for the tier label
+    pad = 0.10                        # white-tile padding around dark-bg logos
+    gap = 0.5                         # horizontal gap between logos
+
+    for ti, tier in enumerate(tiers):
+        tier_top = region_top + tier_h * ti
+
+        add_text(slide, Inches(left_margin), Inches(tier_top),
+                 Inches(content_w), Inches(0.3),
+                 tier["label"].upper(), size=12, bold=True, color=ACCENT,
+                 font=FONT_MONO, align=PP_ALIGN.CENTER)
+
+        # Measure each logo at the target height, preserving aspect ratio.
+        items = []
+        for sp in tier["sponsors"]:
+            path = resolve_logo(sp["logo"])
+            if path is None:
+                continue
+            with Image.open(path) as im:
+                aspect = im.width / im.height if im.height else 3.0
+            w = min(logo_h * aspect, 3.4)  # cap very wide logos
+            items.append((sp, path, w))
+        if not items:
+            continue
+
+        total_w = sum(w for *_, w in items) + gap * (len(items) - 1)
+        scale = min(1.0, content_w / total_w) if total_w else 1.0
+        h = logo_h * scale
+        row_center = tier_top + 0.32 + (tier_h - 0.32) / 2
+        x = left_margin + (content_w - total_w * scale) / 2
+
+        for sp, path, w in items:
+            w *= scale
+            top = row_center - h / 2
+            if sp["darkBg"]:
+                tile = slide.shapes.add_shape(
+                    MSO_SHAPE.ROUNDED_RECTANGLE,
+                    Inches(x - pad), Inches(top - pad),
+                    Inches(w + pad * 2), Inches(h + pad * 2))
+                tile.adjustments[0] = 0.12
+                set_solid(tile, WHITE)
+            slide.shapes.add_picture(str(path), Inches(x), Inches(top),
+                                     width=Inches(w), height=Inches(h))
+            x += w + gap * scale
+
+    footer(slide, "Sponsors")
+
+
 def main():
     # Pre-render the dotted backgrounds (base + elevated tone for dividers).
     build_background(BG_IMG, base=(0x0A, 0x0A, 0x0F))
@@ -651,6 +832,7 @@ def main():
     build_section_divider(prs)
     build_content(prs)
     build_speaker_bio(prs)  # generic placeholder template
+    build_sponsors(prs)     # sponsors, grouped by tier from data/sponsors.yaml
     template_count = len(prs.slides)
 
     # --- Speaker slides, grouped Track 1 then Track 2 ---
