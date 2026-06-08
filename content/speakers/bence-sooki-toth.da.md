@@ -4,6 +4,7 @@ tagline: Master's Student, Aarhus University
 links:
   linkedin: https://www.linkedin.com/in/stbence/
   website: https://0xsooki.github.io/
+  company: https://au.dk
 ---
 
 Bence is a Master's student at Aarhus University and a research assistant at Eötvös Loránd University, working at the intersection of cryptography, game theory, and consensus protocols.

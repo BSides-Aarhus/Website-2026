@@ -3,6 +3,7 @@ title: "Joost van Dijk"
 tagline: Developer Advocate, Yubico
 links:
   linkedin: https://www.linkedin.com/in/joostd/
+  company: https://www.yubico.com
 ---
 
 Joost is a Developer Advocate at Yubico and a security and privacy professional with deep expertise in federated single sign-on, multi-factor authentication, FIDO, passkeys, PKI, TLS, and hardware security.
