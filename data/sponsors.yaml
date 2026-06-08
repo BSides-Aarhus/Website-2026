@@ -29,6 +29,13 @@ tiers:
         description:
           en: "Tech Hub Aarhus connects the city's tech community through events, meetups, and partnerships that bring together developers, startups, and established companies."
           da: "Tech Hub Aarhus forbinder byens tech-miljø gennem arrangementer, meetups og partnerskaber, der samler udviklere, startups og etablerede virksomheder."
+      - name: "Sticker Mule"
+        url: "https://www.stickermule.com"
+        logo: "/images/sponsors/sticker-mule.png"
+        darkBg: true
+        description:
+          en: "Sticker Mule is the easiest way to buy custom printed products. They make ordering fast, easy and fun, and are sponsoring the stickers for BSides Aarhus 2026."
+          da: "Sticker Mule er den nemmeste måde at købe custom printede produkter på. De gør bestilling hurtig, nem og sjov og sponsorerer klistermærkerne til BSides Aarhus 2026."
 
   - name:
       en: "Community Food Friends"
