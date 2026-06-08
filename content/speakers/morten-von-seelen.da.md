@@ -1,6 +1,6 @@
 ---
 title: Morten von Seelen
-tagline: TRUESEC, Vice President
+tagline: Vice President, Truesec
 links:
   linkedin: https://www.linkedin.com/in/vonseelen/
   website: https://tinyurl.com/MvSeeBlog

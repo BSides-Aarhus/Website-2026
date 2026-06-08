@@ -1,6 +1,6 @@
 ---
 title: Martin Sohn Christensen
-tagline: Security Researcher @ SpecterOps
+tagline: Security Researcher, SpecterOps
 links:
   linkedin: https://linkedin.com/in/martinsohn
   website: https://martinsohn.dk

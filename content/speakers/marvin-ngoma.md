@@ -1,6 +1,6 @@
 ---
 title: Marvin Ngoma
-tagline: Elastic, Principal Security Architect, Security Evangelist
+tagline: Principal Security Architect, Security Evangelist, Elastic
 links:
   linkedin: https://www.linkedin.com/in/tyolani/
   website: https://www.elastic.co/blog/author/marvin-ngoma

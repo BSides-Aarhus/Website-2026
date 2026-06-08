@@ -1,6 +1,6 @@
 ---
 title: "Joost van Dijk"
-tagline: "Developer Advocate at Yubico"
+tagline: Developer Advocate, Yubico
 links:
   linkedin: https://www.linkedin.com/in/joostd/
 ---

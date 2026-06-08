@@ -1,6 +1,6 @@
 ---
 title: "Kasper Hald"
-tagline: "Freelance Consultant at ApplSec Consult"
+tagline: Freelance Consultant, ApplSec Consult
 links:
   linkedin: https://www.linkedin.com/in/kasper-hald-6622623/
 ---

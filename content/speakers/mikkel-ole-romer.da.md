@@ -1,6 +1,6 @@
 ---
 title: Mikkel Ole Rømer
-tagline: Truesec, Head of Offensive Security
+tagline: Head of Offensive Security, Truesec
 links:
   linkedin: https://www.linkedin.com/in/mikkel-r%C3%B8mer/
   website: https://sessionize.com/mikkel-ole-romer

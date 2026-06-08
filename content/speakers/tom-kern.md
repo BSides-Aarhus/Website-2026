@@ -1,6 +1,6 @@
 ---
 title: Tom Kern
-tagline: SecOps Automation Lead @ Conscia MDR
+tagline: SecOps Automation Lead, Conscia MDR
 links:
   linkedin: https://www.linkedin.com/in/kerntom
   website: https://truly-smart.eu/

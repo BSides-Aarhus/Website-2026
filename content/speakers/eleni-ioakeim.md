@@ -1,6 +1,6 @@
 ---
 title: Eleni Ioakeim
-tagline: Truesec, OT Threat Analyst
+tagline: OT Threat Analyst, Truesec
 links:
   company: https://truesec.dk
 ---

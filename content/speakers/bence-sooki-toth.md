@@ -1,6 +1,6 @@
 ---
 title: "Bence Soóki-Tóth"
-tagline: Aarhus University, Master's Student
+tagline: Master's Student, Aarhus University
 links:
   linkedin: https://www.linkedin.com/in/stbence/
   website: https://0xsooki.github.io/
