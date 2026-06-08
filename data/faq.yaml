@@ -46,14 +46,6 @@ items:
 
   - category: program
     question:
-      en: "Does BSides Aarhus 2026 cover AI security and LLM risks?"
-      da: "Dækker BSides Aarhus 2026 AI-sikkerhed og LLM-risici?"
-    answer:
-      en: "Yes. <a href=\"/sessions/ransomware-ai-systems/\">Emerging Frontiers: Ransomware Attacks in AI Systems</a> by <a href=\"/speakers/behnaz-karimi/\">Behnaz Karimi</a> (OWASP AI Exchange) covers ransomware exploitation of AI/ML supply chains and pipelines, referencing OWASP ML06: 2023 ML Supply Chain Attacks and OWASP LLM06: Excessive Agency. The session includes practical strategies to detect and mitigate ransomware threats against modern AI infrastructures. See <a href=\"/topics/ai-security/\">AI security</a> and <a href=\"/topics/llm-security/\">LLM security</a> topics."
-      da: "Ja. <a href=\"/da/sessions/ransomware-ai-systems/\">Emerging Frontiers: Ransomware Attacks in AI Systems</a> af <a href=\"/da/speakers/behnaz-karimi/\">Behnaz Karimi</a> (OWASP AI Exchange) dækker ransomware-exploitation af AI/ML-forsyningskæder og -pipelines med reference til OWASP ML06: 2023 ML Supply Chain Attacks og OWASP LLM06: Excessive Agency. Sessionen indeholder praktiske strategier til at detektere og afbøde ransomware-trusler mod moderne AI-infrastrukturer. Se emnerne <a href=\"/da/topics/ai-security/\">AI-sikkerhed</a> og <a href=\"/da/topics/llm-security/\">LLM-sikkerhed</a>."
-
-  - category: program
-    question:
       en: "Are talks at BSides Aarhus 2026 technical or beginner-friendly?"
       da: "Er foredragene på BSides Aarhus 2026 tekniske eller for begyndere?"
     answer:

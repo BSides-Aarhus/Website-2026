@@ -6,7 +6,7 @@ timeSlots:
     da: Morgenmad og netværk
 - time: '10:00'
   type: parallel
-  track1: ransomware-ai-systems
+  track1: tba
   track2: webauthn-passwordless
 - time: '11:00'
   type: parallel
