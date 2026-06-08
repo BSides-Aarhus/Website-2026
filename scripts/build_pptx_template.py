@@ -765,54 +765,77 @@ def build_sponsors(prs):
         footer(slide, "Sponsors")
         return
 
+    # Uniform logo cards: every sponsor gets an equally sized card and the logo is
+    # scaled to FIT inside it (contain), so wide wordmarks and square marks carry the
+    # same visual weight instead of the wide ones dominating.
     left_margin = 0.6
     content_w = 13.333 - left_margin * 2
-    region_top, region_bottom = 2.55, 6.75
+    region_top, region_bottom = 2.05, 7.05
     tier_h = (region_bottom - region_top) / len(tiers)
-    logo_h = min(0.8, tier_h - 0.55)  # leave room for the tier label
-    pad = 0.10                        # white-tile padding around dark-bg logos
-    gap = 0.5                         # horizontal gap between logos
+
+    label_h = 0.28
+    card_gap = 0.45
+    card_w = 4.0                         # uniform card width
+    card_h = tier_h - label_h - 0.16     # uniform card height
+    inner_pad = 0.12                     # padding between card edge and logo
 
     for ti, tier in enumerate(tiers):
         tier_top = region_top + tier_h * ti
 
         add_text(slide, Inches(left_margin), Inches(tier_top),
-                 Inches(content_w), Inches(0.3),
+                 Inches(content_w), Inches(label_h),
                  tier["label"].upper(), size=12, bold=True, color=ACCENT,
                  font=FONT_MONO, align=PP_ALIGN.CENTER)
 
-        # Measure each logo at the target height, preserving aspect ratio.
         items = []
         for sp in tier["sponsors"]:
             path = resolve_logo(sp["logo"])
-            if path is None:
-                continue
-            with Image.open(path) as im:
-                aspect = im.width / im.height if im.height else 3.0
-            w = min(logo_h * aspect, 3.4)  # cap very wide logos
-            items.append((sp, path, w))
+            if path is not None:
+                items.append((sp, path))
         if not items:
             continue
 
-        total_w = sum(w for *_, w in items) + gap * (len(items) - 1)
-        scale = min(1.0, content_w / total_w) if total_w else 1.0
-        h = logo_h * scale
-        row_center = tier_top + 0.32 + (tier_h - 0.32) / 2
-        x = left_margin + (content_w - total_w * scale) / 2
+        n = len(items)
+        row_w = n * card_w + card_gap * (n - 1)
+        s = min(1.0, content_w / row_w)          # shrink cards only if the row overflows
+        cw, ch = card_w * s, card_h
+        cards_top = tier_top + label_h + 0.06
+        x = left_margin + (content_w - (n * cw + card_gap * s * (n - 1))) / 2
 
-        for sp, path, w in items:
-            w *= scale
-            top = row_center - h / 2
+        for sp, path in items:
+            # Subtle bordered panel defining the logo area (12% so dots show through).
+            card = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,
+                                          Inches(x), Inches(cards_top), Inches(cw), Inches(ch))
+            card.adjustments[0] = 0.08
+            card.fill.solid()
+            card.fill.fore_color.rgb = BG_CARD
+            card.line.color.rgb = BORDER
+            card.line.width = Pt(0.75)
+            card.shadow.inherit = False
+            csf = card.fill._xPr.find(qn('a:solidFill')).find(qn('a:srgbClr'))
+            csf.append(csf.makeelement(qn('a:alpha'), {'val': '12000'}))
+
+            # Dark-on-light logos get a white plate filling most of the card.
             if sp["darkBg"]:
-                tile = slide.shapes.add_shape(
+                plate = slide.shapes.add_shape(
                     MSO_SHAPE.ROUNDED_RECTANGLE,
-                    Inches(x - pad), Inches(top - pad),
-                    Inches(w + pad * 2), Inches(h + pad * 2))
-                tile.adjustments[0] = 0.12
-                set_solid(tile, WHITE)
-            slide.shapes.add_picture(str(path), Inches(x), Inches(top),
-                                     width=Inches(w), height=Inches(h))
-            x += w + gap * scale
+                    Inches(x + 0.08), Inches(cards_top + 0.08),
+                    Inches(cw - 0.16), Inches(ch - 0.16))
+                plate.adjustments[0] = 0.08
+                set_solid(plate, WHITE)
+                plate.shadow.inherit = False
+
+            # Contain-fit the logo inside the padded card interior.
+            ipw, iph = cw - 2 * inner_pad, ch - 2 * inner_pad
+            with Image.open(path) as im:
+                aspect = im.width / im.height if im.height else 3.0
+            fit_w = min(ipw, iph * aspect)
+            fit_h = fit_w / aspect
+            lx = x + (cw - fit_w) / 2
+            ly = cards_top + (ch - fit_h) / 2
+            slide.shapes.add_picture(str(path), Inches(lx), Inches(ly),
+                                     width=Inches(fit_w), height=Inches(fit_h))
+            x += cw + card_gap * s
 
     footer(slide, "Sponsors")
 
