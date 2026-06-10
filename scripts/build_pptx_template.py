@@ -228,7 +228,7 @@ def build_cover(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     paint_background(slide, image=BG_IMG)
 
-    add_logo(slide, Inches(0.6), Inches(0.55), height=Inches(0.7))
+    add_logo(slide, Inches(0.6), Inches(0.55), height=Inches(1.0))
 
     add_text(slide, Inches(0.6), Inches(2.2), Inches(12), Inches(0.5),
              "SECURITY CONFERENCE  ·  AARHUS",
@@ -349,7 +349,7 @@ def load_agenda_rows() -> list:
 def build_agenda(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     paint_background(slide, image=BG_IMG)
-    add_logo(slide, Inches(0.6), Inches(0.35), height=Inches(0.5))
+    add_logo(slide, Inches(0.6), Inches(0.35), height=Inches(0.72))
     accent_bar(slide, top=Inches(1.1), left=Inches(0.6), width=Inches(0.7))
 
     add_text(slide, Inches(0.6), Inches(1.22), Inches(12), Inches(0.7),
@@ -479,7 +479,7 @@ def build_section_divider(prs):
 def build_content(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     paint_background(slide, image=BG_IMG)
-    add_logo(slide, Inches(0.6), Inches(0.5), height=Inches(0.5))
+    add_logo(slide, Inches(0.6), Inches(0.5), height=Inches(0.72))
     accent_bar(slide, top=Inches(1.3), left=Inches(0.6), width=Inches(0.7))
 
     add_text(slide, Inches(0.6), Inches(1.45), Inches(12), Inches(0.8),
@@ -521,7 +521,7 @@ def build_speaker_bio(prs, *, name="Speaker Name", role="Role  ·  Company",
                       photo: Path | None = None):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     paint_background(slide, image=BG_IMG)
-    add_logo(slide, Inches(0.6), Inches(0.5), height=Inches(0.5))
+    add_logo(slide, Inches(0.6), Inches(0.5), height=Inches(0.72))
 
     # Photo card
     card = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,
@@ -751,7 +751,7 @@ def resolve_logo(logo_rel: str) -> Path | None:
 def build_sponsors(prs):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     paint_background(slide, image=BG_IMG)
-    add_logo(slide, Inches(0.6), Inches(0.35), height=Inches(0.5))
+    add_logo(slide, Inches(0.6), Inches(0.35), height=Inches(0.72))
     accent_bar(slide, top=Inches(1.1), left=Inches(0.6), width=Inches(0.7))
 
     add_text(slide, Inches(0.6), Inches(1.22), Inches(12), Inches(0.7),
