@@ -155,6 +155,8 @@ other = "Gratis"
 other = "Køb billetter"
 [tickets_apply]
 other = "Ansøg om gratis billet"
+[tickets_waitlist]
+other = "Skriv dig på ventelisten"
 [tickets_perk_access]
 other = "Fuld dags konferenceadgang"
 [tickets_perk_tracks]

@@ -147,6 +147,15 @@ h3 { font-size: 1.25rem; }
 }
 .btn-lg { padding: 1rem 2.5rem; font-size: 1.125rem; }
 .btn-sm { padding: 0.5rem 1.25rem; font-size: 0.875rem; }
+/* Disabled button (e.g. a sold-out ticket) — greyed and not pressable */
+.btn--disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  filter: grayscale(70%);
+}
 
 /* Navigation */
 .site-nav {
@@ -798,6 +807,13 @@ h3 { font-size: 1.25rem; }
   margin-right: 0.25em;
 }
 .ticket-stats-basket--empty {
+  display: none;
+}
+/* Waitlist CTA — shown under the counter only when the whole event is sold out */
+.ticket-stats-waitlist {
+  margin-top: var(--space-md);
+}
+.ticket-stats-waitlist[hidden] {
   display: none;
 }
 

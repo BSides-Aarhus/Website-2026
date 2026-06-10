@@ -316,6 +316,14 @@
         applyCardState(card, tt);
       });
     }
+
+    // Show the waitlist CTA only when the whole event is sold out.
+    var waitlistEl = document.getElementById('ticket-waitlist');
+    if (waitlistEl) {
+      var allSoldOut =
+        data.total_available > 0 && data.total_sold >= data.total_available;
+      waitlistEl.hidden = !allSoldOut;
+    }
   }
 
   // Apply live sold-out state to a single ticket card. The badge and the
@@ -327,6 +335,20 @@
       (tt.amount_remaining != null && tt.amount_remaining <= 0);
     var badge = card.querySelector('.ticket-badge--sold-out');
     var remainingBlock = card.querySelector('.ticket-remaining');
+    var buyBtn = card.querySelector('a.btn');
+
+    // Grey out / re-enable the buy button to match the live sold-out state.
+    if (buyBtn) {
+      if (soldOut) {
+        buyBtn.classList.add('btn--disabled');
+        buyBtn.setAttribute('aria-disabled', 'true');
+        buyBtn.setAttribute('tabindex', '-1');
+      } else {
+        buyBtn.classList.remove('btn--disabled');
+        buyBtn.removeAttribute('aria-disabled');
+        buyBtn.removeAttribute('tabindex');
+      }
+    }
 
     if (soldOut) {
       if (remainingBlock) remainingBlock.style.display = 'none';

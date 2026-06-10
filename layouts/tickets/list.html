@@ -33,6 +33,9 @@
               <span class="ticket-stats-basket-count" id="tickets-in-basket">{{ $inBasket }}</span>
               {{ i18n "tickets_in_basket_label" }}
             </div>
+            {{/* Waitlist CTA — only when the whole event is sold out */}}
+            {{ $allSoldOut := and (gt .total_available 0) (ge .total_sold .total_available) }}
+            <a href="{{ site.Params.ticketURL }}" class="btn btn-primary ticket-stats-waitlist" id="ticket-waitlist"{{ if not $allSoldOut }} hidden{{ end }} target="_blank" rel="noopener">{{ i18n "tickets_waitlist" }}</a>
           </div>
         {{ end }}
       {{ end }}
@@ -65,7 +68,7 @@
             <li>{{ i18n "tickets_perk_networking" }}</li>
             <li>{{ i18n "tickets_student_note" }}</li>
           </ul>
-          <a href="{{ site.Params.ticketURL }}" class="btn btn-secondary" target="_blank" rel="noopener">{{ i18n "tickets_apply" }}</a>
+          <a href="{{ site.Params.ticketURL }}" class="btn btn-secondary{{ with $studentData }}{{ if .is_sold_out }} btn--disabled{{ end }}{{ end }}"{{ with $studentData }}{{ if .is_sold_out }} aria-disabled="true" tabindex="-1"{{ end }}{{ end }} target="_blank" rel="noopener">{{ i18n "tickets_apply" }}</a>
         </div>
 
         {{/* Human Ticket */}}
@@ -101,7 +104,7 @@
             <li>{{ i18n "tickets_perk_networking" }}</li>
             <li>{{ i18n "tickets_perk_afterparty" }}</li>
           </ul>
-          <a href="{{ site.Params.ticketURL }}" class="btn btn-primary" target="_blank" rel="noopener">{{ i18n "tickets_buy" }}</a>
+          <a href="{{ site.Params.ticketURL }}" class="btn btn-primary{{ with $humanData }}{{ if .is_sold_out }} btn--disabled{{ end }}{{ end }}"{{ with $humanData }}{{ if .is_sold_out }} aria-disabled="true" tabindex="-1"{{ end }}{{ end }} target="_blank" rel="noopener">{{ i18n "tickets_buy" }}</a>
         </div>
 
         {{/* Community Friend Ticket */}}
@@ -138,7 +141,7 @@
             <li>{{ i18n "tickets_perk_afterparty" }}</li>
             <li class="perk-highlight">{{ i18n "tickets_perk_support" }}</li>
           </ul>
-          <a href="{{ site.Params.ticketURL }}" class="btn btn-primary" target="_blank" rel="noopener">{{ i18n "tickets_buy" }}</a>
+          <a href="{{ site.Params.ticketURL }}" class="btn btn-primary{{ with $friendData }}{{ if .is_sold_out }} btn--disabled{{ end }}{{ end }}"{{ with $friendData }}{{ if .is_sold_out }} aria-disabled="true" tabindex="-1"{{ end }}{{ end }} target="_blank" rel="noopener">{{ i18n "tickets_buy" }}</a>
         </div>
       </div>
 
