@@ -318,12 +318,29 @@
     }
 
     // Show the waitlist CTA only when the whole event is sold out.
+    var allSoldOut =
+      data.total_available > 0 && data.total_sold >= data.total_available;
+
     var waitlistEl = document.getElementById('ticket-waitlist');
     if (waitlistEl) {
-      var allSoldOut =
-        data.total_available > 0 && data.total_sold >= data.total_available;
       waitlistEl.hidden = !allSoldOut;
     }
+
+    // Swap the "Get Tickets" CTAs (hero + nav) to the waitlist when sold out.
+    var ctas = document.querySelectorAll('.js-tickets-cta');
+    Array.prototype.forEach.call(ctas, function (cta) {
+      if (allSoldOut) {
+        cta.textContent = cta.dataset.waitlistLabel;
+        cta.setAttribute('href', cta.dataset.waitlistUrl);
+        cta.setAttribute('target', '_blank');
+        cta.setAttribute('rel', 'noopener');
+      } else {
+        cta.textContent = cta.dataset.ticketsLabel;
+        cta.setAttribute('href', cta.dataset.ticketsUrl);
+        cta.removeAttribute('target');
+        cta.removeAttribute('rel');
+      }
+    });
   }
 
   // Apply live sold-out state to a single ticket card. The badge and the

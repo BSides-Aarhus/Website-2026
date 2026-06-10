@@ -14,7 +14,12 @@
       <li><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a></li>
       {{ end }}
       <li class="nav-cta">
-        <a href="{{ "/tickets/" | relLangURL }}" class="btn btn-primary btn-sm">{{ i18n "cta_tickets" }}</a>
+        {{ $ctaSoldOut := and (gt site.Data.tickets.total_available 0) (ge site.Data.tickets.total_sold site.Data.tickets.total_available) }}
+        <a href="{{ if $ctaSoldOut }}{{ site.Params.ticketURL }}{{ else }}{{ "/tickets/" | relLangURL }}{{ end }}"
+           class="btn btn-primary btn-sm js-tickets-cta"
+           data-tickets-url="{{ "/tickets/" | relLangURL }}" data-waitlist-url="{{ site.Params.ticketURL }}"
+           data-tickets-label="{{ i18n "cta_tickets" }}" data-waitlist-label="{{ i18n "tickets_waitlist" }}"
+           {{ if $ctaSoldOut }}target="_blank" rel="noopener"{{ end }}>{{ if $ctaSoldOut }}{{ i18n "tickets_waitlist" }}{{ else }}{{ i18n "cta_tickets" }}{{ end }}</a>
       </li>
     </ul>
     <div class="lang-switch">
