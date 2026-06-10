@@ -275,6 +275,16 @@ h3 { font-size: 1.25rem; }
   letter-spacing: 0.1em;
   margin-top: var(--space-xs);
 }
+/* Live status shown once the countdown reaches zero (conference ongoing / over) */
+.countdown-status {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--color-accent-light);
+  text-align: center;
+}
+.countdown-status[hidden] { display: none; }
+.countdown--ended { gap: 0; }
+.countdown--ended .countdown-item { display: none; }
 
 /* Feature Cards (homepage) */
 .features-grid {

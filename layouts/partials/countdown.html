@@ -1,4 +1,27 @@
-<div class="countdown" data-target="{{ site.Params.conferenceDate }}">
+{{/* Build the conference-day timeline from the schedule so the live status
+     (e.g. "Session in progress") stays in sync with data/schedule.yaml. */}}
+{{ $datePart := substr site.Params.conferenceDate 0 10 }}
+{{ $tz := substr site.Params.conferenceDate 19 }}
+{{ $slots := slice }}
+{{ range site.Data.schedule.timeSlots }}
+  {{ $status := "session" }}
+  {{ if eq .type "break" }}
+    {{ if in (lower .title.en) "lunch" }}{{ $status = "lunch" }}{{ else }}{{ $status = "breakfast" }}{{ end }}
+  {{ else if eq .type "plenary" }}
+    {{ $status = "networking" }}
+  {{ end }}
+  {{ $slots = $slots | append (dict "start" (printf "%sT%s:00%s" $datePart .time $tz) "status" $status) }}
+{{ end }}
+{{ $labels := dict
+  "session" (i18n "status_session")
+  "networking" (i18n "status_networking")
+  "breakfast" (i18n "status_breakfast")
+  "lunch" (i18n "status_lunch")
+  "thanks" (i18n "status_thanks") }}
+<div class="countdown" data-target="{{ site.Params.conferenceDate }}"
+     data-end="{{ site.Params.conferenceEndDate }}"
+     data-schedule='{{ $slots | jsonify }}'
+     data-status-labels='{{ $labels | jsonify }}'>
   <div class="countdown-item">
     <span class="countdown-value" id="cd-days">--</span>
     <span class="countdown-label">{{ i18n "countdown_days" }}</span>
@@ -15,4 +38,5 @@
     <span class="countdown-value" id="cd-secs">--</span>
     <span class="countdown-label">{{ i18n "countdown_seconds" }}</span>
   </div>
+  <div class="countdown-status" id="countdown-status" hidden></div>
 </div>

@@ -120,16 +120,37 @@
   if (!el) return;
 
   const target = new Date(el.dataset.target).getTime();
+  const endTime = el.dataset.end ? new Date(el.dataset.end).getTime() : null;
+  const statusEl = document.getElementById('countdown-status');
+
+  let schedule = [];
+  let statusLabels = {};
+  try { schedule = JSON.parse(el.dataset.schedule || '[]'); } catch (e) { /* noop */ }
+  try { statusLabels = JSON.parse(el.dataset.statusLabels || '{}'); } catch (e) { /* noop */ }
+
+  // While the conference runs, show the active slot's status; after it ends,
+  // show the thank-you message. Returns '' if nothing applies.
+  function currentStatusText(now) {
+    if (endTime && now >= endTime) return statusLabels.thanks || '';
+    let active = null;
+    for (let i = 0; i < schedule.length; i++) {
+      if (new Date(schedule[i].start).getTime() <= now) active = schedule[i];
+    }
+    return active ? (statusLabels[active.status] || '') : '';
+  }
 
   function update() {
     const now = Date.now();
     const diff = target - now;
 
     if (diff <= 0) {
-      document.getElementById('cd-days').textContent = '0';
-      document.getElementById('cd-hours').textContent = '0';
-      document.getElementById('cd-mins').textContent = '0';
-      document.getElementById('cd-secs').textContent = '0';
+      // Countdown reached zero — swap the digits for a live status message.
+      const text = currentStatusText(now);
+      if (statusEl && text) {
+        statusEl.textContent = text;
+        statusEl.hidden = false;
+        el.classList.add('countdown--ended');
+      }
       return;
     }
 

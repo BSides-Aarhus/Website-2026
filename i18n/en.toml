@@ -39,6 +39,16 @@ other = "Hours"
 other = "Minutes"
 [countdown_seconds]
 other = "Seconds"
+[status_session]
+other = "Session in progress"
+[status_networking]
+other = "Networking in progress"
+[status_breakfast]
+other = "Breakfast in progress"
+[status_lunch]
+other = "Lunch in progress"
+[status_thanks]
+other = "Thank you for being part of BSides Aarhus 2026!"
 
 # Homepage
 [home_about_title]

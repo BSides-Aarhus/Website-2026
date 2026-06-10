@@ -2,8 +2,8 @@ timeSlots:
 - time: 09:00
   type: break
   title:
-    en: Breakfast and network
-    da: Morgenmad og netværk
+    en: Breakfast
+    da: Morgenmad
 - time: '10:00'
   type: parallel
   track1: tba
