@@ -7,8 +7,17 @@
 //   ALLOWED_ORIGIN — Your site origin (e.g., https://bsidesaarhus.dk)
 //   PUBLIC_TICKET_TYPE_UUIDS — Comma-separated UUIDs of public ticket types
 //     (excludes internal types like Speaker/Crew/Goon from the counter)
+//   EVENT_CAPACITY — Hard venue capacity. Ticketbutler lets the sum of
+//     per-type totals exceed the real room size, which leaves "phantom"
+//     leftover seats. When the event hits this number it is sold out even if
+//     an individual type still shows a spare seat. Defaults to DEFAULT_EVENT_CAPACITY.
 
 const CACHE_TTL = 30; // seconds — how long to cache responses
+
+// Venue hard cap. The sum of per-type totals (currently 241) can exceed this;
+// the extra slot is not actually sellable, so we treat the event as sold out
+// once total_sold reaches this number. Override with the EVENT_CAPACITY env var.
+const DEFAULT_EVENT_CAPACITY = 240;
 
 const DEFAULT_PUBLIC_UUIDS = [
   "ad0158e893ec46a58b6d1266f71aed64", // Human
@@ -110,10 +119,17 @@ export default {
         (sum, t) => sum + (t.amount_sold || 0),
         0
       );
-      const totalAvailable = ticketTypes.reduce(
+      const sumOfTotals = ticketTypes.reduce(
         (sum, t) => sum + (t.amount_total || 0),
         0
       );
+      const eventCapacity = Number(env.EVENT_CAPACITY) || DEFAULT_EVENT_CAPACITY;
+      // Clamp the advertised total to the real venue cap so the counter can
+      // actually reach 100% (otherwise it sticks at e.g. 240/241 forever).
+      const totalAvailable = Math.min(eventCapacity, sumOfTotals);
+      // Seats the venue can still sell, regardless of per-type leftovers.
+      const eventRemaining = Math.max(0, eventCapacity - totalSold);
+      const eventSoldOut = eventRemaining <= 0;
       const totalInBasket = ticketTypes.reduce((sum, t) => {
         const total = t.amount_total || 0;
         const sold = t.amount_sold || 0;
@@ -131,6 +147,9 @@ export default {
           const sold = t.amount_sold || 0;
           const left = t.amount_left == null ? total - sold : t.amount_left;
           const inBasket = Math.max(0, total - sold - left);
+          // Cap each type's leftover to what the venue can still sell, and treat
+          // it as sold out when the type is full OR the whole event is full.
+          const remaining = eventSoldOut ? 0 : Math.min(left, eventRemaining);
           return {
             uuid: t.uuid,
             title: t.title,
@@ -138,9 +157,9 @@ export default {
             currency: t.currency || "DKK",
             amount_total: total,
             amount_sold: sold,
-            amount_remaining: left,
+            amount_remaining: remaining,
             amount_in_basket: inBasket,
-            is_sold_out: sold >= total,
+            is_sold_out: eventSoldOut || sold >= total || remaining <= 0,
           };
         }),
       };
