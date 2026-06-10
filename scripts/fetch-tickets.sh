@@ -21,6 +21,12 @@ OUTPUT="$DATA_DIR/tickets.json"
 DEFAULT_PUBLIC_UUIDS="ad0158e893ec46a58b6d1266f71aed64,fe348f8948554497ad44637bb37103ee,c100b3a716b54a9ab329f76cc123853b"
 PUBLIC_UUIDS="${PUBLIC_TICKET_TYPE_UUIDS:-$DEFAULT_PUBLIC_UUIDS}"
 
+# Venue hard cap. The sum of per-type totals can exceed this; the extra slot(s)
+# are not actually sellable, so the event is sold out once total_sold hits this
+# number even if a type still shows a leftover seat. Mirrors the worker's
+# DEFAULT_EVENT_CAPACITY. Override with the EVENT_CAPACITY env var.
+EVENT_CAPACITY="${EVENT_CAPACITY:-240}"
+
 if [ -z "$TOKEN" ]; then
   echo "⚠️  TICKETBUTLER_API_TOKEN not set — skipping fetch, using existing data/tickets.json"
   exit 0
@@ -56,7 +62,11 @@ TICKET_TYPES=$(echo "$RAW_TICKET_TYPES" | jq \
 
 # Step 3: Build the data file
 TOTAL_SOLD=$(echo "$TICKET_TYPES" | jq '[.[].amount_sold // 0] | add // 0')
-TOTAL_AVAILABLE=$(echo "$TICKET_TYPES" | jq '[.[].amount_total // 0] | add // 0')
+SUM_TOTALS=$(echo "$TICKET_TYPES" | jq '[.[].amount_total // 0] | add // 0')
+# Clamp the advertised total to the venue cap, and compute how many seats the
+# event can still sell regardless of per-type leftovers.
+TOTAL_AVAILABLE=$(( EVENT_CAPACITY < SUM_TOTALS ? EVENT_CAPACITY : SUM_TOTALS ))
+EVENT_REMAINING=$(( EVENT_CAPACITY > TOTAL_SOLD ? EVENT_CAPACITY - TOTAL_SOLD : 0 ))
 TOTAL_IN_BASKET=$(echo "$TICKET_TYPES" | jq '[.[] | (((.amount_total // 0) - (.amount_sold // 0) - (.amount_left // ((.amount_total // 0) - (.amount_sold // 0)))) | if . < 0 then 0 else . end)] | add // 0')
 FETCHED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
@@ -67,8 +77,10 @@ jq -n \
   --argjson total_sold "$TOTAL_SOLD" \
   --argjson total_available "$TOTAL_AVAILABLE" \
   --argjson total_in_basket "$TOTAL_IN_BASKET" \
+  --argjson event_remaining "$EVENT_REMAINING" \
   --argjson ticket_types "$TICKET_TYPES" \
-  '{
+  '($event_remaining <= 0) as $event_sold_out |
+   {
     event_uuid: $event_uuid,
     total_sold: $total_sold,
     total_available: $total_available,
@@ -78,6 +90,7 @@ jq -n \
       $ticket_types[] |
       ((.amount_total // 0) - (.amount_sold // 0)) as $derived_left |
       (.amount_left // $derived_left) as $left |
+      (if $event_sold_out then 0 else ([$left, $event_remaining] | min) end) as $remaining |
       {
         uuid: .uuid,
         title: .title,
@@ -85,9 +98,9 @@ jq -n \
         currency: (.currency // "DKK"),
         amount_total: (.amount_total // 0),
         amount_sold: (.amount_sold // 0),
-        amount_remaining: $left,
+        amount_remaining: $remaining,
         amount_in_basket: (((.amount_total // 0) - (.amount_sold // 0) - $left) | if . < 0 then 0 else . end),
-        is_sold_out: ((.amount_sold // 0) >= (.amount_total // 0)),
+        is_sold_out: ($event_sold_out or ((.amount_sold // 0) >= (.amount_total // 0)) or ($remaining <= 0)),
         active: (.active // true)
       }
     ]

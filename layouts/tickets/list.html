@@ -16,7 +16,8 @@
           <div class="ticket-stats" id="ticket-stats"
                data-sold="{{ .total_sold }}"
                data-total="{{ .total_available }}"
-               data-in-basket="{{ .total_in_basket | default 0 }}">
+               data-in-basket="{{ .total_in_basket | default 0 }}"
+               data-sold-out-label="{{ i18n "tickets_sold_out" }}">
             <div class="ticket-stats-counter">
               <span class="ticket-stats-number" id="tickets-sold">{{ .total_sold }}</span>
               <span class="ticket-stats-separator">/</span>

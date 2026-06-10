@@ -226,6 +226,13 @@
 
   var currentSold = statsEl ? parseInt(statsEl.dataset.sold, 10) || 0 : 0;
 
+  // Localized "Sold Out" label (from the tickets page stats element, falling
+  // back to any badge already rendered on the page).
+  var existingBadge = document.querySelector('.ticket-badge--sold-out');
+  var SOLD_OUT_LABEL =
+    (statsEl && statsEl.dataset.soldOutLabel) ||
+    (existingBadge ? existingBadge.textContent.trim() : 'Sold Out');
+
   function fetchTickets() {
     fetch(WORKER_URL)
       .then(function (res) { return res.ok ? res.json() : null; })
@@ -233,17 +240,16 @@
         if (!data) return;
         var newSold = data.total_sold || 0;
         var diff = newSold - currentSold;
+        currentSold = newSold;
+
+        // Always reconcile to the live data — sold-out state can change even
+        // when the sold count matches the build-time snapshot.
+        updateCounters(data);
 
         if (diff > 0) {
           // Tickets were sold!
-          currentSold = newSold;
-          updateCounters(data);
           showToast(diff);
           pulseCards(data.ticket_types);
-        } else if (newSold !== currentSold) {
-          // Data changed (e.g., refund)
-          currentSold = newSold;
-          updateCounters(data);
         }
       })
       .catch(function () { /* silently fail */ });
@@ -258,6 +264,12 @@
       soldEl.classList.remove('ticket-stats-number--bump');
       void soldEl.offsetWidth;
       soldEl.classList.add('ticket-stats-number--bump');
+    }
+
+    // Update the advertised total (the venue cap can shift between builds)
+    var totalEl = document.querySelector('.ticket-stats-total');
+    if (totalEl && data.total_available > 0) {
+      totalEl.textContent = data.total_available;
     }
 
     // Update progress bar
@@ -296,17 +308,46 @@
       heroBadge.hidden = data.total_sold < data.total_available;
     }
 
-    // Update remaining counts on individual cards
+    // Reconcile each card's full state (sold-out badge, remaining line, count)
     if (data.ticket_types) {
       data.ticket_types.forEach(function (tt) {
         var card = document.querySelector('[data-ticket-uuid="' + tt.uuid + '"]');
         if (!card) return;
-        var remainEl = card.querySelector('.ticket-remaining-count');
-        if (remainEl) {
-          var oldRemain = parseInt(remainEl.textContent, 10) || 0;
-          animateCountUp(remainEl, oldRemain, tt.amount_remaining);
-        }
+        applyCardState(card, tt);
       });
+    }
+  }
+
+  // Apply live sold-out state to a single ticket card. The badge and the
+  // "X remaining" line are decided at build time, so the live data has to be
+  // able to both add the badge and hide the remaining line when a type sells out.
+  function applyCardState(card, tt) {
+    var soldOut =
+      tt.is_sold_out ||
+      (tt.amount_remaining != null && tt.amount_remaining <= 0);
+    var badge = card.querySelector('.ticket-badge--sold-out');
+    var remainingBlock = card.querySelector('.ticket-remaining');
+
+    if (soldOut) {
+      if (remainingBlock) remainingBlock.style.display = 'none';
+      if (!badge) {
+        badge = document.createElement('div');
+        badge.className = 'ticket-badge ticket-badge--sold-out';
+        badge.textContent = SOLD_OUT_LABEL;
+        card.insertBefore(badge, card.firstChild);
+      }
+      return;
+    }
+
+    // Not sold out: remove any stale badge and show/update the remaining line.
+    if (badge) badge.parentNode.removeChild(badge);
+    if (remainingBlock) {
+      remainingBlock.style.display = '';
+      var remainEl = remainingBlock.querySelector('.ticket-remaining-count');
+      if (remainEl) {
+        var oldRemain = parseInt(remainEl.textContent, 10) || 0;
+        animateCountUp(remainEl, oldRemain, tt.amount_remaining);
+      }
     }
   }
 
