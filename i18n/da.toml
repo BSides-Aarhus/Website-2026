@@ -39,6 +39,16 @@ other = "Timer"
 other = "Minutter"
 [countdown_seconds]
 other = "Sekunder"
+[status_session]
+other = "Session i gang"
+[status_networking]
+other = "Networking i gang"
+[status_breakfast]
+other = "Morgenmad i gang"
+[status_lunch]
+other = "Frokost i gang"
+[status_thanks]
+other = "Tak fordi du var en del af BSides Aarhus 2026!"
 
 # Homepage
 [home_about_title]
