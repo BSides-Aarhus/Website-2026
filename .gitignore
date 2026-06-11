@@ -4,3 +4,13 @@ resources/
 REMAINING-TASKS.md
 .DS_Store
 **/.DS_Store
+MEMORY/*
+Plans/*
+
+# Python
+__pycache__/
+*.pyc
+
+# Secrets
+.env
+.env.local

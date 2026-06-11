@@ -23,12 +23,12 @@ tiers:
       da: "Fællesskabsvenner"
     level: "community-friend"
     sponsors:
-      - name: "Tech Hub Aarhus"
-        url: "https://techhubaarhus.dk"
-        logo: "/images/sponsors/tech-hub-aarhus.png"
+      - name: "Baldur Security"
+        url: "https://baldur.dk"
+        logo: "/images/sponsors/baldur_security_final.svg"
         description:
-          en: "Tech Hub Aarhus connects the city's tech community through events, meetups, and partnerships that bring together developers, startups, and established companies."
-          da: "Tech Hub Aarhus forbinder byens tech-miljø gennem arrangementer, meetups og partnerskaber, der samler udviklere, startups og etablerede virksomheder."
+          en: "Baldur Security is a Danish cybersecurity company helping organisations strengthen their security posture through advisory, offensive testing, and training services."
+          da: "Baldur Security er et dansk cybersikkerhedsfirma, der hjælper organisationer med at styrke deres sikkerhed gennem rådgivning, offensiv test og træning."
       - name: "Sticker Mule"
         url: "https://www.stickermule.com"
         logo: "/images/sponsors/sticker-mule.png"
@@ -48,6 +48,12 @@ tiers:
       da: "Fællesskabs Studentervenner"
     level: "community-student-friend"
     sponsors:
+      - name: "Tech Hub Aarhus"
+        url: "https://techhubaarhus.dk"
+        logo: "/images/sponsors/tech-hub-aarhus.png"
+        description:
+          en: "Tech Hub Aarhus connects the city's tech community through events, meetups, and partnerships that bring together developers, startups, and established companies."
+          da: "Tech Hub Aarhus forbinder byens tech-miljø gennem arrangementer, meetups og partnerskaber, der samler udviklere, startups og etablerede virksomheder."
       - name: "Danske Bank"
         url: "https://danskebank.dk"
         logo: "/images/sponsors/Danske BankLogo White RGB.png"
