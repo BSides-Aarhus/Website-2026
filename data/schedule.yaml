@@ -27,7 +27,7 @@ timeSlots:
   track2: post-quantum-cryptography
 - time: '14:50'
   type: parallel
-  track1: to-be-announced
+  track1: side-quest-whodunit
   track2: build-your-own-ids
 - time: '15:30'
   type: plenary
