@@ -6,7 +6,7 @@ timeSlots:
     da: Morgenmad
 - time: '10:00'
   type: parallel
-  track1: tba
+  track1: malware-monsters
   track2: webauthn-passwordless
 - time: '11:00'
   type: parallel
