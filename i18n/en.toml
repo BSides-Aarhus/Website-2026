@@ -201,6 +201,8 @@ other = "CFP is Closed — Thank You for All Submissions!"
 other = "Proposals are being reviewed. Speakers will be notified by April 20."
 [cfp_schedule]
 other = "The schedule has been published!"
+[cfp_submit_note]
+other = "Submit your proposal through Sessionize. Include a title, abstract, and brief bio."
 [cfp_submit]
 other = "Submit Your Talk"
 [cfp_view_schedule]

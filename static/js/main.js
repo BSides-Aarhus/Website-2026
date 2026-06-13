@@ -108,8 +108,10 @@
     requestAnimationFrame(animate);
   }
 
-  // Only run on non-touch devices to save performance
-  if (!('ontouchstart' in window)) {
+  // Only run on non-touch devices to save performance, and respect the
+  // user's "reduce motion" preference.
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!('ontouchstart' in window) && !reduceMotion) {
     animate();
   }
 })();
@@ -206,9 +208,16 @@
     }, 300);
   });
 
-  // Also animate the sold counter number from 0
+  // Also animate the sold counter number from 0 — but skip the from-0 count-up
+  // when the event is already sold out (it would briefly show a misleading low
+  // number) or when the user prefers reduced motion.
+  var statsEl = document.getElementById('ticket-stats');
+  var prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var soldOut = statsEl &&
+    parseInt(statsEl.dataset.sold, 10) >= parseInt(statsEl.dataset.total, 10) &&
+    parseInt(statsEl.dataset.total, 10) > 0;
   var soldEl = document.getElementById('tickets-sold');
-  if (soldEl) {
+  if (soldEl && !soldOut && !prefersReduce) {
     var targetNum = parseInt(soldEl.textContent, 10) || 0;
     soldEl.textContent = '0';
     setTimeout(function () {

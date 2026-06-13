@@ -201,6 +201,8 @@ other = "CFP er lukket — tak for alle indsendelser!"
 other = "Forslagene er under bedømmelse. Talere får besked senest d. 20. april."
 [cfp_schedule]
 other = "Programmet er offentliggjort!"
+[cfp_submit_note]
+other = "Indsend dit forslag via Sessionize. Inkluder en titel, et abstrakt og en kort biografi."
 [cfp_submit]
 other = "Indsend dit foredrag"
 [cfp_view_schedule]

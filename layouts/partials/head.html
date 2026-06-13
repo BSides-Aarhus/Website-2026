@@ -25,6 +25,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a0f">
 
 {{/* Title resolution */}}
 {{ $title := "" }}
@@ -50,12 +51,14 @@
 
 {{/* OG image: speaker pages use their photo when available */}}
 {{ $ogImage := site.Params.ogImage | absURL }}
+{{ $ogImageDefault := true }}
 {{ if and (eq .Section "speakers") (.File) }}
   {{ $slug := .File.TranslationBaseName }}
   {{ range slice "jpg" "png" "webp" "jpeg" }}
     {{ $p := printf "/images/speakers/%s.%s" $slug . }}
     {{ if fileExists (printf "static%s" $p) }}
       {{ $ogImage = $p | absURL }}
+      {{ $ogImageDefault = false }}
     {{ end }}
   {{ end }}
 {{ end }}
@@ -79,7 +82,9 @@
 <meta property="og:title" content="{{ .Title | default site.Title }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:image" content="{{ $ogImage }}">
-<meta property="og:url" content="{{ .Permalink }}">
+{{ if $ogImageDefault }}<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{{ end }}<meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:type" content="{{ $ogType }}">
 <meta property="og:site_name" content="{{ site.Title }}">
 

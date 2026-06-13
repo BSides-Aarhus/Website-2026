@@ -42,5 +42,3 @@ Vi leder efter talere! BSides Aarhus 2026 byder foredrag velkommen inden for all
 - Ingen salgsindlæg eller leverandørmarkedsføring
 - Arbejdsgiverlogoer begrænset til titelslide og biografislide
 - Alle talere skal overholde vores adfærdskodeks
-
-Indsend dit forslag via Sessionize. Inkluder en titel, et abstrakt og en kort biografi.

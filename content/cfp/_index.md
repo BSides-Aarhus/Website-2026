@@ -42,5 +42,3 @@ We're looking for speakers! BSides Aarhus 2026 welcomes talks on all aspects of 
 - No sales pitches or vendor marketing
 - Employer logos limited to title slide and biography slide only
 - All speakers must comply with our Code of Conduct
-
-Submit your proposal through Sessionize. Include a title, abstract, and brief bio.
