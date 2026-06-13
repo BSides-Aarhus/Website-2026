@@ -68,7 +68,7 @@ other = "Share your knowledge. Our CFP is open — submit your talk proposal tod
 [home_feature_cfp_desc_closed]
 other = "Our CFP has closed. Thank you to everyone who submitted a proposal!"
 [home_feature_cfp_desc_schedule]
-other = "The schedule is live! Check out the talks lined up for BSides Aarhus 2026."
+other = "The agenda is live! Check out the talks lined up for BSides Aarhus 2026."
 [home_feature_tickets]
 other = "Tickets Available"
 [home_feature_tickets_desc]
@@ -200,13 +200,13 @@ other = "CFP is Closed — Thank You for All Submissions!"
 [cfp_review]
 other = "Proposals are being reviewed. Speakers will be notified by April 20."
 [cfp_schedule]
-other = "The schedule has been published!"
+other = "The agenda has been published!"
 [cfp_submit_note]
 other = "Submit your proposal through Sessionize. Include a title, abstract, and brief bio."
 [cfp_submit]
 other = "Submit Your Talk"
 [cfp_view_schedule]
-other = "View the Schedule"
+other = "View the Agenda"
 
 # Footer
 [footer_tagline]

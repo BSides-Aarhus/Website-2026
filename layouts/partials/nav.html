@@ -10,8 +10,14 @@
       <span class="hamburger"></span>
     </button>
     <ul class="nav-links">
+      {{ $cfpClose := time "2026-04-11T00:00:00+02:00" }}
       {{ range site.Menus.main }}
-      <li><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a></li>
+      {{/* Hide CFP from the top nav once it has closed — it stays linked in the footer. */}}
+      {{ if and (eq .URL "/cfp/") (ge now $cfpClose) }}{{ else }}
+      {{/* Localize menu labels via i18n (keyed off the URL slug), falling back to the config name. */}}
+      {{ $label := i18n (printf "nav_%s" (strings.Trim .URL "/")) | default .Name }}
+      <li><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ $label }}</a></li>
+      {{ end }}
       {{ end }}
       <li class="nav-cta">
         {{ $ctaSoldOut := and (gt site.Data.tickets.total_available 0) (ge site.Data.tickets.total_sold site.Data.tickets.total_available) }}

@@ -11,7 +11,7 @@ We're looking for speakers! BSides Aarhus 2026 welcomes talks on all aspects of 
 - **Call for Presentations Closes:** Friday, April 10, 2026
 - **Speaker Notification:** Monday, April 20, 2026
 - **Speaker Confirmation Due:** Monday, April 27, 2026
-- **Schedule Published:** Friday, May 1, 2026
+- **Agenda Published:** Friday, May 1, 2026
 - **Conference:** Saturday, June 20, 2026
 
 ## Topics of Interest

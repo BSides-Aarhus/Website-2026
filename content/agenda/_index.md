@@ -1,7 +1,7 @@
 ---
 title: "Agenda"
 metaTitle: "BSides Aarhus 2026 Agenda – Conference Schedule | Security Talks"
-description: "BSides Aarhus 2026 conference schedule — two parallel tracks of security talks. June 20, 2026 in Aarhus, Denmark."
+description: "BSides Aarhus 2026 conference agenda — two parallel tracks of security talks. June 20, 2026 in Aarhus, Denmark."
 translationKey: "agenda"
 ---
 
