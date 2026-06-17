@@ -41,7 +41,13 @@ tiers:
       en: "Community Food Friends"
       da: "Fællesskabs Madvenner"
     level: "community-food-friend"
-    sponsors: []
+    sponsors:
+      - name: "Semgrep"
+        url: "https://semgrep.dev"
+        logo: "/images/sponsors/Semgrep-logo--white.svg"
+        description:
+          en: "Semgrep is a fast, open-source static analysis platform that helps developers and security teams find bugs and vulnerabilities in code, scanning dozens of languages with lightweight, customisable rules."
+          da: "Semgrep er en hurtig, open source-platform til statisk kodeanalyse, der hjælper udviklere og sikkerhedsteams med at finde fejl og sårbarheder i kode på tværs af mange programmeringssprog med letvægts og tilpasselige regler."
 
   - name:
       en: "Community Student Friends"
