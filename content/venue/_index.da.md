@@ -21,7 +21,7 @@ Danmark
 
 ## Sådan finder du vej
 
-**Med offentlig transport:** Tag bus 2A eller 11 til Katrinebjerg. Lokationen er en kort gåtur fra busstoppestedet.
+**Med offentlig transport:** Tag bus 2A eller 5A til Katrinebjerg. Lokationen er en kort gåtur fra busstoppestedet.
 
 **Med bil:** Der er parkering tilgængelig i det omkringliggende område. Følg skilte til Katrinebjerg / IT-byen.
 

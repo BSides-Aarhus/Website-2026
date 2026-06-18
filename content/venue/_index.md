@@ -21,7 +21,7 @@ Denmark
 
 ## Getting There
 
-**By public transport:** Take bus 2A or 11 to Katrinebjerg. The venue is a short walk from the bus stop.
+**By public transport:** Take bus 2A or 5A to Katrinebjerg. The venue is a short walk from the bus stop.
 
 **By car:** There is parking available in the surrounding area. Follow signs to Katrinebjerg / IT-byen.
 
