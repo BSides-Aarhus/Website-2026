@@ -94,6 +94,14 @@ items:
 
   - category: involved
     question:
+      en: "I'm a speaker — what connections are available in the rooms?"
+      da: "Jeg er taler — hvilke tilslutninger er der i lokalerne?"
+    answer:
+      en: "All presentation rooms are on the ground floor and are equipped with both HDMI and USB-C connections, so you can connect most modern laptops directly. If you use a different connector or have other AV needs, please <a href=\"mailto:info@bsidesaarhus.dk\">let us know in advance</a> so we can help."
+      da: "Alle foredragslokaler ligger i stueetagen og er udstyret med både HDMI- og USB-C-tilslutning, så du kan koble de fleste moderne bærbare direkte til. Hvis du bruger en anden tilslutning eller har andre AV-behov, så <a href=\"mailto:info@bsidesaarhus.dk\">giv os besked på forhånd</a>, så vi kan hjælpe."
+
+  - category: involved
+    question:
       en: "How can my company sponsor BSides Aarhus?"
       da: "Hvordan kan min virksomhed sponsorere BSides Aarhus?"
     answer:
