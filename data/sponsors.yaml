@@ -48,6 +48,12 @@ tiers:
         description:
           en: "Semgrep is a fast, open-source static analysis platform that helps developers and security teams find bugs and vulnerabilities in code, scanning dozens of languages with lightweight, customisable rules."
           da: "Semgrep er en hurtig, open source-platform til statisk kodeanalyse, der hjælper udviklere og sikkerhedsteams med at finde fejl og sårbarheder i kode på tværs af mange programmeringssprog med letvægts og tilpasselige regler."
+      - name: "A. Hoffskov Consult"
+        url: "https://ahoffskov.dk"
+        logo: "/images/sponsors/a-hoffskov-consult.png"
+        description:
+          en: "A. Hoffskov Consult is a Danish security advisory specialising in governance, risk and compliance, helping organisations build and optimise ISO 27001 information security management and meet NIS2, DORA, and CRA requirements through pragmatic, business-aligned guidance."
+          da: "A. Hoffskov Consult er et dansk sikkerhedsrådgivningsfirma med speciale i governance, risk og compliance, der hjælper organisationer med at opbygge og optimere ISO 27001-informationssikkerhedsledelse samt efterleve NIS2, DORA og CRA gennem pragmatisk, forretningsnær rådgivning."
 
   - name:
       en: "Community Student Friends"
