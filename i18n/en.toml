@@ -131,6 +131,10 @@ other = "Show less"
 other = "Speakers"
 [session_topics]
 other = "Topics"
+[session_slides]
+other = "Slides"
+[session_slides_download]
+other = "Download slides (PDF)"
 [topics_title]
 other = "Topics"
 [topics_intro]

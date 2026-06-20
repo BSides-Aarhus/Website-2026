@@ -4,6 +4,7 @@ time: "10:00"
 room: "Lille aud"
 speakers:
   - joost-van-dijk
+slides: /slides/webauthn-passwordless.pdf
 topics:
   - webauthn
   - passwordless

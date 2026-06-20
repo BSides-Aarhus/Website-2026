@@ -17,6 +17,13 @@
         {{ .Content }}
       </div>
 
+      {{ with .Params.slides }}
+      <div class="session-slides">
+        <h2>{{ i18n "session_slides" }}</h2>
+        <a class="btn btn-secondary" href="{{ . | relURL }}" target="_blank" rel="noopener">{{ i18n "session_slides_download" }}</a>
+      </div>
+      {{ end }}
+
       {{ with .Params.topics }}
       <div class="session-topics">
         <h2>{{ i18n "session_topics" }}</h2>

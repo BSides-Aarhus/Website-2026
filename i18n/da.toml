@@ -131,6 +131,10 @@ other = "Vis mindre"
 other = "Talere"
 [session_topics]
 other = "Emner"
+[session_slides]
+other = "Slides"
+[session_slides_download]
+other = "Hent slides (PDF)"
 [topics_title]
 other = "Emner"
 [topics_intro]
