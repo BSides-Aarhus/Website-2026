@@ -16,18 +16,10 @@
       {{ end }}
     {{ end }}
 
+    {{/* Event has ended — archived edition. Live ticket/CFP CTAs removed; agenda kept. */}}
     <div class="hero-cta">
-      {{ $ctaSoldOut := and (gt site.Data.tickets.total_available 0) (ge site.Data.tickets.total_sold site.Data.tickets.total_available) }}
-      <a href="{{ if $ctaSoldOut }}{{ site.Params.ticketURL }}{{ else }}{{ "/tickets/" | relLangURL }}{{ end }}"
-         class="btn btn-primary btn-lg js-tickets-cta"
-         data-tickets-url="{{ "/tickets/" | relLangURL }}" data-waitlist-url="{{ site.Params.ticketURL }}"
-         data-tickets-label="{{ i18n "cta_tickets" }}" data-waitlist-label="{{ i18n "tickets_waitlist" }}"
-         {{ if $ctaSoldOut }}target="_blank" rel="noopener"{{ end }}>{{ if $ctaSoldOut }}{{ i18n "tickets_waitlist" }}{{ else }}{{ i18n "cta_tickets" }}{{ end }}</a>
-      {{ $cfpClose := time "2026-04-11T00:00:00+02:00" }}
-      {{ $scheduleDate := time "2026-05-01T00:00:00+02:00" }}
-      <a href="{{ site.Params.cfpURL }}" class="btn btn-secondary btn-lg" data-cfp-state="open" target="_blank" rel="noopener"{{ if ge now $cfpClose }} style="display:none"{{ end }}>{{ i18n "cta_cfp" }}</a>
-      <a href="{{ "/agenda/" | relLangURL }}" class="btn btn-secondary btn-lg" data-cfp-state="schedule"{{ if lt now $scheduleDate }} style="display:none"{{ end }}>{{ i18n "cfp_view_schedule" }}</a>
+      <a href="{{ "/agenda/" | relLangURL }}" class="btn btn-secondary btn-lg">{{ i18n "cfp_view_schedule" }}</a>
     </div>
   </div>
-  {{ partial "countdown.html" . }}
+  <p class="hero-ended">{{ if eq site.Language.Lang "da" }}Afholdt 20. juni 2026{{ else }}Took place June 20, 2026{{ end }}</p>
 </section>

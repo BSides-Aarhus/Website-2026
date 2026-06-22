@@ -107,13 +107,11 @@
 {{ if and .IsPage (eq .Section "sessions") .File }}{{ partial "schema-session.html" . }}{{ partial "schema-breadcrumb.html" . }}{{ end }}
 {{ if eq .Section "faq" }}{{ partial "schema-faq.html" . }}{{ end }}
 {{ if eq .Section "sponsors" }}{{ partial "schema-sponsors.html" . }}{{ end }}
-{{ if eq .Section "2025" }}{{ partial "schema-archive2025.html" . }}{{ end }}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
-{{ with site.Params.ticketProxyURL }}<meta name="ticket-proxy-url" content="{{ . }}">{{ end }}
 {{ partial "critical-css.html" . }}
 <link rel="preload" href="{{ "css/main.css" | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ "css/main.css" | relURL }}"></noscript>
